@@ -1,11 +1,47 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/leaf</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.Launcher">
+        <item name="android:background"></item>
+    </style>
+
+    <style name="TextStyle2">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">21sp</item>
+        <item name="android:fontFamily">@font/officina_sans</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="TextStyle">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">@font/officina_sans</item>
+        <item name="android:textColor">@color/light_olive_green</item>
+    </style>
+    <style name="TextStyle3">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:textColor">#b3000000</item>
+    </style>
+    <style name="ProgressBar" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/turtle_green</item>
+    </style>
+    <style name="MenuText">
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_gravity">bottom</item>
+    </style>
+    <style name="ToolbarTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="android:background">@color/leaf</item>
     </style>
 
 </resources>
