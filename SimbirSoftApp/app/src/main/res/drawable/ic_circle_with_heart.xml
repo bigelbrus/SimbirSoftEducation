@@ -3,14 +3,12 @@
     <item>
         <shape android:shape="oval">
             <size
-                android:width="42dp"
-                android:height="42dp" />
+                android:width="@dimen/circle_diam"
+                android:height="@dimen/circle_diam" />
             <solid android:color="@color/melon" />
         </shape>
     </item>
     <item
-        android:width="24dp"
-        android:height="24dp"
         android:drawable="@drawable/ic_heart"
         android:gravity="center"/>
 </layer-list>

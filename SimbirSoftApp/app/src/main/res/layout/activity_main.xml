@@ -4,75 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clipChildren="false"
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_main"
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
+        android:theme="@style/ToolbarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:theme="@style/ToolbarTheme">
+        app:titleTextColor="@color/white">
+
         <TextView
             android:id="@+id/toolbar_title"
-            android:text="@string/help_label"
-            android:layout_gravity="center"
-            style="@style/TextStyle2"
+            style="@style/ToolbarTitleTextAppearance"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"/>
+            android:layout_gravity="center"
+            android:text="@string/help_label" />
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/help_category_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:fontFamily="@font/roboto_regular"
+        android:layout_marginTop="@dimen/spacing_20dp"
+        android:fontFamily="@font/roboto"
         android:text="@string/help_category_label"
         android:textColor="@color/black__87"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_main"/>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_main" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_help"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"
+        android:layout_marginTop="@dimen/spacing_20dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_panel"
         app:layout_constraintTop_toBottomOf="@+id/help_category_label" />
 
-
-    <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
-        android:id="@+id/bottom_navigation_view"
-        android:layout_width="0dp"
-        app:elevation="@dimen/elevation_bottom_elements"
-        android:layout_height="wrap_content"
+    <include
+        android:id="@+id/bottom_panel"
+        layout="@layout/bottom_panel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/navigation_bottom_menu"
-        app:itemTextColor="@drawable/selector"
-        app:itemIconTint="@drawable/selector"
-        android:background="@color/white"
-        app:labelVisibilityMode="labeled"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_help"
-        android:layout_width="54dp"
-        android:layout_height="54dp"
-        android:layout_gravity="center"
-        android:scaleType="center"
-        android:src="@drawable/ic_circle_with_heart"
-        app:backgroundTint="@color/white"
-        app:elevation="@dimen/elevation_bottom_elements"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:maxImageSize="42dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

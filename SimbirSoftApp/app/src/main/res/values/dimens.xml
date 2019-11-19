@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="elevation_bottom_elements">10dp</dimen>
+    <dimen name="circle_diam">50dp</dimen>
+    <dimen name="height_70dp">70dp</dimen>
+    <dimen name="button_padding">4dp</dimen>
+    <dimen name="text_size_16sp">16sp</dimen>
+    <dimen name="spacing_20dp">20dp</dimen>
+    <dimen name="spacing_54dp">54dp</dimen>
+    <dimen name="height_23dp">23dp</dimen>
 </resources>

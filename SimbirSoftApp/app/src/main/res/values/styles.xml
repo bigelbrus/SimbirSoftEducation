@@ -1,30 +1,26 @@
-<resources>
+<resources xmlns:http="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Base application theme. Theme.AppCompat.Light.NoActionBar-->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/leaf</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.Launcher">
-        <item name="android:background"></item>
-    </style>
-
-    <style name="TextStyle2">
+    <style name="ToolbarTitleTextAppearance">
         <item name="android:gravity">center_horizontal</item>
         <item name="android:textSize">21sp</item>
         <item name="android:fontFamily">@font/officina_sans</item>
         <item name="android:textColor">@color/white</item>
     </style>
-    <style name="TextStyle">
+    <style name="ItemLabelTextAppearance">
         <item name="android:gravity">center_horizontal</item>
         <item name="android:textSize">15sp</item>
         <item name="android:fontFamily">@font/officina_sans</item>
         <item name="android:textColor">@color/light_olive_green</item>
     </style>
-    <style name="TextStyle3">
+    <style name="InfoLabelTextAppearance">
         <item name="android:gravity">center_horizontal</item>
         <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">sans-serif</item>
@@ -39,9 +35,23 @@
         <item name="android:layout_height">20dp</item>
         <item name="android:layout_gravity">bottom</item>
     </style>
+
     <style name="ToolbarTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorControlNormal">@color/white</item>
         <item name="android:background">@color/leaf</item>
+        <item name="titleTextColor">@color/white</item>
     </style>
 
+    <style name="BottomButtonWithoutSpacing" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:layout_width">0dp</item>>
+        <item name="android:layout_height">@dimen/height_70dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@drawable/selector_bottom_button</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:onClick">onBottomButtonClick</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="BottomButton" parent="BottomButtonWithoutSpacing"/>
 </resources>

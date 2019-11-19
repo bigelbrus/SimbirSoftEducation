@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Хочу помочь</string>
     <string name="loading_label">Загрузка&#8230;</string>
     <string name="help_category_label">Выберите категорию помощи</string>
@@ -7,5 +7,9 @@
     <string name="help_label">Помочь</string>
     <string name="history_label">История</string>
     <string name="profile_label">Профиль</string>
-    <string name="item_example">Дети</string>
+    <string name="item_example" tools:ignore="UnusedResources">Дети</string>
+    <string name="firm_image">Логотип фирмы</string>
+    <string name="app_image">Логотип приложения</string>
+    <string name="help_button">Кнопка помощь</string>
+    <string name="image_item">Изображение категории</string>
 </resources>
