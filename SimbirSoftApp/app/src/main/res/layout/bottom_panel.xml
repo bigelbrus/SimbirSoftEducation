@@ -70,7 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button_history" />
 
-    <com.example.simbirsoftapp.BottomLine
+    <com.example.simbirsoftapp.ui.BottomLine
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_23dp"

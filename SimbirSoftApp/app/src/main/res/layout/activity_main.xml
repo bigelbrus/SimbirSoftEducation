@@ -8,6 +8,7 @@
     android:clipChildren="false"
     tools:context=".MainActivity">
 
+<<<<<<< Updated upstream
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_main"
         android:layout_width="0dp"
@@ -46,8 +47,17 @@
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/spacing_20dp"
         android:background="@color/white"
+=======
+    <FrameLayout
+        android:id="@+id/fragment_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+>>>>>>> Stashed changes
         app:layout_constraintBottom_toTopOf="@+id/bottom_panel"
-        app:layout_constraintTop_toBottomOf="@+id/help_category_label" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <include
         android:id="@+id/bottom_panel"
@@ -57,7 +67,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

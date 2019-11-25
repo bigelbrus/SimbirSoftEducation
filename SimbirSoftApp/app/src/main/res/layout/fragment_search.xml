@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_grey_two"
+    android:clipToPadding="false">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include layout="@layout/search_field" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/search_tab_layout"
+            style="@style/SearchTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/key_word"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:text="@string/key_word"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar" />
+
+    <TextView
+        android:id="@+id/search_result_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xsmall"
+        android:text="@string/search_result_label"
+        app:layout_constraintStart_toStartOf="@+id/key_word"
+        app:layout_constraintTop_toBottomOf="@+id/key_word" />
+
+    <TextView
+        android:id="@+id/search_result_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_xsmall"
+        app:layout_constraintStart_toEndOf="@+id/search_result_label"
+        app:layout_constraintTop_toTopOf="@+id/search_result_label"
+        tools:text="109 мероприятий" />
+
+    <View
+        android:id="@+id/divider_top"
+        style="@style/Divider"
+        app:layout_constraintBottom_toTopOf="@+id/search_view_pager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.example.simbirsoftapp.ui.search.MyViewPager
+        android:id="@+id/search_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_result_label" />
+
+    <View
+        android:id="@+id/divider_bottom"
+        style="@style/Divider"
+        app:layout_constraintBottom_toBottomOf="@+id/search_view_pager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

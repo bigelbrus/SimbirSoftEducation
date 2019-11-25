@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/profile_image_button"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:contentDescription="@string/profile_image"
+            android:src="@drawable/image_man"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/profile_name"
+            style="@style/ProfileLargeTextAppearance"
+            android:layout_marginStart="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/spacing_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image_button"
+            tools:text="Константинов Денис" />
+
+        <TextView
+            android:id="@+id/birthday_date_label"
+            style="@style/ProfileSmallTextAppearance"
+            android:text="@string/birthday_date_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_name" />
+
+        <TextView
+            android:id="@+id/birthday_date"
+            style="@style/ProfileMediumTextAppearance"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/birthday_date_label"
+            tools:text="01 февраля 1980" />
+
+        <TextView
+            android:id="@+id/sphere_activity_label"
+            style="@style/ProfileSmallTextAppearance"
+            android:text="@string/sphere_activity_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/birthday_date" />
+
+        <TextView
+            android:id="@+id/sphere_activity"
+            style="@style/ProfileMediumTextAppearance"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sphere_activity_label"
+            tools:text="Хирургия, травмотология" />
+
+        <TextView
+            android:id="@+id/push_notification_label"
+            style="@style/ProfileMediumTextAppearance"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:text="@string/push_notification_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sphere_activity" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/push_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_medium"
+            tools:checked="true"
+            android:theme="@style/SwitchStyle"
+            app:layout_constraintBottom_toTopOf="@+id/push_notification_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/push_notification_label" />
+
+        <View
+            android:id="@+id/profile_divider"
+            style="@style/Divider"
+            android:layout_marginTop="@dimen/spacing_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/push_notification_label" />
+
+        <TextView
+            android:id="@+id/your_friends_label"
+            style="@style/ProfileSmallTextAppearance"
+            android:text="@string/your_friends_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_divider" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/friends_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/your_friends_label" />
+
+        <View
+            android:id="@+id/friends_divider"
+            style="@style/Divider"
+            android:layout_marginTop="@dimen/spacing_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/friends_recycler_view" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/exit_profile_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:fontFamily="sans-serif-medium"
+            android:paddingStart="@dimen/spacing_medium"
+            android:paddingEnd="@dimen/spacing_medium"
+            android:text="@string/exit_account_label"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:layout_marginBottom="@dimen/spacing_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/friends_divider" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
+</LinearLayout>
