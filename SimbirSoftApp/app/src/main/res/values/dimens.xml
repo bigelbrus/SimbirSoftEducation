@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="circle_diam">50dp</dimen>
-    <dimen name="height_70dp">70dp</dimen>
     <dimen name="button_padding">4dp</dimen>
-<<<<<<< Updated upstream
-    <dimen name="text_size_16sp">16sp</dimen>
-    <dimen name="spacing_20dp">20dp</dimen>
-    <dimen name="spacing_54dp">54dp</dimen>
-    <dimen name="height_23dp">23dp</dimen>
-=======
 
     <dimen name="height_bottom_panel">70dp</dimen>
     <dimen name="height_panel_line">23dp</dimen>
@@ -28,5 +21,4 @@
     <dimen name="divider_height">1dp</dimen>
     <dimen name="height_search_field">48dp</dimen>
     <dimen name="elevation_light">4dp</dimen>
->>>>>>> Stashed changes
 </resources>

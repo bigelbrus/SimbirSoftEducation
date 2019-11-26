@@ -57,13 +57,8 @@
         <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textStyle">normal</item>
-<<<<<<< Updated upstream
-        <item name="android:lineSpacingExtra">6sp</item>
-        <item name="android:textColor">#b3000000</item>
-=======
         <item name="android:lineSpacingExtra">@dimen/spacing_xsmall</item>
         <item name="android:textColor">@color/black___30</item>
->>>>>>> Stashed changes
     </style>
     <style name="ProgressBar" parent="Theme.AppCompat.Light">
         <item name="colorAccent">@color/turtle_green</item>
@@ -81,7 +76,7 @@
 
     <style name="BottomButtonWithoutSpacing" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:layout_width">0dp</item>>
-        <item name="android:layout_height">@dimen/height_70dp</item>
+        <item name="android:layout_height">@dimen/height_bottom_panel</item>
         <item name="android:background">@color/white</item>
         <item name="android:textColor">@drawable/selector_bottom_button</item>
         <item name="android:textSize">12sp</item>
@@ -104,8 +99,6 @@
     </style>
 
     <style name="BottomButton" parent="BottomButtonWithoutSpacing"/>
-<<<<<<< Updated upstream
-=======
 
     <style name="SwitchStyle" parent="Theme.MaterialComponents.Light">
         <item name="colorControlActivated">@color/leaf</item>
@@ -125,5 +118,4 @@
 
 
 
->>>>>>> Stashed changes
 </resources>

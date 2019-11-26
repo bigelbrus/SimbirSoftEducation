@@ -8,51 +8,10 @@
     android:clipChildren="false"
     tools:context=".MainActivity">
 
-<<<<<<< Updated upstream
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_main"
-        android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:theme="@style/ToolbarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="@color/white">
-
-        <TextView
-            android:id="@+id/toolbar_title"
-            style="@style/ToolbarTitleTextAppearance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/help_label" />
-    </androidx.appcompat.widget.Toolbar>
-
-    <TextView
-        android:id="@+id/help_category_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_20dp"
-        android:fontFamily="@font/roboto"
-        android:text="@string/help_category_label"
-        android:textColor="@color/black__87"
-        android:textSize="@dimen/text_size_16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_main" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_help"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/spacing_20dp"
-        android:background="@color/white"
-=======
     <FrameLayout
         android:id="@+id/fragment_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"
->>>>>>> Stashed changes
         app:layout_constraintBottom_toTopOf="@+id/bottom_panel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +22,7 @@
         android:id="@+id/bottom_panel"
         layout="@layout/bottom_panel"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_70dp"
+        android:layout_height="@dimen/height_bottom_panel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

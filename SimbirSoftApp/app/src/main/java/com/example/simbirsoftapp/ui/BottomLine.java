@@ -9,8 +9,6 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-<<<<<<< Updated upstream:SimbirSoftApp/app/src/main/java/com/example/simbirsoftapp/BottomLine.java
-=======
 import com.example.simbirsoftapp.R;
 
 import static java.lang.Math.cos;
@@ -18,25 +16,27 @@ import static java.lang.Math.sin;
 import static java.lang.Math.toRadians;
 
 
->>>>>>> Stashed changes:SimbirSoftApp/app/src/main/java/com/example/simbirsoftapp/ui/BottomLine.java
 public class BottomLine extends View {
 
     private final Paint paint = new Paint();
     private final RectF oval = new RectF();
     private Resources res;
+    private int whiteColor;
+    private int greyColor;
+    private final float START_ANGLE_STROKE_BUTTON_PADDING = 190f;
+    private final float SWEEP_ANGLE_STROKE_BUTTON_PADDING = 160f;
+    private final float STROKE_THIN = 3;
 
     public BottomLine(Context context, AttributeSet set) {
         super(context, set);
         init(context);
     }
 
-<<<<<<< Updated upstream:SimbirSoftApp/app/src/main/java/com/example/simbirsoftapp/BottomLine.java
     private void init(Context context){
-=======
-    private void init() {
->>>>>>> Stashed changes:SimbirSoftApp/app/src/main/java/com/example/simbirsoftapp/ui/BottomLine.java
         this.setBackgroundColor(Color.TRANSPARENT);
         res = context.getResources();
+        whiteColor = res.getColor(R.color.white);
+        greyColor = res.getColor(R.color.grey);
     }
 
     @Override
@@ -57,14 +57,14 @@ public class BottomLine extends View {
                 right - buttonPadding, bottom - buttonPadding);
 
         paint.setStyle(Paint.Style.STROKE);
-<<<<<<< Updated upstream:SimbirSoftApp/app/src/main/java/com/example/simbirsoftapp/BottomLine.java
-        paint.setStrokeWidth(buttonPadding);
-        paint.setColor(getResources().getColor(R.color.white));
-        canvas.drawArc(oval, 190, 160, false, paint);
-
-        paint.setColor(getResources().getColor(R.color.grey));
-        paint.setStrokeWidth(3);
-=======
+//<<<<<<< Updated upstream:SimbirSoftApp/app/src/main/java/com/example/simbirsoftapp/BottomLine.java
+//        paint.setStrokeWidth(buttonPadding);
+//        paint.setColor(getResources().getColor(R.color.white));
+//        canvas.drawArc(oval, 190, 160, false, paint);
+//
+//        paint.setColor(getResources().getColor(R.color.grey));
+//        paint.setStrokeWidth(3);
+//=======
         paint.setStrokeWidth(2 * buttonPadding);
         paint.setColor(whiteColor);
         canvas.drawArc(oval,
@@ -77,7 +77,7 @@ public class BottomLine extends View {
 
         paint.setColor(greyColor);
         paint.setStrokeWidth(STROKE_THIN);
->>>>>>> Stashed changes:SimbirSoftApp/app/src/main/java/com/example/simbirsoftapp/ui/BottomLine.java
+//>>>>>>> Stashed changes:SimbirSoftApp/app/src/main/java/com/example/simbirsoftapp/ui/BottomLine.java
         paint.setAntiAlias(true);
         paint.setAlpha(60);
         canvas.drawArc(oval, 180, 20, false, paint);

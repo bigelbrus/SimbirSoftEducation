@@ -3,11 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-<<<<<<< Updated upstream
-    android:padding="@dimen/spacing_20dp">
-=======
     android:padding="@dimen/spacing_medium">
->>>>>>> Stashed changes
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -22,11 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-<<<<<<< Updated upstream
-        android:layout_marginTop="@dimen/spacing_20dp"
-=======
         android:layout_marginTop="@dimen/spacing_medium"
->>>>>>> Stashed changes
         android:text="@string/loading_label" />
 
 </LinearLayout>

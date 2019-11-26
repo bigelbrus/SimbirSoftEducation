@@ -4,12 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/light_grey"
-<<<<<<< Updated upstream
-    android:layout_height="200dp">
-=======
     android:layout_margin="10dp"
     android:layout_height="@dimen/height_help_item">
->>>>>>> Stashed changes
     <ImageView
         android:id="@+id/item_category_image"
         tools:src="@drawable/ic_logo_mss"

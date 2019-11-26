@@ -73,7 +73,7 @@
     <com.example.simbirsoftapp.ui.BottomLine
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_23dp"
+        android:layout_height="@dimen/height_panel_line"
         app:layout_constraintBottom_toTopOf="@id/button_news"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

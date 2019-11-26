@@ -2,6 +2,7 @@ package com.example.simbirsoftapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_main,new HelpFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_main, new HelpFragment()).commit();
 
         newsButton = findViewById(R.id.button_news);
         searchButton = findViewById(R.id.button_search);
@@ -49,13 +50,15 @@ public class MainActivity extends AppCompatActivity {
             case R.id.button_help:
             case R.id.image_button_help:
                 activateButton(helpButton);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main,new HelpFragment())
-                .commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main, new HelpFragment())
+                        .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .commit();
                 break;
             case R.id.button_search:
                 activateButton(searchButton);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main,
                         new SearchFragment())
+                        .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                         .commit();
                 break;
             case R.id.button_history:
@@ -65,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
                 activateButton(profileButton);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main,
                         new ProfileFragment())
-                .commit();
+                        .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .commit();
                 break;
         }
     }
@@ -86,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
         b.setActivated(true);
         activeButton = b;
     }
-
 
 
 }
