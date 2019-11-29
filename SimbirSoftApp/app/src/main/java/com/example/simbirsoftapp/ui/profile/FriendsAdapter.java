@@ -12,16 +12,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simbirsoftapp.R;
-import com.example.simbirsoftapp.data.Person;
+import com.example.simbirsoftapp.data.model.User;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendsViewHolder> {
 
-    private ArrayList<Person> friends;
+    private List<User> friends;
     private Context context;
 
-    FriendsAdapter(ArrayList<Person> friends) {
+    FriendsAdapter(List<User> friends) {
         this.friends = friends;
     }
 
@@ -36,7 +36,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendsV
 
     @Override
     public void onBindViewHolder(@NonNull FriendsViewHolder holder, int position) {
-        Person currentPerson = friends.get(position);
+        User currentPerson = friends.get(position);
 
         holder.name.setText(currentPerson.getFullName());
         holder.logo.setImageDrawable(context.getResources().getDrawable(currentPerson.getLogo()));

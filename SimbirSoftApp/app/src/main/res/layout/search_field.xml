@@ -35,13 +35,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.google.android.material.textfield.TextInputEditText
+    <EditText
         android:id="@+id/textInputEditText"
         style="@style/SearchEditText"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:hint="@string/enter_organisation_name"
+        android:hint="@string/enter_event_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/voice_search_button"
         app:layout_constraintStart_toEndOf="@+id/make_search_button"

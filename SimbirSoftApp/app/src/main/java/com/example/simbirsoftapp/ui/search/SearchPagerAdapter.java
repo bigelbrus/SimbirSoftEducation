@@ -10,15 +10,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.simbirsoftapp.R;
-import com.example.simbirsoftapp.ui.search.SearchEventsListFragment;
-import com.example.simbirsoftapp.ui.search.SearchOrganizationListFragment;
+import com.example.simbirsoftapp.ui.search.events.SearchEventsListFragment;
+import com.example.simbirsoftapp.ui.search.organisations.SearchOrganizationListFragment;
 
 public class SearchPagerAdapter extends FragmentPagerAdapter {
     private static final int LIST_COUNT = 2;
     private Context context;
     private SearchOrganizationListFragment organizationListFragment;
     private SearchEventsListFragment eventsListFragment;
-
 
 
     public SearchPagerAdapter(FragmentManager fm, Context context) {
@@ -37,15 +36,15 @@ public class SearchPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
+            case 1:
+                return organizationListFragment;
             case 0:
             default:
                 return eventsListFragment;
-            case 1:
-                return organizationListFragment;
         }
     }
 
-    public void setEventsListFragment(){
+    public void setEventsListFragment() {
         eventsListFragment = new SearchEventsListFragment();
     }
 
@@ -58,11 +57,11 @@ public class SearchPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         Resources res = context.getResources();
         switch (position) {
-            case 0:
-                return res.getText(R.string.search_events);
             case 1:
                 return res.getText(R.string.search_organisations);
+            case 0:
+            default:
+                return res.getText(R.string.search_events);
         }
-        return super.getPageTitle(position);
     }
 }

@@ -64,6 +64,7 @@
     <string name="key_word">Ключевые слова: мастер-класс, помощь</string>
     <string name="search_result_label">Результат поиска:</string>
     <string name="enter_organisation_name">Введите название организации</string>
+    <string name="enter_event_name">Введите название мероприятия</string>
     <string name="search_button">Кнопка поиска</string>
     <string name="voice_search_button">Кнопка голосового поиска</string>
     <string name="children">Дети</string>
@@ -71,4 +72,32 @@
     <string name="old">Пожилые</string>
     <string name="animal">Животные</string>
     <string name="event">Мероприятия</string>
+    <plurals name="event_plurals">
+<!--        <item quantity="zero">%1$d мероприятий</item>-->
+        <item quantity="one">%1$d мероприятие</item>
+<!--        <item quantity="two">%1$d мероприятия</item>-->
+        <item quantity="few">%1$d мероприятия</item>
+        <item quantity="many">%1$d мероприятий</item>
+        <item quantity="other">%1$d мероприятий</item>
+    </plurals>
+    <plurals name="organisation_plurals">
+<!--        <item quantity="zero">%1$d организаций</item>-->
+        <item quantity="one">%1$d организация</item>
+<!--        <item quantity="two">%1$d организации</item>-->
+        <item quantity="few">%1$d организации</item>
+        <item quantity="many">%1$d организаций</item>
+        <item quantity="other">%1$d организаций</item>
+    </plurals>
+    <string name="january">Января</string>
+    <string name="february">Февраля</string>
+    <string name="march">Марта</string>
+    <string name="april">Апреля</string>
+    <string name="may">Мая</string>
+    <string name="june">Июня</string>
+    <string name="july">Июля</string>
+    <string name="august">Августа</string>
+    <string name="september">Сентября</string>
+    <string name="october">Октября</string>
+    <string name="november">Ноября</string>
+    <string name="december">Декабря</string>
 </resources>

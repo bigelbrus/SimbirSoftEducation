@@ -1,4 +1,4 @@
-package com.example.simbirsoftapp.ui.profile;
+package com.example.simbirsoftapp.ui.profile.photo;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -20,7 +20,7 @@ public class DialogProfileFragment extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
-        View view = layoutInflater.inflate(R.layout.dialog, null);
+        View view = layoutInflater.inflate(R.layout.profile_dialog, null);
         view.findViewById(R.id.take_photo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

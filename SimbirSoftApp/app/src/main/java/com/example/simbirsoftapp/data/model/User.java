@@ -1,12 +1,12 @@
-package com.example.simbirsoftapp.data;
+package com.example.simbirsoftapp.data.model;
 
 import com.example.simbirsoftapp.R;
+import com.example.simbirsoftapp.data.DataSource;
+import com.example.simbirsoftapp.utility.DateUtils;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
+import java.util.List;
 
 public class User {
     private String name;
@@ -15,15 +15,20 @@ public class User {
     private String activity;
     private boolean wantPush;
     private int logo;
-    private ArrayList<Person> friends;
+    private ArrayList<User> friends;
     private static User user;
-    SimpleDateFormat dateFormat;
 
     public static User getUser() {
         if (user == null) {
             user = new User();
         }
         return user;
+    }
+
+    public User(String name, String surname, int logo) {
+        this.name = name;
+        this.surname = surname;
+        this.logo = logo;
     }
 
     private User() {
@@ -34,18 +39,8 @@ public class User {
         wantPush = true;
         logo = R.drawable.image_man;
         friends = new ArrayList<>();
-        dateFormat = new SimpleDateFormat("dd MMMM YYYY", Locale.getDefault());
-        long ls = 0;
-        try {
-            ls = dateFormat.parse("01-02-1980").getTime();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        date = new Date(ls);
-        friends.add(new Person("Дмитрий","Валерьевич",R.drawable.avatar_3));
-        friends.add(new Person("Евгений","Александров",R.drawable.avatar_2));
-        friends.add(new Person("Виктор","Кузнецов",R.drawable.avatar_1));
-        friends.add(new Person("Иван","Петров",R.drawable.avatar_3));
+        date = DateUtils.parseDate("01 02 1980");
+        friends = (ArrayList<User>) DataSource.getFriends();
     }
 
     public void setName(String name) {
@@ -69,7 +64,7 @@ public class User {
     }
 
     public String getDate() {
-        return dateFormat.format(date);
+        return DateUtils.formatDate(date);
     }
 
     public void setActivity(String activity) {
@@ -96,11 +91,11 @@ public class User {
         return logo;
     }
 
-    public void addFriend(Person p) {
+    public void addFriend(User p) {
         friends.add(p);
     }
 
-    public ArrayList<Person> getFriends() {
+    public List<User> getFriends() {
         return friends;
     }
 

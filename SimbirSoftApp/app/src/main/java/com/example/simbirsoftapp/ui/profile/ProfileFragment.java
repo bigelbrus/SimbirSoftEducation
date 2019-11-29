@@ -23,24 +23,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.simbirsoftapp.R;
-import com.example.simbirsoftapp.data.User;
-import com.example.simbirsoftapp.utility.UtilMethods;
+import com.example.simbirsoftapp.data.model.User;
+import com.example.simbirsoftapp.ui.profile.photo.DialogProfileFragment;
+import com.example.simbirsoftapp.utility.AppUtils;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+import static com.example.simbirsoftapp.ui.help.HelpFragment.KEY_BAR;
+
 public class ProfileFragment extends Fragment {
 
-    private TextView name;
-    private TextView sphere;
-    private SwitchCompat push;
-    private ImageView logo;
-    private TextView date;
-    private User user;
 
-
-    public ProfileFragment() {
-        // Required empty public constructor
+    public ProfileFragment newInstance(String bar) {
+        Bundle args = new Bundle();
+        args.putString(KEY_BAR, bar);
+        ProfileFragment fragment = new ProfileFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -53,31 +50,31 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        name = view.findViewById(R.id.profile_name);
-        sphere = view.findViewById(R.id.sphere_activity);
-        push = view.findViewById(R.id.push_switch);
-        logo = view.findViewById(R.id.profile_image_button);
-        date = view.findViewById(R.id.birthday_date);
+        TextView name = view.findViewById(R.id.profile_name);
+        TextView sphere = view.findViewById(R.id.sphere_activity);
+        SwitchCompat push = view.findViewById(R.id.push_switch);
+        ImageView logo = view.findViewById(R.id.profile_image_button);
+        TextView date = view.findViewById(R.id.birthday_date);
         RecyclerView recyclerView = view.findViewById(R.id.friends_recycler_view);
-
-        user = User.getUser();
+        User user = User.getUser();
 
         recyclerView.setAdapter(new FriendsAdapter(user.getFriends()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
-            UtilMethods.setActionBar(activity,view,R.string.profile_label,false);
+            AppUtils.setActionBar(activity, view, R.string.profile_label, false);
         }
 
         name.setText(user.getFullName());
         sphere.setText(user.getActivity());
         push.setChecked(user.isWantPush());
         date.setText(user.getDate());
-        logo.setImageDrawable(getContext().getResources().getDrawable(user.getLogo()));
-        logo.setOnClickListener(l -> {
-            Toast.makeText(getContext(), "Image", Toast.LENGTH_SHORT).show();
-        });
+        if (getContext() != null) {
+            logo.setImageDrawable(getContext().getResources().getDrawable(user.getLogo()));
+        }
+        logo.setOnClickListener(l ->
+            Toast.makeText(getContext(), "Image", Toast.LENGTH_SHORT).show());
 
         logo.setOnClickListener(click -> {
 

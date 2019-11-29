@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="DialogButton.V21" parent="DialogButtonBase">
+        <item name="android:letterSpacing">0</item>
+    </style>
+    <style name="DialogButton" parent="DialogButton.V21"/>
+</resources>

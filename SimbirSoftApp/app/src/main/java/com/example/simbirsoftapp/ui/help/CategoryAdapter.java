@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simbirsoftapp.R;
-import com.example.simbirsoftapp.data.Category;
+import com.example.simbirsoftapp.data.model.Category;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
 
@@ -40,8 +40,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         Category currentCategory = categories[position];
-        holder.text.setText(currentCategory.getText());
-        holder.image.setImageDrawable(context.getResources().getDrawable(currentCategory.getLogo()));
+        holder.bind(currentCategory);
     }
 
     class CategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -58,6 +57,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         @Override
         public void onClick(View v) {
             Toast.makeText(context, text.getText(), Toast.LENGTH_SHORT).show();
+        }
+
+        public void bind(Category category) {
+            text.setText(category.getText());
+            image.setImageDrawable(context.getResources().getDrawable(category.getLogo()));
         }
     }
 }

@@ -2,6 +2,7 @@ package com.example.simbirsoftapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
@@ -15,7 +16,6 @@ import com.example.simbirsoftapp.ui.search.SearchFragment;
 
 
 public class MainActivity extends AppCompatActivity {
-    private static final String LOG = MainActivity.class.getSimpleName();
     private Button newsButton;
     private Button searchButton;
     private Button helpButton;
@@ -28,15 +28,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_main, new HelpFragment()).commit();
-
         newsButton = findViewById(R.id.button_news);
         searchButton = findViewById(R.id.button_search);
         helpButton = findViewById(R.id.button_help);
         historyButton = findViewById(R.id.button_history);
         profileButton = findViewById(R.id.button_profile);
         activeButton = helpButton;
+
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_main);
+        if (fragment == null) {
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_main, new HelpFragment()).commit();
+        }
 
         activeButton.setActivated(true);
 
@@ -51,14 +53,14 @@ public class MainActivity extends AppCompatActivity {
             case R.id.image_button_help:
                 activateButton(helpButton);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main, new HelpFragment())
-                        .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
                 break;
             case R.id.button_search:
                 activateButton(searchButton);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main,
                         new SearchFragment())
-                        .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
                 break;
             case R.id.button_history:
@@ -68,8 +70,10 @@ public class MainActivity extends AppCompatActivity {
                 activateButton(profileButton);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main,
                         new ProfileFragment())
-                        .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
+                break;
+            default:
                 break;
         }
     }

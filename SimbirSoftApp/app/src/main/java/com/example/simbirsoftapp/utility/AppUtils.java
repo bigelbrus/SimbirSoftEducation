@@ -13,20 +13,26 @@ import com.example.simbirsoftapp.R;
 import java.util.HashSet;
 import java.util.Random;
 
-public class UtilMethods {
+public class AppUtils {
+
+    private static Random random = new Random();
+
+
+    private AppUtils(){}
 
     public static void setActionBar(AppCompatActivity activity, View view, int titleRes, boolean setUpButton) {
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         activity.setSupportActionBar(toolbar);
         ActionBar actionBar = activity.getSupportActionBar();
-        actionBar.setTitle(null);
+        if (actionBar != null) {
+            actionBar.setTitle(null);
+            actionBar.setDisplayHomeAsUpEnabled(setUpButton);
+        }
         TextView toolbarTitle = view.findViewById(R.id.toolbar_title);
         toolbarTitle.setText(activity.getText(titleRes));
-        actionBar.setDisplayHomeAsUpEnabled(setUpButton);
     }
 
     public static String[] getRandomStringArray(Context context, int size, int arrRes) {
-        Random random = new Random();
         String[] allOrganizations = context.getResources().getStringArray(arrRes);
         size = (size > allOrganizations.length) ? allOrganizations.length : size;
         HashSet<Integer> set = new HashSet<>(size);

@@ -1,4 +1,4 @@
-package com.example.simbirsoftapp.ui.search;
+package com.example.simbirsoftapp.ui.search.organisations;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,11 +13,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.ListFragment;
 
 import com.example.simbirsoftapp.R;
-import com.example.simbirsoftapp.utility.UtilMethods;
+import com.example.simbirsoftapp.ui.search.Measured;
+import com.example.simbirsoftapp.utility.AppUtils;
 
 
-public class SearchEventsListFragment extends ListFragment implements Measured {
-    private static final int LIST_SIZE = 5;
+public class SearchOrganizationListFragment extends ListFragment implements Measured {
+    private static final int LIST_SIZE = 1;
     private Context context;
 
 
@@ -34,12 +35,11 @@ public class SearchEventsListFragment extends ListFragment implements Measured {
     public void updateList() {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(context,
                 R.layout.search_item, R.id.search_text_item,
-                UtilMethods.getRandomStringArray(context,LIST_SIZE,R.array.events_list));
+                AppUtils.getRandomStringArray(context,LIST_SIZE,R.array.organisations_list));
         setListAdapter(adapter);
     }
 
-    public int getListSize(){
+    public int getListSize() {
         return LIST_SIZE;
     }
-
 }
