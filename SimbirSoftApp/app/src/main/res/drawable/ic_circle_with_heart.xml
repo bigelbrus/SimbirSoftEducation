@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <size
+                android:width="@dimen/circle_diam"
+                android:height="@dimen/circle_diam" />
+            <solid android:color="@color/melon" />
+        </shape>
+    </item>
+    <item
+        android:drawable="@drawable/ic_heart"
+        android:gravity="center"/>
+</layer-list>

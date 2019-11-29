@@ -1,3 +1,103 @@
-<resources>
-    <string name="app_name">SimbirSoftApp</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Хочу помочь</string>
+    <string name="loading_label">Загрузка&#8230;</string>
+    <string name="help_category_label">Выберите категорию помощи</string>
+    <string name="news_label">Новости</string>
+    <string name="search_label">Поиск</string>
+    <string name="help_label">Помочь</string>
+    <string name="history_label">История</string>
+    <string name="profile_label">Профиль</string>
+    <string name="item_example" tools:ignore="UnusedResources">Дети</string>
+    <string name="firm_image">Логотип фирмы</string>
+    <string name="app_image">Логотип приложения</string>
+    <string name="help_button">Кнопка помощь</string>
+    <string name="image_item">Изображение категории</string>
+    <string name="profile_image">Изображение профиля</string>
+    <string name="birthday_date_label">Дата рождения</string>
+    <string name="sphere_activity_label">Сфера детельности</string>
+    <string name="push_notification_label">Получать push-уведомления</string>
+    <string name="your_friends_label">Ваши друзья</string>
+    <string name="exit_account_label">Выйти из аккаунта</string>
+    <string name="choose_photo">Выбрать фото</string>
+    <string name="take_photo">Сделать снимок</string>
+    <string name="delete">Удалить</string>
+    <string name="edit">Редактировать</string>
+    <string name="search_organisation_hint">Введите название организации</string>
+
+    <string-array name="organisations_list">
+        <item>Абсолют-Помощь</item>
+        <item>АдВита</item>
+        <item>Бельканто (благотворительный фонд)</item>
+        <item>Благотворительный фонд защиты животных «БИМ»</item>
+        <item>Верю в чудо</item>
+        <item>Даунсайд Ап</item>
+        <item>Обнажённые сердца</item>
+        <item>Подари жизнь</item>
+        <item>Фонд Михаила Прохорова</item>
+        <item>Фонд социальных изобретений</item>
+        <item>Рыбаков Фонд</item>
+        <item>Зелёный дом</item>
+        <item>Энби</item>
+        <item>Свои дети (фонд)</item>
+        <item>Фонд Андрея Мельниченко</item>
+    </string-array>
+    <string-array name="events_list">
+        <item>Семейный фестиваль «День радости»</item>
+        <item>Осенний Фестиваль Шарлотки</item>
+        <item>Благотворительный пленэр «Краски жизни»</item>
+        <item>Фестиваль «От сердца к сердцу»</item>
+        <item>Фестиваль «День Яблок»</item>
+        <item>Мастер-класс «Кошка в книжке»</item>
+        <item>Кулинарный фестиваль «Плюшки-ватрушки»</item>
+        <item>Выставка фотографий «ОБЪЕКТИВная благотворительность»</item>
+        <item>Первая благотворительная выставка-продажа акварелей Т.В. Красновой</item>
+        <item>Прямая трансляция концерта Jazz Parking в честь дня рождения фонда «Жизнь как чудо»</item>
+        <item>Благотворительный концерт Большого симфонического оркестра им. П.И. Чайковского под управлением В.И. Федосеева</item>
+        <item>Благотворительный бал «Художественного центра «Дети Марии»</item>
+        <item>Флешмоб «Красный день календаря»</item>
+        <item>Выставка «Художественного центра «Дети Марии»</item>
+        <item>Турнир по мини-футболу для корпоративных команд «Спорт во благо»</item>
+    </string-array>
+    <string name="search_events">По мероприятиям</string>
+    <string name="search_organisations">По НКО</string>
+    <string name="chevrone">Стрелка</string>
+    <string name="key_word">Ключевые слова: мастер-класс, помощь</string>
+    <string name="search_result_label">Результат поиска:</string>
+    <string name="enter_organisation_name">Введите название организации</string>
+    <string name="enter_event_name">Введите название мероприятия</string>
+    <string name="search_button">Кнопка поиска</string>
+    <string name="voice_search_button">Кнопка голосового поиска</string>
+    <string name="children">Дети</string>
+    <string name="adult">Взрослые</string>
+    <string name="old">Пожилые</string>
+    <string name="animal">Животные</string>
+    <string name="event">Мероприятия</string>
+    <plurals name="event_plurals">
+<!--        <item quantity="zero">%1$d мероприятий</item>-->
+        <item quantity="one">%1$d мероприятие</item>
+<!--        <item quantity="two">%1$d мероприятия</item>-->
+        <item quantity="few">%1$d мероприятия</item>
+        <item quantity="many">%1$d мероприятий</item>
+        <item quantity="other">%1$d мероприятий</item>
+    </plurals>
+    <plurals name="organisation_plurals">
+<!--        <item quantity="zero">%1$d организаций</item>-->
+        <item quantity="one">%1$d организация</item>
+<!--        <item quantity="two">%1$d организации</item>-->
+        <item quantity="few">%1$d организации</item>
+        <item quantity="many">%1$d организаций</item>
+        <item quantity="other">%1$d организаций</item>
+    </plurals>
+    <string name="january">Января</string>
+    <string name="february">Февраля</string>
+    <string name="march">Марта</string>
+    <string name="april">Апреля</string>
+    <string name="may">Мая</string>
+    <string name="june">Июня</string>
+    <string name="july">Июля</string>
+    <string name="august">Августа</string>
+    <string name="september">Сентября</string>
+    <string name="october">Октября</string>
+    <string name="november">Ноября</string>
+    <string name="december">Декабря</string>
 </resources>

@@ -1,0 +1,6 @@
+<resources xmlns:http="http://schemas.android.com/tools">
+    <style name="BottomButton.V22" parent="BottomButtonWithoutSpacing">
+        <item name="android:letterSpacing">0</item>
+    </style>
+    <style name="BottomButton" parent="BottomButton.V22"/>
+</resources>
