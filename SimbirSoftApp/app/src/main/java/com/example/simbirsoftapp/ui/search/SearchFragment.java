@@ -17,6 +17,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.simbirsoftapp.R;
 import com.example.simbirsoftapp.ui.search.events.SearchEventsListFragment;
 import com.example.simbirsoftapp.ui.search.organisations.SearchOrganizationListFragment;
+import com.example.simbirsoftapp.view.SearchViewPager;
 import com.google.android.material.tabs.TabLayout;
 
 import static com.example.simbirsoftapp.ui.help.HelpFragment.KEY_BAR;
@@ -26,12 +27,8 @@ public class SearchFragment extends Fragment {
     private TextView searchCountType;
     private SearchPagerAdapter adapter;
 
-    public SearchFragment newInstance(String bar) {
-        Bundle args = new Bundle();
-        args.putString(KEY_BAR, bar);
-        SearchFragment fragment = new SearchFragment();
-        fragment.setArguments(args);
-        return fragment;
+    public static SearchFragment newInstance() {
+        return new SearchFragment();
     }
 
     @Nullable

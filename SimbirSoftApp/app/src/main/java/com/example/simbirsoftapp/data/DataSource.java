@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataSource {
+    private static User user;
 
-    private DataSource(){}
+    private DataSource() {
+    }
 
     public static Category[] getCategory() {
-        return new Category[] {
+        return new Category[]{
                 new Category(R.string.children, R.drawable.children),
                 new Category(R.string.adult, R.drawable.adult),
                 new Category(R.string.old, R.drawable.old),
@@ -23,10 +25,18 @@ public class DataSource {
 
     public static List<User> getFriends() {
         List<User> friends = new ArrayList<>();
-        friends.add(new User("Дмитрий","Валерьевич",R.drawable.avatar_3));
-        friends.add(new User("Евгений","Александров",R.drawable.avatar_2));
-        friends.add(new User("Виктор","Кузнецов",R.drawable.avatar_1));
-        friends.add(new User("Иван","Петров",R.drawable.avatar_3));
+        friends.add(new User("Дмитрий", "Валерьевич", R.drawable.avatar_3));
+        friends.add(new User("Евгений", "Александров", R.drawable.avatar_2));
+        friends.add(new User("Виктор", "Кузнецов", R.drawable.avatar_1));
+        friends.add(new User("Иван", "Петров", R.drawable.avatar_3));
         return friends;
+    }
+
+    public static User getUser() {
+        if (user == null) {
+            user = new User("Денис", "Константинов", "Хирургия, травмвтология",
+                    true, R.drawable.image_man, DataSource.getFriends(), "01 02 1980");
+        }
+        return user;
     }
 }

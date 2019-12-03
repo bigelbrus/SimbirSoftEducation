@@ -63,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.example.simbirsoftapp.ui.search.SearchViewPager
+    <com.example.simbirsoftapp.view.SearchViewPager
         android:id="@+id/search_view_pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

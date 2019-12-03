@@ -20,12 +20,8 @@ public class HelpFragment extends Fragment {
     private static final int RECYCLER_VIEW_COLUMNS_NUMBER = 2;
     public static final String KEY_BAR = "BAR";
 
-    public HelpFragment newInstance(String bar) {
-        Bundle args = new Bundle();
-        args.putString(KEY_BAR,bar);
-        HelpFragment fragment = new HelpFragment();
-        fragment.setArguments(args);
-        return fragment;
+    public static HelpFragment newInstance() {
+        return new HelpFragment();
     }
 
     @Override

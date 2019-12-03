@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.simbirsoftapp.R;
+import com.example.simbirsoftapp.data.DataSource;
 import com.example.simbirsoftapp.data.model.User;
 import com.example.simbirsoftapp.ui.profile.photo.DialogProfileFragment;
 import com.example.simbirsoftapp.utility.AppUtils;
@@ -32,12 +33,8 @@ import static com.example.simbirsoftapp.ui.help.HelpFragment.KEY_BAR;
 public class ProfileFragment extends Fragment {
 
 
-    public ProfileFragment newInstance(String bar) {
-        Bundle args = new Bundle();
-        args.putString(KEY_BAR, bar);
-        ProfileFragment fragment = new ProfileFragment();
-        fragment.setArguments(args);
-        return fragment;
+    public static ProfileFragment newInstance() {
+        return new ProfileFragment();
     }
 
     @Override
@@ -56,7 +53,7 @@ public class ProfileFragment extends Fragment {
         ImageView logo = view.findViewById(R.id.profile_image_button);
         TextView date = view.findViewById(R.id.birthday_date);
         RecyclerView recyclerView = view.findViewById(R.id.friends_recycler_view);
-        User user = User.getUser();
+        User user = DataSource.getUser();
 
         recyclerView.setAdapter(new FriendsAdapter(user.getFriends()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

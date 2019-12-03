@@ -15,15 +15,7 @@ public class User {
     private String activity;
     private boolean wantPush;
     private int logo;
-    private ArrayList<User> friends;
-    private static User user;
-
-    public static User getUser() {
-        if (user == null) {
-            user = new User();
-        }
-        return user;
-    }
+    private List<User> friends;
 
     public User(String name, String surname, int logo) {
         this.name = name;
@@ -31,16 +23,15 @@ public class User {
         this.logo = logo;
     }
 
-    private User() {
-        name = "Денис";
-        surname = "Константинов";
-        date = new Date();
-        activity = "Хирургия, травмвтология";
-        wantPush = true;
-        logo = R.drawable.image_man;
-        friends = new ArrayList<>();
-        date = DateUtils.parseDate("01 02 1980");
-        friends = (ArrayList<User>) DataSource.getFriends();
+    public User(String name, String surname, String activity, boolean wantPush, int logo,
+                List<User> friends, String date){
+        this.name = name;
+        this.surname = surname;
+        this.activity = activity;
+        this.wantPush = wantPush;
+        this.logo = logo;
+        this.friends = friends;
+        this.date = DateUtils.parseDate(date);
     }
 
     public void setName(String name) {

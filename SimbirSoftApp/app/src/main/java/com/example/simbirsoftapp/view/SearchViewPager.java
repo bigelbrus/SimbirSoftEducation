@@ -1,4 +1,4 @@
-package com.example.simbirsoftapp.ui.search;
+package com.example.simbirsoftapp.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
