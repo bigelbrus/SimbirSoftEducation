@@ -1,10 +1,7 @@
 package com.example.simbirsoftapp.data.model;
 
-import com.example.simbirsoftapp.R;
-import com.example.simbirsoftapp.data.DataSource;
 import com.example.simbirsoftapp.utility.DateUtils;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,12 +12,19 @@ public class User {
     private String activity;
     private boolean wantPush;
     private int logo;
+    private String roundedLogo;
     private List<User> friends;
 
     public User(String name, String surname, int logo) {
         this.name = name;
         this.surname = surname;
         this.logo = logo;
+    }
+
+    public User(String name, String surname, String roundedLogo) {
+        this.name = name;
+        this.surname = surname;
+        this.roundedLogo = roundedLogo;
     }
 
     public User(String name, String surname, String activity, boolean wantPush, int logo,
@@ -84,6 +88,14 @@ public class User {
 
     public void addFriend(User p) {
         friends.add(p);
+    }
+
+    public String getRoundedLogo() {
+        return roundedLogo;
+    }
+
+    public void setRoundedLogo(String roundedLogo) {
+        this.roundedLogo = roundedLogo;
     }
 
     public List<User> getFriends() {

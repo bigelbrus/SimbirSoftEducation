@@ -29,4 +29,5 @@
     <color name="black">#000000</color>
     <color name="black___12">#1e000000</color>
     <color name="black___30">#b3000000</color>
+    <color name="grey_10">#d8d8d8</color>
 </resources>

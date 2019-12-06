@@ -1,0 +1,29 @@
+{
+    "categories": [
+      {
+        "id": "1",
+        "logo": "children",
+        "text": "children"
+      },
+      {
+        "id": "2",
+        "logo": "adult",
+        "text": "adult"
+      },
+      {
+        "id": "3",
+        "logo": "old",
+        "text": "old"
+      },
+      {
+        "id": "4",
+        "logo": "animal",
+        "text": "animal"
+      },
+      {
+        "id": "5",
+        "logo": "event",
+        "text": "event"
+      }
+    ]
+}

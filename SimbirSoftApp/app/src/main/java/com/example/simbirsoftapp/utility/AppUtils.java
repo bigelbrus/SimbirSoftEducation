@@ -1,6 +1,7 @@
 package com.example.simbirsoftapp.utility;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,7 +19,8 @@ public class AppUtils {
     private static Random random = new Random();
 
 
-    private AppUtils(){}
+    private AppUtils() {
+    }
 
     public static void setActionBar(AppCompatActivity activity, View view, int titleRes, boolean setUpButton) {
         Toolbar toolbar = view.findViewById(R.id.toolbar);
@@ -51,5 +53,10 @@ public class AppUtils {
             }
         }
         return randomOrganizations;
+    }
+
+    public static Drawable getDrawableByStringRes(Context context, String res) {
+        return context.getResources().getDrawable(context.getResources().getIdentifier(res,
+                        "drawable", context.getPackageName()));
     }
 }

@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/news_toolbar"
+        layout="@layout/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/news_button_clothes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/news_toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/news_label"
+                style="@style/CardLargeTextAppearance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_medium"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_marginEnd="@dimen/spacing_medium"
+                android:gravity="start"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Спонсоры отремонтируют школу-интернат" />
+
+            <ImageView
+                android:id="@+id/news_calendar_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xsmall"
+                android:src="@drawable/ic_icon_calendar"
+                android:tint="@color/grey"
+                app:layout_constraintStart_toStartOf="@+id/news_label"
+                app:layout_constraintTop_toBottomOf="@+id/news_label" />
+
+            <TextView
+                android:id="@+id/news_date"
+                style="@style/NewsSmallTextAppearance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|start"
+                android:lineSpacingExtra="4sp"
+                android:textColor="@color/grey"
+                app:layout_constraintBottom_toTopOf="@+id/news_calendar_image"
+                app:layout_constraintEnd_toEndOf="@+id/news_label"
+                app:layout_constraintStart_toEndOf="@+id/news_calendar_image"
+                app:layout_constraintTop_toBottomOf="@+id/news_calendar_image"
+                tools:text="Осталось 13 дней (21.09 - 20.10)" />
+
+            <TextView
+                android:id="@+id/news_organisation"
+                style="@style/NewsSmallTextAppearance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xsmall"
+                android:lineSpacingExtra="8sp"
+                android:textColor="@color/black___60"
+                app:layout_constraintEnd_toEndOf="@+id/news_date"
+                app:layout_constraintStart_toStartOf="@+id/news_calendar_image"
+                app:layout_constraintTop_toBottomOf="@+id/news_calendar_image"
+                tools:text="Благотворительный Фонд «Счастливый Мир»" />
+
+            <ImageView
+                android:id="@+id/location_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:src="@drawable/ic_nav"
+                app:layout_constraintStart_toStartOf="@+id/news_organisation"
+                app:layout_constraintTop_toBottomOf="@+id/news_organisation" />
+
+            <TextView
+                android:id="@+id/news_address"
+                style="@style/NewsMediumTextAppearance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_xsmall"
+                android:lineSpacingExtra="6sp"
+                app:layout_constraintEnd_toEndOf="@+id/news_organisation"
+                app:layout_constraintStart_toEndOf="@+id/location_logo"
+                app:layout_constraintTop_toTopOf="@+id/location_logo"
+                tools:text="Санкт-Петербург, Кирочная улица,
+д. 50А, каб. 208" />
+
+            <ImageView
+                android:id="@+id/telephone_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:src="@drawable/ic_phone"
+                app:layout_constraintStart_toStartOf="@+id/location_logo"
+                app:layout_constraintTop_toBottomOf="@id/barrier_location" />
+
+            <TextView
+                android:id="@+id/news_telephones"
+                style="@style/NewsMediumTextAppearance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_xsmall"
+                android:lineSpacingExtra="6sp"
+                app:layout_constraintEnd_toEndOf="@+id/news_address"
+                app:layout_constraintStart_toEndOf="@+id/telephone_logo"
+                app:layout_constraintTop_toTopOf="@+id/telephone_logo"
+                tools:text="+7 (937) 037 37-73\n+7 (937) 016 16-16" />
+
+            <ImageView
+                android:id="@+id/message_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:src="@drawable/ic_mail"
+                app:layout_constraintStart_toStartOf="@+id/location_logo"
+                app:layout_constraintTop_toBottomOf="@id/barrier_telephones" />
+
+            <TextView
+                android:id="@+id/news_message"
+                style="@style/NewsMediumTextAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_xsmall"
+                android:lineSpacingExtra="6sp"
+                android:text="@string/any_questions"
+                app:layout_constraintStart_toEndOf="@+id/telephone_logo"
+                app:layout_constraintTop_toTopOf="@+id/message_logo" />
+
+            <TextView
+                android:id="@+id/news_link_write_to_us"
+                style="@style/NewsMediumTextAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_xsmall"
+                app:layout_constraintStart_toEndOf="@+id/news_message"
+                app:layout_constraintTop_toTopOf="@+id/news_message"
+                tools:text="@string/write_to_us" />
+
+            <FrameLayout
+                android:id="@+id/news_images"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                app:layout_constraintEnd_toEndOf="@+id/news_label"
+                app:layout_constraintStart_toStartOf="@+id/message_logo"
+                app:layout_constraintTop_toBottomOf="@+id/news_message"
+                tools:background="@drawable/child" />
+
+            <TextView
+                android:id="@+id/news_description"
+                style="@style/NewsMediumTextAppearance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                app:layout_constraintEnd_toEndOf="@+id/news_images"
+                app:layout_constraintStart_toStartOf="@+id/news_images"
+                app:layout_constraintTop_toBottomOf="@id/news_images"
+                tools:text="Участники и болельщики смогли весело и активно провести
+время на «Петербургском благотворительном марафоне» и при этом
+финансово поучаствовать в помощи детям. При этом финансово
+поучаствовать в помощи детям.\n\nПри этом финансово поучаствовать в
+помощи детям." />
+
+
+            <TextView
+                android:id="@+id/news_link_to_organisation"
+                style="@style/NewsMediumTextAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/text_size_medium"
+                android:text="@string/go_to_organisation_page"
+                app:layout_constraintStart_toStartOf="@+id/news_description"
+                app:layout_constraintTop_toBottomOf="@+id/news_description" />
+
+            <View
+                android:id="@+id/news_friends_background"
+                android:layout_width="wrap_content"
+                android:layout_height="76dp"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:background="@color/light_grey_two"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/news_link_to_organisation" />
+
+
+            <ImageView
+                android:id="@+id/news_first_friend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_medium"
+                android:layout_marginBottom="@dimen/spacing_medium"
+                android:layout_marginTop="@dimen/spacing_medium"
+                app:layout_constraintBottom_toBottomOf="@+id/news_friends_background"
+                app:layout_constraintStart_toStartOf="@+id/news_friends_background"
+                app:layout_constraintTop_toTopOf="@+id/news_friends_background"
+                tools:src="@drawable/photo_1" />
+
+            <ImageView
+                android:id="@+id/news_second_friend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                app:layout_constraintStart_toStartOf="@+id/news_first_friend"
+                app:layout_constraintTop_toTopOf="@id/news_first_friend"
+                tools:src="@drawable/photo_2" />
+            <ImageView
+                android:id="@+id/news_third_friend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                app:layout_constraintStart_toStartOf="@+id/news_second_friend"
+                app:layout_constraintTop_toTopOf="@id/news_first_friend"
+                tools:src="@drawable/photo_3"/>
+
+            <ImageView
+                android:id="@+id/news_fourth_friend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                app:layout_constraintStart_toStartOf="@+id/news_third_friend"
+                app:layout_constraintTop_toTopOf="@+id/news_first_friend"
+                tools:src="@drawable/photo_4"/>
+
+            <ImageView
+                android:id="@+id/news_fifth_friend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                app:layout_constraintStart_toStartOf="@+id/news_fourth_friend"
+                app:layout_constraintTop_toTopOf="@+id/news_first_friend"
+                tools:src="@drawable/photo_5" />
+
+            <TextView
+                android:id="@+id/news_friends_counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="+102"
+                android:text="\u002B"
+                android:visibility="gone"
+                android:layout_marginStart="@dimen/spacing_small"
+                app:layout_constraintStart_toEndOf="@id/news_fifth_friend"
+                app:layout_constraintTop_toBottomOf="@id/news_fifth_friend"
+                app:layout_constraintBottom_toTopOf="@id/news_fifth_friend"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="news_address,location_logo" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_telephones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="news_telephones,telephone_logo" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_10"
+        app:layout_constraintBottom_toTopOf="@+id/news_button_volunteer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/news_button_clothes"
+        style="@style/NewsButton"
+        android:drawableTop="@drawable/ic_shirt"
+        android:text="@string/help_clothes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/news_button_volunteer"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/news_button_volunteer"
+        style="@style/NewsButton"
+        android:drawableTop="@drawable/ic_hands"
+        android:text="@string/help_volunteer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/news_button_help"
+        app:layout_constraintStart_toEndOf="@+id/news_button_clothes" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/news_button_help"
+        style="@style/NewsButton"
+        android:drawableTop="@drawable/ic_tools"
+        android:text="@string/help_professional"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/news_button_money"
+        app:layout_constraintStart_toEndOf="@+id/news_button_volunteer" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/news_button_money"
+        style="@style/NewsButton"
+        android:drawableTop="@drawable/ic_coins"
+        android:text="@string/help_professional"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/news_button_help" />
+
+    <ImageView
+        android:id="@+id/separator_1"
+        style="@style/NewsSeparator"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/news_button_clothes"
+        app:layout_constraintTop_toTopOf="@+id/news_button_clothes" />
+
+    <ImageView
+        android:id="@+id/separator_2"
+        style="@style/NewsSeparator"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/news_button_volunteer"
+        app:layout_constraintTop_toTopOf="@+id/news_button_clothes" />
+
+    <ImageView
+        android:id="@+id/separator_3"
+        style="@style/NewsSeparator"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/news_button_help"
+        app:layout_constraintTop_toTopOf="@+id/news_button_clothes" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

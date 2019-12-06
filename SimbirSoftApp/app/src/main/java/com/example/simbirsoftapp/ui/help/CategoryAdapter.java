@@ -1,6 +1,8 @@
 package com.example.simbirsoftapp.ui.help;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,32 +16,40 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.simbirsoftapp.R;
 import com.example.simbirsoftapp.data.model.Category;
 
+import java.util.List;
+
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
 
-    private Category[] categories;
+    private List<Category> categories;
     private Context context;
+    private CategoryClickHolder clickHolder;
 
-    public CategoryAdapter(Category[] categories, Context context) {
+    public CategoryAdapter(List<Category> categories, Context context,CategoryClickHolder clickHolder) {
         this.categories = categories;
         this.context = context;
+        this.clickHolder = clickHolder;
+    }
+
+    public interface CategoryClickHolder {
+        void onCategoryClick();
     }
 
     @Override
     public int getItemCount() {
-        return categories == null ? 0 : categories.length;
+        return categories == null ? 0 : categories.size();
     }
 
     @NonNull
     @Override
     public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.help_item,parent,false);
+                .inflate(R.layout.help_item, parent, false);
         return new CategoryViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
-        Category currentCategory = categories[position];
+        Category currentCategory = categories.get(position);
         holder.bind(currentCategory);
     }
 
@@ -56,12 +66,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(context, text.getText(), Toast.LENGTH_SHORT).show();
+            clickHolder.onCategoryClick();
         }
 
         public void bind(Category category) {
-            text.setText(category.getText());
-            image.setImageDrawable(context.getResources().getDrawable(category.getLogo()));
+            text.setText(context.getResources().getIdentifier(category.getText(),
+                    "string",
+                    context.getPackageName()));
+            image.setImageDrawable(context.getResources().getDrawable(context.getResources().getIdentifier(category.getLogo(), "drawable", context.getPackageName())));
         }
     }
 }

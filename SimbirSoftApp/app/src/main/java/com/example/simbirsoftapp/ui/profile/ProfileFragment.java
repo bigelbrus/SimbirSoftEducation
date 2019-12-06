@@ -28,7 +28,6 @@ import com.example.simbirsoftapp.data.model.User;
 import com.example.simbirsoftapp.ui.profile.photo.DialogProfileFragment;
 import com.example.simbirsoftapp.utility.AppUtils;
 
-import static com.example.simbirsoftapp.ui.help.HelpFragment.KEY_BAR;
 
 public class ProfileFragment extends Fragment {
 

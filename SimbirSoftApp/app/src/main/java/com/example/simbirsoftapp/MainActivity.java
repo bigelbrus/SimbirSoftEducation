@@ -6,11 +6,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.simbirsoftapp.data.DataSource;
 import com.example.simbirsoftapp.ui.help.HelpFragment;
+import com.example.simbirsoftapp.ui.news.NewsFragment;
 import com.example.simbirsoftapp.ui.profile.ProfileFragment;
 import com.example.simbirsoftapp.ui.search.SearchFragment;
 
@@ -23,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Button historyButton;
     private Button profileButton;
     private Button activeButton;
-
+    View bottomPanel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,13 +37,13 @@ public class MainActivity extends AppCompatActivity {
         helpButton = findViewById(R.id.button_help);
         historyButton = findViewById(R.id.button_history);
         profileButton = findViewById(R.id.button_profile);
+        bottomPanel = findViewById(R.id.bottom_panel);
 
         if (savedInstanceState != null) {
             activeButton = findViewById(savedInstanceState.getInt(KEY_ACTIVE_BUTTON));
         } else {
             activeButton = helpButton;
         }
-
 
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_main);
         if (fragment == null) {
@@ -54,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.button_news:
                 activateButton(newsButton);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main,
+                        NewsFragment.newInstance())
+                        .commit();
                 break;
             case R.id.button_help:
             case R.id.image_button_help:

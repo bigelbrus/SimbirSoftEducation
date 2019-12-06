@@ -73,17 +73,17 @@
     <string name="animal">Животные</string>
     <string name="event">Мероприятия</string>
     <plurals name="event_plurals">
-<!--        <item quantity="zero">%1$d мероприятий</item>-->
+        <!--        <item quantity="zero">%1$d мероприятий</item>-->
         <item quantity="one">%1$d мероприятие</item>
-<!--        <item quantity="two">%1$d мероприятия</item>-->
+        <!--        <item quantity="two">%1$d мероприятия</item>-->
         <item quantity="few">%1$d мероприятия</item>
         <item quantity="many">%1$d мероприятий</item>
         <item quantity="other">%1$d мероприятий</item>
     </plurals>
     <plurals name="organisation_plurals">
-<!--        <item quantity="zero">%1$d организаций</item>-->
+        <!--        <item quantity="zero">%1$d организаций</item>-->
         <item quantity="one">%1$d организация</item>
-<!--        <item quantity="two">%1$d организации</item>-->
+        <!--        <item quantity="two">%1$d организации</item>-->
         <item quantity="few">%1$d организации</item>
         <item quantity="many">%1$d организаций</item>
         <item quantity="other">%1$d организаций</item>
@@ -100,4 +100,16 @@
     <string name="october">Октября</string>
     <string name="november">Ноября</string>
     <string name="december">Декабря</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="filter">Фильтр</string>
+    <string name="help_clothes">Помочь вещами</string>
+    <string name="help_professional">Проф помощь</string>
+    <string name="help_volunteer">Стать волонтерам</string>
+    <string name="separator">Разделитель</string>
+    <string name="write_to_us">Напишите нам</string>
+    <string name="go_to_organisation_page">Перейти на сайт организации</string>
+    <string name="share">Поделиться</string>
+    <string name="any_questions">У вас есть вопросы?</string>
 </resources>
