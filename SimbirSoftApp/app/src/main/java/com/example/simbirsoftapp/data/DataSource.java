@@ -50,7 +50,8 @@ public class DataSource {
     public static User getUser() {
         if (user == null) {
             user = new User("Денис", "Константинов", "Хирургия, травмвтология",
-                    true, R.drawable.image_man, DataSource.getFriends(), "01 02 1980");
+                    true, R.drawable.image_man,
+                    DataSource.getFriends(), "01 02 1980");
         }
         return user;
     }

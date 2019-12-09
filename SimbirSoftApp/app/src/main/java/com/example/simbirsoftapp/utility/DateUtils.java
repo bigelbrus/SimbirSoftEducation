@@ -1,33 +1,34 @@
 package com.example.simbirsoftapp.utility;
 
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.format.DateTimeFormatter;
+import org.threeten.bp.format.DateTimeFormatterBuilder;
 
-import android.util.Log;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 public class DateUtils {
 
-    private DateUtils() {}
+    private DateUtils() {
+    }
+    private static DateTimeFormatter ddMMMMyyy = new DateTimeFormatterBuilder()
+            .appendPattern("dd")
+            .appendLiteral(' ')
+            .appendPattern("MMMM")
+            .appendLiteral(' ')
+            .appendPattern("yyyy")
+            .toFormatter();
+    private static DateTimeFormatter ddMMyyyy = new DateTimeFormatterBuilder()
+            .appendPattern("dd")
+            .appendLiteral(' ')
+            .appendPattern("MM")
+            .appendLiteral(' ')
+            .appendPattern("yyyy")
+            .toFormatter();
 
-    public static String formatDate(Date date) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy",
-                Locale.getDefault());
-        return dateFormat.format(date);
+    public static String formatDate(LocalDate date) {
+        return date.format(ddMMMMyyy);
     }
 
-
-    public static Date parseDate(String date) {
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy",
-            Locale.getDefault());
-        try {
-            return dateFormat.parse(date);
-        } catch (ParseException e) {
-                Log.d("DateUtils",e.getMessage());
-        }
-        return new Date();
+    public static LocalDate parseDate(String date) {
+        return LocalDate.parse(date, ddMMyyyy);
     }
-
 }

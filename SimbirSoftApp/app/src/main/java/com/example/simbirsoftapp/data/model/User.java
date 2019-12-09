@@ -2,13 +2,14 @@ package com.example.simbirsoftapp.data.model;
 
 import com.example.simbirsoftapp.utility.DateUtils;
 
-import java.util.Date;
+import org.threeten.bp.LocalDate;
+
 import java.util.List;
 
 public class User {
     private String name;
     private String surname;
-    private Date date;
+    private LocalDate date;
     private String activity;
     private boolean wantPush;
     private int logo;
@@ -21,14 +22,8 @@ public class User {
         this.logo = logo;
     }
 
-    public User(String name, String surname, String roundedLogo) {
-        this.name = name;
-        this.surname = surname;
-        this.roundedLogo = roundedLogo;
-    }
-
     public User(String name, String surname, String activity, boolean wantPush, int logo,
-                List<User> friends, String date){
+                List<User> friends, String date) {
         this.name = name;
         this.surname = surname;
         this.activity = activity;
@@ -54,7 +49,7 @@ public class User {
         return surname;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
