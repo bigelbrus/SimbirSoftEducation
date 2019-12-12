@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:layout_gravity="bottom"
+    android:clipChildren="false">
+
+    <Button
+        android:id="@+id/button_news"
+        style="@style/BottomButton"
+        android:drawableTop="@drawable/ic_news"
+        android:text="@string/news_label"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+    <Button
+        android:id="@+id/button_search"
+        style="@style/BottomButton"
+        android:drawableTop="@drawable/ic_search"
+        android:text="@string/search_label"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_help"
+        app:layout_constraintStart_toEndOf="@+id/button_news" />
+
+    <FrameLayout
+        android:id="@+id/frame_with_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/button_padding"
+        app:layout_constraintEnd_toEndOf="@id/button_help"
+        app:layout_constraintStart_toStartOf="@id/button_help"
+        app:layout_constraintTop_toTopOf="@id/view">
+
+        <ImageButton
+            android:id="@+id/image_button_help"
+            style="@style/BottomButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/help_button"
+            app:srcCompat="@drawable/ic_circle_with_heart" />
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/button_help"
+        style="@style/BottomButton"
+        android:layout_height="wrap_content"
+        android:text="@string/help_label"
+        app:layout_constraintBaseline_toBaselineOf="@id/button_search"
+        app:layout_constraintEnd_toStartOf="@id/button_history"
+        app:layout_constraintStart_toEndOf="@id/button_search" />
+
+    <Button
+        android:id="@+id/button_history"
+        style="@style/BottomButton"
+        android:drawableTop="@drawable/ic_history"
+        android:text="@string/history_label"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_profile"
+        app:layout_constraintStart_toEndOf="@+id/button_help" />
+
+    <Button
+        android:id="@+id/button_profile"
+        style="@style/BottomButton"
+        android:drawableTop="@drawable/ic_profile"
+        android:text="@string/profile_label"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_history" />
+
+    <com.example.simbirsoftapp.view.BottomLine
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_panel_line"
+        app:layout_constraintBottom_toTopOf="@id/button_news"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="button_news,button_search,button_help,button_history,button_profile" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
