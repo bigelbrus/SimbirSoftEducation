@@ -16,6 +16,8 @@ public class User {
     private String roundedLogo;
     private List<User> friends;
 
+    public User(){}
+
     public User(String name, String surname, int logo) {
         this.name = name;
         this.surname = surname;

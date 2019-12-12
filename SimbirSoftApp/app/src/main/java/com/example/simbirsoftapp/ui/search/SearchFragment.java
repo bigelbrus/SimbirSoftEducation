@@ -20,8 +20,6 @@ import com.example.simbirsoftapp.ui.search.organisations.SearchOrganizationListF
 import com.example.simbirsoftapp.view.SearchViewPager;
 import com.google.android.material.tabs.TabLayout;
 
-import static com.example.simbirsoftapp.ui.help.HelpFragment.KEY_BAR;
-
 public class SearchFragment extends Fragment {
     private EditText searchHint;
     private TextView searchCountType;

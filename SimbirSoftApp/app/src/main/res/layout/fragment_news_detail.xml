@@ -150,7 +150,7 @@
                 app:layout_constraintTop_toTopOf="@+id/news_message"
                 tools:text="@string/write_to_us" />
 
-            <FrameLayout
+            <include layout="@layout/news_detail_three_image"
                 android:id="@+id/news_images"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -158,7 +158,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/news_label"
                 app:layout_constraintStart_toStartOf="@+id/message_logo"
                 app:layout_constraintTop_toBottomOf="@+id/news_message"
-                tools:background="@drawable/child" />
+                />
 
             <TextView
                 android:id="@+id/news_description"

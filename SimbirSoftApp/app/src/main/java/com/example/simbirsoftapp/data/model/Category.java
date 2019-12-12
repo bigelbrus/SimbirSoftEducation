@@ -5,6 +5,8 @@ public class Category {
     private String logo;
     private String text;
 
+    public Category() {}
+
     public Category(String text, String logo) {
         this.logo = logo;
         this.text = text;

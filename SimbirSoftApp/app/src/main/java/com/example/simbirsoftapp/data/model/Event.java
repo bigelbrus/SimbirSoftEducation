@@ -1,5 +1,6 @@
 package com.example.simbirsoftapp.data.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Event {
@@ -8,29 +9,19 @@ public class Event {
     private String eventDate;
     private String eventCompany;
     private String eventAddress;
-    private String[] organisationTelephone;
-    private List<String> eventPhoto;
+    private List<String> organisationTelephone = new ArrayList<>();
+    private List<String> eventPhoto = new ArrayList<>();
     private String eventDescription;
     private String organisationSite;
-    private List<User> eventPerson;
+    private List<User> eventPerson = new ArrayList<>();
 
-    public Event(String eventName, String eventDate, String eventCompany, String eventAddress,
-                 String[] organisationTelephone, List<String> eventPhoto, String eventDescription,
-                 String organisationSite, List<User> eventPerson) {
-        this.eventAddress = eventAddress;
-        this.eventCompany = eventCompany;
-        this.eventDate = eventDate;
-        this.eventDescription = eventDescription;
-        this.eventName = eventName;
-        this.organisationTelephone = organisationTelephone;
-        this.eventPhoto = eventPhoto;
-        this.organisationSite = organisationSite;
-        this.eventPerson = eventPerson;
-    }
-    public Event(){}
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEventName() {
@@ -57,12 +48,16 @@ public class Event {
         this.eventAddress = eventAddress;
     }
 
-    public String[] getOrganisationTelephone() {
+    public List<String> getOrganisationTelephone() {
         return organisationTelephone;
     }
 
-    public void setOrganisationTelephone(String[] organisationTelephone) {
+    public void setOrganisationTelephone(List<String> organisationTelephone) {
         this.organisationTelephone = organisationTelephone;
+    }
+
+    public void addOrganisationTelephone(String telephone) {
+        this.organisationTelephone.add(telephone);
     }
 
     public List<String> getEventPhoto() {
@@ -71,6 +66,10 @@ public class Event {
 
     public void setEventPhoto(List<String> eventPhoto) {
         this.eventPhoto = eventPhoto;
+    }
+
+    public void addEventPhoto(String photo) {
+        eventPhoto.add(photo);
     }
 
     public String getEventDescription() {
@@ -95,6 +94,10 @@ public class Event {
 
     public void setEventPerson(List<User> eventPerson) {
         this.eventPerson = eventPerson;
+    }
+
+    public void addEventPerson(User person) {
+        eventPerson.add(person);
     }
 
     public String getEventDate() {

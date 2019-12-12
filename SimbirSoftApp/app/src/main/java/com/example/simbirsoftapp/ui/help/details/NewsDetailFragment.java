@@ -10,25 +10,21 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import android.provider.ContactsContract;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
-import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.UnderlineSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +40,8 @@ import java.util.List;
 
 public class NewsDetailFragment extends Fragment {
     private static final String KEY_POSITION = "POSITION";
+    private static final int MAX_NEWS_IMAGES = 3;
+    private static final int MAX_FRIENDS_IMAGES = 5;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,16 +86,15 @@ public class NewsDetailFragment extends Fragment {
         newsDate.setText(event.getEventDate());
         newsOrganisation.setText(event.getEventCompany());
         newsAddress.setText(event.getEventAddress());
-        for (int i = 0; i < event.getOrganisationTelephone().length - 1; i++) {
-            newsTelephones.append(event.getOrganisationTelephone()[i]);
+        for (int i = 0; i < event.getOrganisationTelephone().size() - 1; i++) {
+            newsTelephones.append(event.getOrganisationTelephone().get(i));
             newsTelephones.append("\n");
         }
-        newsTelephones.append(event.getOrganisationTelephone()
-                [event.getOrganisationTelephone().length - 1]);
+        newsTelephones.append(event.getOrganisationTelephone().get(event.getOrganisationTelephone().size() - 1));
         newsDescr.setText(event.getEventDescription());
 
         writeUs.setText(getUnderlineGreenSpan(R.string.write_to_us));
-        writeUs.setOnClickListener(click -> Toast.makeText(getActivity(), "Write us!", Toast.LENGTH_SHORT).show());
+        writeUs.setOnClickListener(click -> Toast.makeText(getActivity(), getString(R.string.write_to_us), Toast.LENGTH_SHORT).show());
         goToOrgs.setText(getUnderlineGreenSpan(R.string.go_to_organisation_page));
         goToOrgs.setOnClickListener(click -> {
             Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -146,42 +143,28 @@ public class NewsDetailFragment extends Fragment {
     }
 
     private void initNewsPhotos(Event event, View view) {
-        FrameLayout imageFrame = view.findViewById(R.id.news_images);
-        View frameView;
-        ImageView firstImage;
-        ImageView secondImage;
-        ImageView thirdImage;
 
-        switch (event.getEventPhoto().size()) {
-            case 1:
-                frameView = LayoutInflater.from(getContext())
-                        .inflate(R.layout.news_detail_one_image, imageFrame, false);
-                break;
-            case 2:
-                frameView = LayoutInflater.from(getContext())
-                        .inflate(R.layout.news_detail_two_image, imageFrame, false);
-                break;
-            default:
-                frameView = LayoutInflater.from(getContext())
-                        .inflate(R.layout.news_detail_three_image, imageFrame, false);
-                break;
-        }
-        imageFrame.addView(frameView);
+        ImageView firstImage = view.findViewById(R.id.news_detail_first_image);
+        ImageView secondImage = view.findViewById(R.id.news_detail_second_image);
+        ImageView thirdImage = view.findViewById(R.id.news_detail_third_image);
+        ImageView[] newsImages = {firstImage, secondImage, thirdImage};
 
-        if (!event.getEventPhoto().isEmpty()) {
-            firstImage = frameView.findViewById(R.id.news_detail_first_image);
-            firstImage.setImageDrawable(AppUtils.getDrawableByStringRes(getContext(),
-                    event.getEventPhoto().get(0)));
-            if (event.getEventPhoto().size() > 1) {
-                secondImage = frameView.findViewById(R.id.news_detail_second_image);
-                secondImage.setImageDrawable(AppUtils.getDrawableByStringRes(getContext(),
-                        event.getEventPhoto().get(1)));
-                if (event.getEventPhoto().size() > 2) {
-                    thirdImage = frameView.findViewById(R.id.news_detail_third_image);
-                    thirdImage.setImageDrawable(AppUtils.getDrawableByStringRes(getContext(),
-                            event.getEventPhoto().get(2)));
-                }
+        if (event.getEventPhoto().size() < 3) {
+            thirdImage.setVisibility(View.GONE);
+            ConstraintSet set = new ConstraintSet();
+            ConstraintLayout cl = view.findViewById(R.id.news_images);
+            set.clone(cl);
+            set.setHorizontalWeight(R.id.news_detail_second_image, 2);
+            set.applyTo(cl);
+            if (event.getEventPhoto().size() < 2) {
+                secondImage.setVisibility(View.GONE);
             }
+        }
+
+        for (int i = 0; i < event.getEventPhoto().size(); i++) {
+            if (i == MAX_NEWS_IMAGES) break;
+            newsImages[i].setImageDrawable(AppUtils.getDrawableByStringRes(getContext(),
+                    event.getEventPhoto().get(i)));
         }
     }
 
@@ -193,25 +176,16 @@ public class NewsDetailFragment extends Fragment {
         ImageView fourthFriend = view.findViewById(R.id.news_fourth_friend);
         ImageView fifthFriend = view.findViewById(R.id.news_fifth_friend);
         TextView friendsCounter = view.findViewById(R.id.news_friends_counter);
-        if (friendsSize > 0) {
-            firstFriend.setImageDrawable(AppUtils.getDrawableByStringRes(getContext(), friends.get(0).getRoundedLogo()));
-            if (friendsSize > 1) {
-                secondFriend.setImageDrawable(AppUtils.getDrawableByStringRes(getContext(), friends.get(1).getRoundedLogo()));
-                if (friendsSize > 2) {
-                    thirdFriend.setImageDrawable(AppUtils.getDrawableByStringRes(getContext(), friends.get(2).getRoundedLogo()));
-                    if (friendsSize > 3) {
-                        fourthFriend.setImageDrawable(AppUtils.getDrawableByStringRes(getContext(), friends.get(3).getRoundedLogo()));
-                        if (friendsSize > 4) {
-                            fifthFriend.setImageDrawable(AppUtils.getDrawableByStringRes(getContext(), friends.get(4).getRoundedLogo()));
-                            if (friendsSize > 5) {
-                                int f = friendsSize - 5;
-                                friendsCounter.append(String.valueOf(f));
-                                friendsCounter.setVisibility(View.VISIBLE);
-                            }
-                        }
-                    }
-                }
+        ImageView[] friendsImages = {firstFriend, secondFriend, thirdFriend, fourthFriend, fifthFriend};
+        for (int i = 0; i < friendsSize; i++) {
+            if (i == MAX_FRIENDS_IMAGES) {
+                int f = friendsSize - MAX_FRIENDS_IMAGES;
+                friendsCounter.append(String.valueOf(f));
+                friendsCounter.setVisibility(View.VISIBLE);
+                break;
             }
+            friendsImages[i].setImageDrawable(AppUtils.getDrawableByStringRes(getContext(),
+                    friends.get(i).getRoundedLogo()));
         }
     }
 

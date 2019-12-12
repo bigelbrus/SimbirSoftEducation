@@ -19,7 +19,6 @@ import com.example.simbirsoftapp.utility.AppUtils;
 public class HelpFragment extends Fragment implements CategoryAdapter.CategoryClickHolder {
 
     private static final int RECYCLER_VIEW_COLUMNS_NUMBER = 2;
-    public static final String KEY_BAR = "BAR";
 
     public static HelpFragment newInstance() {
         return new HelpFragment();

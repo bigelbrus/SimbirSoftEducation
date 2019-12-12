@@ -33,7 +33,7 @@
         <item name="android:textSize">21sp</item>
         <item name="android:fontFamily">@font/officina_sans</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:fadingEdgeLength">16dp</item>
+        <item name="android:fadingEdgeLength">16sp</item>
         <item name="android:inputType">text</item>
         <item name="android:ellipsize">none</item>
         <item name="android:requiresFadingEdge">horizontal</item>

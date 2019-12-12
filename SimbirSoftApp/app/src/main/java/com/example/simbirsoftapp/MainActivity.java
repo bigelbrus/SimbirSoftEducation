@@ -6,12 +6,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.simbirsoftapp.data.DataSource;
 import com.example.simbirsoftapp.ui.help.HelpFragment;
 import com.example.simbirsoftapp.ui.news.NewsFragment;
 import com.example.simbirsoftapp.ui.profile.ProfileFragment;

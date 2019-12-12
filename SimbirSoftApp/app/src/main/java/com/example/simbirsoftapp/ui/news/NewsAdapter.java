@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simbirsoftapp.R;
+import com.example.simbirsoftapp.data.DataSource;
 import com.example.simbirsoftapp.data.model.Event;
 
 import java.util.List;
@@ -44,8 +45,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
         Event currentEvent = events.get(position);
+        String eventPhoto = currentEvent.getEventPhoto().isEmpty() ?
+                 DataSource.STANDARD_EVENT_IMAGE : currentEvent.getEventPhoto().get(0);
         Drawable image = context.getResources().getDrawable(context.getResources()
-                .getIdentifier(currentEvent.getEventPhoto().get(0),
+                .getIdentifier(eventPhoto,
                         "drawable",
                         context.getPackageName()));
         holder.cardImage.setImageDrawable(image);
