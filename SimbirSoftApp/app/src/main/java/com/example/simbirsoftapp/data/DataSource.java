@@ -1,11 +1,11 @@
 package com.example.simbirsoftapp.data;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.simbirsoftapp.App;
 import com.example.simbirsoftapp.R;
-import com.example.simbirsoftapp.data.model.Category;
-import com.example.simbirsoftapp.data.model.Event;
+import com.example.simbirsoftapp.data.model.Response;
 import com.example.simbirsoftapp.data.model.User;
 
 import java.io.InputStream;
@@ -16,8 +16,8 @@ import java.util.List;
 
 public class DataSource {
     private static User user;
-    private static List<Category> categories;
-    private static List<Event> events;
+    private static Response categories;
+    private static Response events;
     private static final String FILE_NAME_CATEGORIES = "categories.json";
     private static final String FILE_NAME_EVENTS = "events.json";
     public static final String STANDARD_EVENT_IMAGE = "child";
@@ -25,14 +25,17 @@ public class DataSource {
     private DataSource() {
     }
 
-    public static List<Category> getCategories(Context context) {
+    public static Response getCategories(Context context) {
+        Log.d("tag","getCategories");
+
         if (categories == null) {
             categories = categoriesFromJson(context);
         }
         return categories;
     }
 
-    public static List<Event> getEvents(Context context) {
+    public static Response getEvents(Context context) {
+        Log.d("tag","getEvents");
         if (events == null) {
             events = eventsFromJson(context);
         }
@@ -58,23 +61,30 @@ public class DataSource {
     }
 
 
-    private static List<Category> categoriesFromJson(Context context) {
-        return dataFromJson(context,FILE_NAME_CATEGORIES,App.categoryListType);
+    private static Response categoriesFromJson(Context context) {
+        return dataFromJson(context, FILE_NAME_CATEGORIES, App.categoryListType);
     }
 
-    private static List<Event> eventsFromJson(Context context) {
-        return dataFromJson(context,FILE_NAME_EVENTS,App.eventsListType);
+    private static Response eventsFromJson(Context context) {
+
+        return dataFromJson(context, FILE_NAME_EVENTS, App.eventsListType);
     }
 
 
-    private static List dataFromJson(Context context, String name, Type type ) {
+    public static Response dataFromJson(Context context, String name, Type type) {
+        Log.d("tag","dataFromJson");
+        List result;
+        Response response = new Response();
         try (InputStream is = context.getAssets().open(name);
              InputStreamReader isr = new InputStreamReader(is)) {
-            return App.gson.fromJson(isr, type);
+            result = App.gson.fromJson(isr, type);
+            response.setRequestResult(true)
+                    .setAnswer(result);
+            return response;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new ArrayList<>();
+        return response.setRequestResult(false);
     }
 
 

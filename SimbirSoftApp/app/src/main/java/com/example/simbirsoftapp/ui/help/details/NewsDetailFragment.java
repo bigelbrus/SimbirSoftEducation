@@ -68,7 +68,8 @@ public class NewsDetailFragment extends Fragment {
         if (getArguments() != null) {
             eventNumber = getArguments().getInt(KEY_POSITION);
         }
-        Event event = DataSource.getEvents(getContext()).get(eventNumber);
+        List<Event> events = DataSource.getEvents(getContext()).getTypedAnswer();
+        Event event = events.get(eventNumber);
         TextView newsLabel = view.findViewById(R.id.news_label);
         TextView newsDate = view.findViewById(R.id.news_date);
         TextView newsOrganisation = view.findViewById(R.id.news_organisation);

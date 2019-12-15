@@ -7,24 +7,33 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.simbirsoftapp.R;
-import com.example.simbirsoftapp.data.DataSource;
+import com.example.simbirsoftapp.data.loader.EventsLoader;
 import com.example.simbirsoftapp.data.model.Event;
+import com.example.simbirsoftapp.data.model.Response;
 import com.example.simbirsoftapp.ui.help.details.NewsDetailFragment;
 import com.example.simbirsoftapp.utility.AppUtils;
 
 import java.util.List;
 
-public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolder {
+public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolder,
+        LoaderManager.LoaderCallbacks<Response> {
+
+    private RecyclerView newsRecyclerView;
+    private ProgressBar newsProgressBar;
 
     public static NewsFragment newInstance() {
         return new NewsFragment();
@@ -40,10 +49,10 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolde
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_news,container,false);
-        RecyclerView newsRecyclerView = view.findViewById(R.id.news_recycler_view);
-        List<Event> events = DataSource.getEvents(getContext());
-        NewsAdapter newsAdapter = new NewsAdapter(events,getContext(),this);
-        newsRecyclerView.setAdapter(newsAdapter);
+        newsRecyclerView = view.findViewById(R.id.news_recycler_view);
+        newsProgressBar = view.findViewById(R.id.news_progress_bar);
+        LoaderManager.getInstance(this).initLoader(R.id.news_recycler_view,Bundle.EMPTY,this);
+        showLoading();
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         AppCompatActivity activity = (AppCompatActivity) getActivity();
@@ -67,5 +76,40 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolde
                 NewsDetailFragment.newInstance(position))
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @NonNull
+    @Override
+    public Loader<Response> onCreateLoader(int id, @Nullable Bundle args) {
+        Log.d("tag","onCreateLoader");
+
+        return new EventsLoader(getContext());
+    }
+
+    @Override
+    public void onLoadFinished(@NonNull Loader<Response> loader, Response data) {
+        Log.d("tag","onLoadFinished");
+        setUpAdapter(data.getTypedAnswer());
+        showResults();
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<Response> loader) {
+
+    }
+
+    private void setUpAdapter(List<Event> data) {
+        NewsAdapter newsAdapter = new NewsAdapter(data,getContext(),this);
+        newsRecyclerView.setAdapter(newsAdapter);
+    }
+
+    private void showLoading() {
+        newsProgressBar.setVisibility(View.VISIBLE);
+        newsRecyclerView.setVisibility(View.GONE);
+    }
+
+    private void showResults() {
+        newsProgressBar.setVisibility(View.GONE);
+        newsRecyclerView.setVisibility(View.VISIBLE);
     }
 }
