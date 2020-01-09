@@ -30,7 +30,7 @@ import com.example.simbirsoftapp.utility.AppUtils;
 import java.util.List;
 
 public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolder,
-        LoaderManager.LoaderCallbacks<Response> {
+        LoaderManager.LoaderCallbacks<List<Event>> {
 
     private RecyclerView newsRecyclerView;
     private ProgressBar newsProgressBar;
@@ -53,6 +53,7 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolde
         newsProgressBar = view.findViewById(R.id.news_progress_bar);
         LoaderManager.getInstance(this).initLoader(R.id.news_recycler_view,Bundle.EMPTY,this);
         showLoading();
+        Log.d("tag","onCreateView news");
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         AppCompatActivity activity = (AppCompatActivity) getActivity();
@@ -80,27 +81,20 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolde
 
     @NonNull
     @Override
-    public Loader<Response> onCreateLoader(int id, @Nullable Bundle args) {
-        Log.d("tag","onCreateLoader");
-
+    public Loader<List<Event>> onCreateLoader(int id, @Nullable Bundle args) {
         return new EventsLoader(getContext());
     }
 
     @Override
-    public void onLoadFinished(@NonNull Loader<Response> loader, Response data) {
-        Log.d("tag","onLoadFinished");
-        setUpAdapter(data.getTypedAnswer());
+    public void onLoadFinished(@NonNull Loader<List<Event>> loader, List<Event> data) {
+        NewsAdapter newsAdapter = new NewsAdapter(data,getContext(),this);
+        newsRecyclerView.setAdapter(newsAdapter);
         showResults();
     }
 
     @Override
-    public void onLoaderReset(@NonNull Loader<Response> loader) {
+    public void onLoaderReset(@NonNull Loader<List<Event>> loader) {
 
-    }
-
-    private void setUpAdapter(List<Event> data) {
-        NewsAdapter newsAdapter = new NewsAdapter(data,getContext(),this);
-        newsRecyclerView.setAdapter(newsAdapter);
     }
 
     private void showLoading() {

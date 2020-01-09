@@ -1,28 +1,28 @@
-package com.example.simbirsoftapp.data.model;
+package com.example.simbirsoftapp.data.database;
 
-import com.example.simbirsoftapp.data.database.RealmCategory;
+import com.example.simbirsoftapp.data.model.Category;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class Category extends RealmObject {
+public class RealmCategory extends RealmObject {
     @PrimaryKey
     private int id;
     private String logo;
     private String text;
 
-    public Category() {}
-
-    public Category(String text, String logo) {
-        this.logo = logo;
-        this.text = text;
-    }
-
-    public Category(RealmCategory c) {
+    public RealmCategory(Category c) {
+        id = c.getId();
         logo = c.getLogo();
         text = c.getText();
-        id = c.getId();
     }
+
+    public RealmCategory() {}
+//
+//    public Category(String text, String logo) {
+//        this.logo = logo;
+//        this.text = text;
+//    }
 
     public void setLogo(String logo) {
         this.logo = logo;

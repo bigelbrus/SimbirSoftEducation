@@ -65,7 +65,7 @@ public class ProfileFragment extends Fragment {
         name.setText(user.getFullName());
         sphere.setText(user.getActivity());
         push.setChecked(user.isWantPush());
-        date.setText(user.getDate());
+        date.setText(user.getStringDate());
         if (getContext() != null) {
             logo.setImageDrawable(getContext().getResources().getDrawable(user.getLogo()));
         }

@@ -14,6 +14,8 @@ import com.jakewharton.threetenabp.AndroidThreeTen;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import io.realm.Realm;
+
 public class App extends Application {
     public static final Type eventsListType = new TypeToken<List<Event>>() {
     }.getType();
@@ -26,6 +28,7 @@ public class App extends Application {
 
     @Override
     public void onCreate() {
+        Realm.init(this);
         AndroidThreeTen.init(this);
         super.onCreate();
     }

@@ -1,39 +1,45 @@
-package com.example.simbirsoftapp.data.model;
+package com.example.simbirsoftapp.data.database;
 
-import com.example.simbirsoftapp.data.database.RealmEvent;
-import com.example.simbirsoftapp.data.database.RealmUser;
+import com.example.simbirsoftapp.data.model.Event;
+import com.example.simbirsoftapp.data.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Event {
+import io.realm.Realm;
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class RealmEvent extends RealmObject {
+    @PrimaryKey
     private int id;
     private String eventName;
     private String eventDate;
     private String eventCompany;
     private String eventAddress;
-    private List<String> organisationTelephone = new ArrayList<>();
-    private List<String> eventPhoto = new ArrayList<>();
+    private RealmList<String> organisationTelephone = new RealmList<>();
+    private RealmList<String> eventPhoto = new RealmList<>();
     private String eventDescription;
     private String organisationSite;
-    private List<User> eventPerson = new ArrayList<>();
+    private RealmList<RealmUser> eventPerson = new RealmList<>();
 
-    public Event(RealmEvent realmEvent) {
-        id = realmEvent.getId();
-        eventName = realmEvent.getEventName();
-        eventDate = realmEvent.getEventDate();
-        eventCompany = realmEvent.getEventCompany();
-        eventAddress = realmEvent.getEventAddress();
-        organisationTelephone.addAll(realmEvent.getOrganisationTelephone());
-        eventPhoto.addAll(realmEvent.getEventPhoto());
-        eventDescription = realmEvent.getEventDescription();
-        organisationSite = realmEvent.getOrganisationSite();
-        for(RealmUser u:realmEvent.getEventPerson()) {
-            eventPerson.add(new User(u));
+    public RealmEvent(Event e) {
+        id = e.getId();
+        eventName = e.getEventName();
+        eventDate = e.getEventDate();
+        eventCompany = e.getEventCompany();
+        eventAddress = e.getEventAddress();
+        organisationTelephone.addAll(e.getOrganisationTelephone());
+        eventPhoto.addAll(e.getEventPhoto());
+        eventDescription = e.getEventDescription();
+        organisationSite = e.getOrganisationSite();
+        for (User u: e.getEventPerson()) {
+            eventPerson.add(new RealmUser(u));
         }
     }
 
-    public Event(){}
+    public RealmEvent(){}
 
 
     public int getId() {
@@ -68,11 +74,11 @@ public class Event {
         this.eventAddress = eventAddress;
     }
 
-    public List<String> getOrganisationTelephone() {
+    public RealmList<String> getOrganisationTelephone() {
         return organisationTelephone;
     }
 
-    public void setOrganisationTelephone(List<String> organisationTelephone) {
+    public void setOrganisationTelephone(RealmList<String> organisationTelephone) {
         this.organisationTelephone = organisationTelephone;
     }
 
@@ -80,11 +86,11 @@ public class Event {
         this.organisationTelephone.add(telephone);
     }
 
-    public List<String> getEventPhoto() {
+    public RealmList<String> getEventPhoto() {
         return eventPhoto;
     }
 
-    public void setEventPhoto(List<String> eventPhoto) {
+    public void setEventPhoto(RealmList<String> eventPhoto) {
         this.eventPhoto = eventPhoto;
     }
 
@@ -108,15 +114,15 @@ public class Event {
         this.organisationSite = organisationSite;
     }
 
-    public List<User> getEventPerson() {
+    public RealmList<RealmUser> getEventPerson() {
         return eventPerson;
     }
 
-    public void setEventPerson(List<User> eventPerson) {
+    public void setEventPerson(RealmList<RealmUser> eventPerson) {
         this.eventPerson = eventPerson;
     }
 
-    public void addEventPerson(User person) {
+    public void addEventPerson(RealmUser person) {
         eventPerson.add(person);
     }
 
@@ -127,4 +133,6 @@ public class Event {
     public void setEventDate(String eventDate) {
         this.eventDate = eventDate;
     }
+
+
 }

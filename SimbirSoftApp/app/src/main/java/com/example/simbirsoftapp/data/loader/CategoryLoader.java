@@ -2,18 +2,30 @@ package com.example.simbirsoftapp.data.loader;
 
 import android.content.Context;
 
-import com.example.simbirsoftapp.data.DataSource;
-import com.example.simbirsoftapp.data.model.Response;
+import androidx.annotation.Nullable;
+import androidx.loader.content.AsyncTaskLoader;
 
-public class CategoryLoader extends BaseLoader {
+import com.example.simbirsoftapp.data.DataSource;
+import com.example.simbirsoftapp.data.model.Category;
+
+import java.util.List;
+
+public class CategoryLoader extends AsyncTaskLoader<List<Category>> {
 
     public CategoryLoader(Context context) {
         super(context);
     }
 
     @Override
-    protected Response call() {
-        return DataSource.getCategories(getContext());
-
+    protected void onStartLoading() {
+        super.onStartLoading();
+        forceLoad();
     }
+
+    @Nullable
+    @Override
+    public List<Category> loadInBackground() {
+        return DataSource.getInstance().getCategories(getContext());
+    }
+
 }

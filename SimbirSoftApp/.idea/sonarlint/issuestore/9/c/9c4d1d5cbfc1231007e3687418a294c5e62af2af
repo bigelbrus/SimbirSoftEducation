@@ -1,2 +1,6 @@
 
-?squid:S1148M"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+Gsquid:S1148Š"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8ÖâŒîñ-
+dsquid:S2142E"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8ù›”îñ-
+dsquid:S2142."FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8Å”•îñ-
+Fsquid:S1148F"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8ù›”îñ-
+Fsquid:S1148/"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8Å”•îñ-
