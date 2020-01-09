@@ -44,6 +44,7 @@ public class ThirdTask {
         };
         myClosure.print();
 
+        //noinspection CodeBlock2Expr
         repeatTask(10,()->{
             myClosure.print();
         });
