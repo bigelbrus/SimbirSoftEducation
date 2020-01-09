@@ -1,0 +1,101 @@
+[
+    {
+      "id": "1",
+      "eventName": "Спонсоры отремонтируют школу-интернат",
+      "eventDate": "Осталось 13 дней (21.09 – 20.10)",
+      "eventCompany": "Благотворительный Фонд «Счастливый Мир»",
+      "eventAddress": "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
+      "organisationTelephone": [
+        "+7(937) 037 37-73",
+        "+7(937) 016 16-16"
+      ],
+      "eventPhoto": [
+        "child",
+        "guitar",
+        "cardimage_2"
+      ],
+      "eventDescription": "Участники и болельщики смогли весело и активно провести время на «Петербургском благотворительном марафоне» и при этом финансово поучаствовать в помощи детям.\n\nПри этом финансово поучаствовать в помощи детям. При этом финансово поучаствовать в помощи детям.",
+      "organisationSite": "shastliviymir.ru",
+      "eventPerson": [
+        {
+          "name": "alex",
+          "surname": "ivanov",
+          "roundedLogo": "photo_1"
+        },
+        {
+          "name": "ivan",
+          "surname": "petrov",
+          "roundedLogo": "photo_2"
+        },
+        {
+          "name": "ivan",
+          "surname": "petrov",
+          "roundedLogo": "photo_3"
+        },
+        {
+          "name": "ivan",
+          "surname": "petrov",
+          "roundedLogo": "photo_4"
+        },
+        {
+          "name": "ivan",
+          "surname": "petrov",
+          "roundedLogo": "photo_5"
+        },
+        {
+          "name": "ivan",
+          "surname": "petrov",
+          "roundedLogo": "photo_1"
+        },
+        {
+          "name": "ivan",
+          "surname": "petrov",
+          "roundedLogo": "photo_2"
+        },
+        {
+          "name": "ivan",
+          "surname": "petrov",
+          "roundedLogo": "photo_4"
+        },
+        {
+          "name": "ivan",
+          "surname": "petrov",
+          "roundedLogo": "photo_5"
+        },
+        {
+          "name": "ivan",
+          "surname": "petrov",
+          "roundedLogo": "photo_2"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "eventName": "Конкурс по вокальному пению в детском доме №6",
+      "eventDate": "Октябрь 20, 2016",
+      "eventCompany": "Благотворительный Фонд «Хороший Мир»",
+      "eventAddress": "Москва, Уличная улица, д. 50А, каб. 208",
+      "organisationTelephone": [
+        "+7(922) 137 27-23",
+        "+7(922) 116 36-36"
+      ],
+      "eventPhoto": [
+        "guitar",
+        "child"
+      ],
+      "eventDescription": "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области.\n\nДубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области.",
+      "organisationSite": "horoshiymir.ru",
+      "eventPerson": [
+        {
+          "name": "alex",
+          "surname": "ivanov",
+          "roundedLogo": "photo_1"
+        },
+        {
+          "name": "ivan",
+          "surname": "petrov",
+          "roundedLogo": "photo_2"
+        }
+      ]
+    }
+  ]
