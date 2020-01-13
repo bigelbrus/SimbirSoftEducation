@@ -23,7 +23,6 @@ import android.widget.ProgressBar;
 import com.example.simbirsoftapp.R;
 import com.example.simbirsoftapp.data.loader.EventsLoader;
 import com.example.simbirsoftapp.data.model.Event;
-import com.example.simbirsoftapp.data.model.Response;
 import com.example.simbirsoftapp.ui.help.details.NewsDetailFragment;
 import com.example.simbirsoftapp.utility.AppUtils;
 
@@ -94,7 +93,7 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolde
 
     @Override
     public void onLoaderReset(@NonNull Loader<List<Event>> loader) {
-
+        //will be implemented soon
     }
 
     private void showLoading() {

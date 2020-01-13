@@ -3,10 +3,6 @@ package com.example.simbirsoftapp.data.database;
 import com.example.simbirsoftapp.data.model.Event;
 import com.example.simbirsoftapp.data.model.User;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

@@ -20,7 +20,6 @@ import com.example.simbirsoftapp.MainActivity;
 import com.example.simbirsoftapp.R;
 import com.example.simbirsoftapp.data.loader.CategoryLoader;
 import com.example.simbirsoftapp.data.model.Category;
-import com.example.simbirsoftapp.data.model.Response;
 import com.example.simbirsoftapp.utility.AppUtils;
 
 import java.util.List;
@@ -75,7 +74,7 @@ public class HelpFragment extends Fragment implements CategoryAdapter.CategoryCl
 
     @Override
     public void onLoaderReset(@NonNull Loader<List<Category>> loader) {
-
+        //will be implemented soon
     }
 
     private void showLoading() {

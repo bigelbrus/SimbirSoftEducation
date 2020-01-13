@@ -2,10 +2,9 @@ package com.example.simbirsoftapp.data.model;
 
 import com.example.simbirsoftapp.data.database.RealmCategory;
 
-import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class Category extends RealmObject {
+public class Category{
     @PrimaryKey
     private int id;
     private String logo;
@@ -13,10 +12,6 @@ public class Category extends RealmObject {
 
     public Category() {}
 
-    public Category(String text, String logo) {
-        this.logo = logo;
-        this.text = text;
-    }
 
     public Category(RealmCategory c) {
         logo = c.getLogo();

@@ -18,11 +18,6 @@ public class RealmCategory extends RealmObject {
     }
 
     public RealmCategory() {}
-//
-//    public Category(String text, String logo) {
-//        this.logo = logo;
-//        this.text = text;
-//    }
 
     public void setLogo(String logo) {
         this.logo = logo;

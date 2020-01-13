@@ -1,12 +1,10 @@
 package com.example.simbirsoftapp.data.database;
 
 import com.example.simbirsoftapp.data.model.User;
-import com.example.simbirsoftapp.utility.DateUtils;
 
 import org.threeten.bp.DateTimeUtils;
 import org.threeten.bp.ZoneId;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 

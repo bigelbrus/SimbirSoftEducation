@@ -57,3 +57,7 @@ P
  app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
 y
 Iapp/src/main/java/com/example/simbirsoftapp/ui/search/SearchFragment.java,8/d/8d0d6554a89d1c6633148e97eca98d95c4db40b6
+<
+build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
+H
+app/google-services.json,f/d/fd8d34b142d02ec743a8efefefd2c097961666e9

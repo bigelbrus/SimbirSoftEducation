@@ -76,6 +76,8 @@ public class EventTypeAdapter extends TypeAdapter<List<Event>> {
                         }
                         in.endArray();
                         break;
+                    default:
+                        break;
                 }
             }
             in.endObject();

@@ -1,11 +1,14 @@
 package com.example.simbirsoftapp;
 
 import android.app.Application;
+import android.util.Log;
+
 
 import com.example.simbirsoftapp.data.adapter.CategoryTypeAdapter;
 import com.example.simbirsoftapp.data.adapter.EventTypeAdapter;
 import com.example.simbirsoftapp.data.model.Category;
 import com.example.simbirsoftapp.data.model.Event;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -31,5 +34,14 @@ public class App extends Application {
         Realm.init(this);
         AndroidThreeTen.init(this);
         super.onCreate();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.signInAnonymously().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Log.d("tag", "auth complete");
+            } else {
+
+                Log.d("tag", "auth error " + task.getException().getMessage());
+            }
+        });
     }
 }

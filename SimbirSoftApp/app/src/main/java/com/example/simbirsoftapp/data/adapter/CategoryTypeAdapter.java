@@ -33,6 +33,8 @@ public class CategoryTypeAdapter extends TypeAdapter<List<Category>> {
                     case "text":
                         category.setText(in.nextString());
                         break;
+                    default:
+                        break;
                 }
             }
             in.endObject();

@@ -3,7 +3,6 @@ package com.example.simbirsoftapp.data.model;
 import com.example.simbirsoftapp.data.database.RealmUser;
 import com.example.simbirsoftapp.utility.DateUtils;
 
-import org.threeten.bp.DateTimeUtils;
 import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.ZoneId;
