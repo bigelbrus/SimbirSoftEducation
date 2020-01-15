@@ -16,15 +16,14 @@ import com.example.simbirsoftapp.ui.search.organisations.SearchOrganizationListF
 public class SearchPagerAdapter extends FragmentPagerAdapter {
     private static final int LIST_COUNT = 2;
     private Context context;
-    private SearchOrganizationListFragment organizationListFragment;
-    private SearchEventsListFragment eventsListFragment;
+    public static final int POSITION_EVENT = 0;
+    public static final int POSITION_ORGANISATION = 1;
+
 
 
     public SearchPagerAdapter(FragmentManager fm, Context context) {
         super(fm, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         this.context = context;
-        organizationListFragment = new SearchOrganizationListFragment();
-        eventsListFragment = new SearchEventsListFragment();
     }
 
     @Override
@@ -36,20 +35,12 @@ public class SearchPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-            case 1:
-                return organizationListFragment;
-            case 0:
+            case POSITION_ORGANISATION:
+                return SearchOrganizationListFragment.newInstance();
+            case POSITION_EVENT:
             default:
-                return eventsListFragment;
+                return SearchEventsListFragment.newInstance();
         }
-    }
-
-    public void setEventsListFragment() {
-        eventsListFragment = new SearchEventsListFragment();
-    }
-
-    public void setOrganizationListFragment() {
-        organizationListFragment = new SearchOrganizationListFragment();
     }
 
     @Nullable
@@ -57,9 +48,9 @@ public class SearchPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         Resources res = context.getResources();
         switch (position) {
-            case 1:
+            case POSITION_ORGANISATION:
                 return res.getText(R.string.search_organisations);
-            case 0:
+            case POSITION_EVENT:
             default:
                 return res.getText(R.string.search_events);
         }

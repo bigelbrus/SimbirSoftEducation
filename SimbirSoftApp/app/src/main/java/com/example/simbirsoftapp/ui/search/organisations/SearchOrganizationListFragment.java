@@ -14,28 +14,30 @@ import androidx.fragment.app.ListFragment;
 
 import com.example.simbirsoftapp.R;
 import com.example.simbirsoftapp.ui.search.Measured;
+import com.example.simbirsoftapp.ui.search.Updatable;
 import com.example.simbirsoftapp.utility.AppUtils;
 
 
-public class SearchOrganizationListFragment extends ListFragment implements Measured {
-    private static final int LIST_SIZE = 1;
-    private Context context;
+public class SearchOrganizationListFragment extends ListFragment implements Measured, Updatable {
+    public static final int LIST_SIZE = 4;
 
+    public static SearchOrganizationListFragment newInstance() {
+        return new SearchOrganizationListFragment();
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        context = inflater.getContext();
         View view = super.onCreateView(inflater, container, savedInstanceState);
         ((ListView)view.findViewById(android.R.id.list)).setDivider(null);
-        updateList();
+        updateList(getContext());
         return view;
     }
 
-    public void updateList() {
+    public void updateList(Context context) {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(context,
                 R.layout.search_item, R.id.search_text_item,
-                AppUtils.getRandomStringArray(context,LIST_SIZE,R.array.organisations_list));
+                AppUtils.getRandomStringArray(context, LIST_SIZE,R.array.organisations_list));
         setListAdapter(adapter);
     }
 

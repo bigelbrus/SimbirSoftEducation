@@ -11,8 +11,12 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.simbirsoftapp.R;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
+
+import static com.example.simbirsoftapp.ui.search.SearchPagerAdapter.POSITION_EVENT;
 
 public class AppUtils {
 
@@ -55,8 +59,30 @@ public class AppUtils {
         return randomOrganizations;
     }
 
+    public static String[] findInArray(Context context, String query, int position) {
+        List<String> result = new ArrayList<>();
+        String[] allData;
+        if (position == POSITION_EVENT) {
+            allData = context.getResources().getStringArray(R.array.events_list);
+        } else {
+            allData = context.getResources().getStringArray(R.array.organisations_list);
+        }
+        String[] allDataForSearch = new String[allData.length];
+        for (int i = 0; i < allData.length; i++) {
+            allDataForSearch[i] = allData[i].toLowerCase();
+        }
+        for (int i = 0; i < allData.length; i++) {
+            if (allDataForSearch[i].contains(query.toLowerCase())) {
+                result.add(allData[i]);
+            }
+        }
+        String[] resultArr = new String[result.size()];
+        result.toArray(resultArr);
+        return resultArr;
+    }
+
     public static Drawable getDrawableByStringRes(Context context, String res) {
         return context.getResources().getDrawable(context.getResources().getIdentifier(res,
-                        "drawable", context.getPackageName()));
+                "drawable", context.getPackageName()));
     }
 }

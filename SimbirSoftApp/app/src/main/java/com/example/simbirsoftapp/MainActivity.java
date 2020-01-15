@@ -52,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBottomButtonClick(View view) {
+        if (view.getId() == activeButton.getId()) {
+            return;
+        }
         switch (view.getId()) {
             case R.id.button_news:
                 activateButton(newsButton);

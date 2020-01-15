@@ -12,7 +12,6 @@ import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -52,7 +51,6 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolde
         newsProgressBar = view.findViewById(R.id.news_progress_bar);
         LoaderManager.getInstance(this).initLoader(R.id.news_recycler_view,Bundle.EMPTY,this);
         showLoading();
-        Log.d("tag","onCreateView news");
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         AppCompatActivity activity = (AppCompatActivity) getActivity();

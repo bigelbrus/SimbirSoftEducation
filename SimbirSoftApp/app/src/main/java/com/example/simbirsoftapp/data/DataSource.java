@@ -1,7 +1,6 @@
 package com.example.simbirsoftapp.data;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.example.simbirsoftapp.App;
 import com.example.simbirsoftapp.R;
@@ -34,6 +33,7 @@ public class DataSource {
     private static final String FILE_NAME_EVENTS = "events.json";
     public static final String STANDARD_EVENT_IMAGE = "child";
     private static final long MAX_SIZE_BUFFER = 1024 * 1024L;
+
     private DataSource(Realm realm) {
         this.realm = realm;
     }
@@ -46,18 +46,18 @@ public class DataSource {
     }
 
     public List<Category> getCategories(Context context) {
-        List<Category> result = dataFromDb(RealmCategory.class,new Category());
+        List<Category> result = dataFromDb(RealmCategory.class, new Category());
         if (result.isEmpty()) {
-            List<Category> fromFireBase = dataFromFireBase(App.categoryListType, FILE_NAME_CATEGORIES,RealmCategory.class);
+            List<Category> fromFireBase = dataFromFireBase(App.categoryListType, FILE_NAME_CATEGORIES, RealmCategory.class);
             result = fromFireBase.isEmpty() ? categoriesFromJson(context) : fromFireBase;
         }
         return result;
     }
 
     public List<Event> getEvents(Context context) {
-        List<Event> result = dataFromDb(RealmEvent.class,new Event());
+        List<Event> result = dataFromDb(RealmEvent.class, new Event());
         if (result.isEmpty()) {
-            List<Event> fromFireBase = dataFromFireBase(App.eventsListType, FILE_NAME_EVENTS,RealmEvent.class);
+            List<Event> fromFireBase = dataFromFireBase(App.eventsListType, FILE_NAME_EVENTS, RealmEvent.class);
             result = fromFireBase.isEmpty() ? eventsFromJson(context) : fromFireBase;
         }
         return result;
@@ -84,22 +84,20 @@ public class DataSource {
 
     private List<Category> categoriesFromJson(Context context) {
         List<Category> list = dataFromJson(context, FILE_NAME_CATEGORIES, App.categoryListType);
-        saveToDb(RealmCategory.class,list);
+        saveToDb(RealmCategory.class, list);
         return list;
     }
 
     private List<Event> eventsFromJson(Context context) {
         List<Event> list = dataFromJson(context, FILE_NAME_EVENTS, App.eventsListType);
-        saveToDb(RealmEvent.class,list);
+        saveToDb(RealmEvent.class, list);
         return list;
     }
 
     private static <T> List<T> dataFromJson(Context context, String name, Type type) {
-        Log.d("tag","start retrieve data from local json");
 
         try (InputStream is = context.getAssets().open(name);
              InputStreamReader isr = new InputStreamReader(is)) {
-            Log.d("tag","return data from local json");
             return App.gson.fromJson(isr, type);
         } catch (Exception e) {
             e.printStackTrace();
@@ -107,18 +105,17 @@ public class DataSource {
         return new ArrayList<>();
     }
 
-    private <T> List<T> dataFromFireBase(Type type, String location,Class<? extends RealmObject> realmObject) {
+    private <T> List<T> dataFromFireBase(Type type, String location, Class<? extends RealmObject> realmObject) {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference reference = storage.getReference(location);
 
         Object lock = new Object();
+        List<T> list = new ArrayList<>();
 
-        final List<T> list = new ArrayList<>();
-        Thread thread = new Thread(() -> {
-            Log.d("tag", "start thread firebase");
+
+        Thread thread = new Thread(() ->
             reference.getBytes(MAX_SIZE_BUFFER).addOnCompleteListener(task -> {
                 synchronized (lock) {
-                    Log.d("tag", "got result firebase");
                     InputStream is = new ByteArrayInputStream(task.getResult());
                     InputStreamReader isr = new InputStreamReader(is);
                     list.addAll(App.gson.fromJson(isr, type));
@@ -126,24 +123,20 @@ public class DataSource {
                 }
             }).addOnFailureListener(exception -> {
                 synchronized (lock) {
-                    Log.d("tag", "fail");
                     lock.notifyAll();
                 }
-            });
-        });
+            })
+        );
         thread.start();
         synchronized (lock) {
             if (list.isEmpty()) {
                 try {
-                    Log.d("tag", "wait");
                     lock.wait(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-
                     Thread.currentThread().interrupt();
                 }
             }
-            Log.d("tag","return data from firebase");
             saveToDb(realmObject,list);
 
             return list;
@@ -151,7 +144,6 @@ public class DataSource {
     }
 
     private <T extends RealmObject, V> List<V> dataFromDb(Class<T> t, V type) {
-        Log.d("tag","retrieve data from db");
         realm = Realm.getInstance(RealmUtils.getDefaultConfig());
         if (realm.where(t).findFirst() != null) {
             List objectsFromDb = new ArrayList<>();
@@ -159,37 +151,30 @@ public class DataSource {
                 RealmResults<T> realmResults = realm.where(t).findAll();
                 if (type instanceof Category) {
                     for (T c : realmResults) {
-                        objectsFromDb.add(new Category((RealmCategory)c));
+                        objectsFromDb.add(new Category((RealmCategory) c));
                     }
                 } else if (type instanceof Event) {
                     for (T e : realmResults) {
                         objectsFromDb.add(new Event((RealmEvent) e));
                     }
                 }
-                Log.d("tag","return data from db");
                 return objectsFromDb;
             } finally {
                 realm.close();
             }
         }
-        Log.d("tag","no data in db " + t.getSimpleName());
         return new ArrayList<>();
     }
 
-    private void saveToDb(Class<? extends RealmObject> dbObject,List<?> list) {
-        Log.d("tag","start save data to db " + dbObject.getName());
+    private void saveToDb(Class<? extends RealmObject> dbObject, List<?> list) {
         realm = Realm.getInstance(RealmUtils.getDefaultConfig());
         realm.beginTransaction();
-        Log.d("tag","Category? " + dbObject.isInstance(new RealmCategory()));
-        Log.d("tag","Event? " + dbObject.isInstance(new RealmEvent()));
 
         if (dbObject.isInstance(new RealmCategory())) {
-            Log.d("tag","save category to db");
             for (Object c : list) {
                 realm.copyToRealmOrUpdate(new RealmCategory((Category) c));
             }
         } else if (dbObject.isInstance(new RealmEvent())) {
-            Log.d("tag","save event to db");
             for (Object c : list) {
                 realm.copyToRealmOrUpdate(new RealmEvent((Event) c));
             }
