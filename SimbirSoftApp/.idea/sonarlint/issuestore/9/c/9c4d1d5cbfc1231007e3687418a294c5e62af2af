@@ -1,20 +1,7 @@
 
-vsquid:UselessImportCheck"KRemove this unused import 'com.google.firebase.storage.StreamDownloadTask'.(ËºÓû8¿ùáÓø-
-hsquid:UnusedPrivateMethodq"7Remove this unused private "categoriesFromJson" method.(¸ØÏÏüÿÿÿÿ8ùäÙø-
-isquid:UselessImportCheck">Remove this unused import 'com.google.android.gms.tasks.Task'.(¦âÏô8¼ö¹Úø-
-nsquid:CommentedOutCodeLineH"<This block of commented-out lines of code should be removed.(¬ÏŞğşÿÿÿÿ8ùäÙø-
-vsquid:S00117˜"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¥Ö•ùûÿÿÿÿ8–ƒÛø-
-nsquid:CommentedOutCodeLine:"<This block of commented-out lines of code should be removed.(ªó¡½úÿÿÿÿ8˜ÇãÙø-
-Gsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8øéèÚø-
-~squid:S1192–"ZUse already-defined constant 'FILE_NAME_CATEGORIES' instead of duplicating its value here.(Ò»ğøÿÿÿÿ8½ú€Ûø-
-csquid:UselessImportCheck"8Remove this unused import 'androidx.annotation.NonNull'.(ˆÛúÜ8·óÛÙø-
-jsquid:S2184˜"FCast one of the operands of this multiplication operation to a "long".(¥Ö•ùûÿÿÿÿ8–ƒÛø-
-`squid:UselessImportCheck"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8æ§ûÓø-
-esquid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8øéèÚø-
-Qsquid:S11729".Remove this unused method parameter "context".(ó°öôÿÿÿÿÿ8ùäÙø-
-|squid:UselessImportCheck"LRemove this unused import 'com.google.android.gms.tasks.OnCompleteListener'.(Çğ¸Òÿÿÿÿÿ8·óÛÙø-
-ssquid:UselessImportCheck"CRemove this unused import 'com.google.firebase.storage.UploadTask'.(®ğÇıÿÿÿÿ8ÔòõÑø-
-vsquid:UselessImportCheck"KRemove this unused import 'com.google.android.gms.tasks.OnSuccessListener'.(íå¡8´ˆîØø-
-Gsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8ÖâŒîñ-
-\squid:UselessImportCheck",Remove this unused import 'android.net.Uri'.(òêû‘ıÿÿÿÿ8óæÓø-
-ysquid:UselessImportCheck"IRemove this unused import 'com.google.firebase.storage.FileDownloadTask'.(×Ñúüÿÿÿÿ8ÔòõÑø-
+osquid:CommentedOutCodeLine¨"<This block of commented-out lines of code should be removed.(Ö¦³¿ÿÿÿÿÿ8¬Á–‰ı-
+osquid:CommentedOutCodeLine´"<This block of commented-out lines of code should be removed.(¼è÷ïøÿÿÿÿ8¬Á–‰ı-
+osquid:CommentedOutCodeLine "<This block of commented-out lines of code should be removed.(¤öä’úÿÿÿÿ8¬Á–‰ı-
+Gsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¬Á–‰ı-
+osquid:CommentedOutCodeLine£"<This block of commented-out lines of code should be removed.(«È¸òşÿÿÿÿ8¬Á–‰ı-
+jsquid:CommentedOutCodeLineÁ"<This block of commented-out lines of code should be removed.(×ª¡Ì8¬Á–‰ı-

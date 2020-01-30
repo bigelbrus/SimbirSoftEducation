@@ -33,14 +33,14 @@ public class SearchOrganizationListFragment extends ListFragment implements Meas
         updateList(getContext());
         return view;
     }
-
+    @Override
     public void updateList(Context context) {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(context,
                 R.layout.search_item, R.id.search_text_item,
                 AppUtils.getRandomStringArray(context, LIST_SIZE,R.array.organisations_list));
         setListAdapter(adapter);
     }
-
+    @Override
     public int getListSize() {
         return LIST_SIZE;
     }

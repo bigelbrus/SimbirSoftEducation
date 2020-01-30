@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.simbirsoftapp.MainActivity;
 import com.example.simbirsoftapp.R;
@@ -31,6 +32,7 @@ public class HelpFragment extends Fragment implements CategoryAdapter.CategoryCl
 
     private RecyclerView categoryRecyclerView;
     private ProgressBar categoryProgressBar;
+    private TextView categoryError;
 
     public static HelpFragment newInstance() {
         return new HelpFragment();
@@ -42,6 +44,8 @@ public class HelpFragment extends Fragment implements CategoryAdapter.CategoryCl
         View view = inflater.inflate(R.layout.fragment_help, container, false);
         categoryRecyclerView = view.findViewById(R.id.rv_help);
         categoryProgressBar = view.findViewById(R.id.category_progress_bar);
+        categoryError = view.findViewById(R.id.category_error);
+
         showLoading();
         LoaderManager.getInstance(this).initLoader(R.id.rv_help,Bundle.EMPTY,this);
 
@@ -68,6 +72,10 @@ public class HelpFragment extends Fragment implements CategoryAdapter.CategoryCl
 
     @Override
     public void onLoadFinished(@NonNull Loader<List<Category>> loader, List<Category> data) {
+        if (data.isEmpty()) {
+            showError();
+            return;
+        }
         categoryRecyclerView.setAdapter(new CategoryAdapter(data, getContext(),this));
         showData();
     }
@@ -80,11 +88,19 @@ public class HelpFragment extends Fragment implements CategoryAdapter.CategoryCl
     private void showLoading() {
         categoryProgressBar.setVisibility(View.VISIBLE);
         categoryRecyclerView.setVisibility(View.GONE);
+        categoryError.setVisibility(View.GONE);
     }
 
     private void showData() {
         categoryProgressBar.setVisibility(View.GONE);
         categoryRecyclerView.setVisibility(View.VISIBLE);
+        categoryError.setVisibility(View.GONE);
+    }
+
+    private void showError() {
+        categoryProgressBar.setVisibility(View.GONE);
+        categoryRecyclerView.setVisibility(View.GONE);
+        categoryError.setVisibility(View.VISIBLE);
     }
 
 }

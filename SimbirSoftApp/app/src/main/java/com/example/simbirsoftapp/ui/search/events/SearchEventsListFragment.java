@@ -33,7 +33,7 @@ public class SearchEventsListFragment extends ListFragment implements Measured, 
         updateList(getContext());
         return view;
     }
-
+    @Override
     public void updateList(Context context) {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(context,
                 R.layout.search_item, R.id.search_text_item,
@@ -41,7 +41,7 @@ public class SearchEventsListFragment extends ListFragment implements Measured, 
         setListAdapter(adapter);
     }
 
-
+    @Override
     public int getListSize(){
         return LIST_SIZE;
     }
