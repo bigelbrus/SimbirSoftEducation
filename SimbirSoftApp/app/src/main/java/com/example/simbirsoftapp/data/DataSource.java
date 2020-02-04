@@ -8,11 +8,11 @@ import com.example.simbirsoftapp.R;
 import com.example.simbirsoftapp.data.database.DatabaseSource;
 import com.example.simbirsoftapp.data.database.RealmCategory;
 import com.example.simbirsoftapp.data.database.RealmEvent;
+import com.example.simbirsoftapp.data.firebase.RxFirebaseStorage;
 import com.example.simbirsoftapp.data.model.Category;
 import com.example.simbirsoftapp.data.model.Event;
 import com.example.simbirsoftapp.data.model.User;
 import com.example.simbirsoftapp.utility.RealmUtils;
-import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -23,10 +23,10 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
+import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -52,7 +52,7 @@ public class DataSource {
         return instance;
     }
 
-    public List<Category> getCategories(Context context) {
+    public Flowable<Category> getCategories(Context context) {
         try {
             return dataFromDb(new Category());
         } catch (NoSuchDataException e) {
@@ -68,10 +68,10 @@ public class DataSource {
                 }
             }
         }
-        return new ArrayList<>();
+        return Flowable.empty();
     }
 
-    public List<Event> getEvents(Context context) {
+    public Flowable<Event> getEvents(Context context) {
         try {
             return dataFromDb(new Event());
         } catch (NoSuchDataException e) {
@@ -87,7 +87,7 @@ public class DataSource {
                 }
             }
         }
-        return new ArrayList<>();
+        return Flowable.empty();
     }
 
     public static User getUser() {
@@ -109,90 +109,115 @@ public class DataSource {
     }
 
 
-    private List<Category> categoriesFromJson(Context context) throws NoSuchDataException {
-        List<Category> list = dataFromJson(context, FILE_NAME_CATEGORIES, App.categoryListType);
-        saveToDb(list);
-        return list;
+    private Flowable<Category> categoriesFromJson(Context context) throws NoSuchDataException {
+        return dataFromJson(context, FILE_NAME_CATEGORIES, App.categoryListType);
     }
 
-    private List<Event> eventsFromJson(Context context) throws NoSuchDataException {
-        List<Event> list = dataFromJson(context, FILE_NAME_EVENTS, App.eventsListType);
-        saveToDb(list);
-        return list;
+    private Flowable<Event> eventsFromJson(Context context) throws NoSuchDataException {
+        return dataFromJson(context, FILE_NAME_EVENTS, App.eventsListType);
     }
 
-    private static <T> List<T> dataFromJson(Context context, String name, Type type) throws NoSuchDataException {
-        try (InputStream is = context.getAssets().open(name);
-             InputStreamReader isr = new InputStreamReader(is)) {
-            return App.gson.fromJson(isr, type);
-        } catch (IOException e) {
-            e.printStackTrace();
+    private static <T> Flowable<T> dataFromJson(Context context, String name, Type type) throws
+            NoSuchDataException {
+        InputStream is = null;
+        try {
+            is = context.getAssets().open(name);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw new NoSuchDataException("No file in " + name + " folder in local json");
         }
-        throw new NoSuchDataException("No " + type + " in local json");
+        return Flowable.just(is)
+                .subscribeOn(Schedulers.io())
+                .map(InputStreamReader::new)
+                .map(isr -> {
+                    List<T> list = App.gson.fromJson(isr, type);
+                    saveToDb(list);
+                    return list;
+                })
+                .flatMapIterable(list -> list)
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
-    private <T> List<T> dataFromFireBase(Type type, String location) throws NoSuchDataException {
+    private <T> Flowable<T> dataFromFireBase(Type type, String location) throws
+            NoSuchDataException {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference reference = storage.getReference(location);
-        try {
-            byte[] bytes = Tasks.await(reference.getBytes(MAX_SIZE_BUFFER),TIMEOUT_TIME,TimeUnit.SECONDS);
-            InputStream is = new ByteArrayInputStream(bytes);
-            InputStreamReader isr = new InputStreamReader(is);
-            List<T> list = App.gson.fromJson(isr, type);
-            saveToDb(list);
-            return list;
-        } catch (ExecutionException e) {
-            Thread.currentThread().interrupt();
-            throw new NoSuchDataException("No data in location: " + location + " in firebase");
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            throw new NoSuchDataException("Query to firebase was interrupt");
-        } catch (TimeoutException e) {
-            Thread.currentThread().interrupt();
-            throw new NoSuchDataException("Too long request, more than " + TIMEOUT_TIME +"Cegt seconds");
-        }
+        return RxFirebaseStorage.getBytes(reference, MAX_SIZE_BUFFER)
+                .observeOn(Schedulers.io())
+                .toFlowable()
+                .map(ByteArrayInputStream::new)
+                .map(InputStreamReader::new)
+                .map(inputStreamReader -> {
+                    List<T> list = App.gson.fromJson(inputStreamReader, type);
+                    saveToDb(list);
+                    return list; })
+                .flatMapIterable(list -> list)
+                .observeOn(AndroidSchedulers.mainThread());
+
     }
 
-    private <V> List<V> dataFromDb(V type) throws NoSuchDataException {
+    private <V> Flowable dataFromDb(V type) throws NoSuchDataException {
         try {
             realm = Realm.getInstance(RealmUtils.getDefaultConfig());
             if (type instanceof Category && realm.where(RealmCategory.class).findFirst() != null) {
-                List categoriesFromDb = new ArrayList<>();
-                RealmResults<RealmCategory> realmResults = realm.where(RealmCategory.class).findAll();
-                for (RealmCategory c : realmResults) {
-                    categoriesFromDb.add(new Category(c));
-                }
-                return categoriesFromDb;
+                return realm.where(RealmCategory.class).findAllAsync()
+                        .asFlowable()
+                        .filter(RealmResults::isLoaded)
+                        .flatMap(Flowable::fromIterable)
+                        .flatMap(realmCategory -> Flowable.just(new Category(realmCategory)));
             } else if (type instanceof Event && realm.where(RealmEvent.class).findFirst() != null) {
-                List eventsFromDb = new ArrayList<>();
-                RealmResults<RealmEvent> realmResults = realm.where(RealmEvent.class).findAll();
-                for (RealmEvent c : realmResults) {
-                    eventsFromDb.add(new Event(c));
-                }
-                return eventsFromDb;
+                return realm.where(RealmEvent.class).findAllAsync()
+                        .asFlowable()
+                        .filter(RealmResults::isLoaded)
+                        .flatMap(Flowable::fromIterable)
+                        .flatMap(realmEvent -> {
+                            Log.d("tag", realmEvent.getEventCompany());
+                            return Flowable.just(new Event(realmEvent));
+                        });
             }
+            throw new NoSuchDataException("No " + type + " data in database");
         } finally {
             realm.close();
         }
-
-        throw new NoSuchDataException("No " + type + " data in database");
     }
 
-    private void saveToDb(List<?> list) {
+    private static void saveToDb(List<?> list) {
         if (list.isEmpty()) {
             return;
         }
-        realm = Realm.getInstance(RealmUtils.getDefaultConfig());
+        Realm realm = Realm.getInstance(RealmUtils.getDefaultConfig());
         realm.beginTransaction();
 
         if (list.get(0) instanceof Category) {
             for (Object c : list) {
+                Log.d("tag","list category to db " + ((Category)c).getText());
                 realm.copyToRealmOrUpdate(new RealmCategory((Category) c));
             }
         } else if (list.get(0) instanceof Event) {
             for (Object c : list) {
+                Log.d("tag","list event to db " + ((Event)c).getEventCompany());
                 realm.copyToRealmOrUpdate(new RealmEvent((Event) c));
             }
+        }
+        realm.commitTransaction();
+        realm.close();
+    }
+
+    private static void saveToDb(Object object) {
+        if (object == null) {
+            return;
+        }
+        Realm realm = Realm.getInstance(RealmUtils.getDefaultConfig());
+        realm.beginTransaction();
+
+        if (object instanceof Category) {
+            Log.d("tag","one category to db " + ((Category)object).getText());
+
+            realm.copyToRealmOrUpdate(new RealmCategory((Category) object));
+        } else if (object instanceof Event) {
+            Log.d("tag","one event to db " + ((Event)object).getEventCompany());
+
+            realm.copyToRealmOrUpdate(new RealmEvent((Event) object));
         }
         realm.commitTransaction();
         realm.close();

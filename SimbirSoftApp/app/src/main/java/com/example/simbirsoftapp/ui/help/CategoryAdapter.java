@@ -1,6 +1,7 @@
 package com.example.simbirsoftapp.ui.help;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         Category currentCategory = categories.get(position);
         holder.bind(currentCategory);
+    }
+
+    public void addCategory(Category category) {
+        this.categories.add(category);
+        Log.d("tag","add category " + category.getText());
+
+        notifyDataSetChanged();
     }
 
     class CategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

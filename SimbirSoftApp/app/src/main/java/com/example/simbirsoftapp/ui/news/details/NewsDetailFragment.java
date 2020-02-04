@@ -1,4 +1,4 @@
-package com.example.simbirsoftapp.ui.help.details;
+package com.example.simbirsoftapp.ui.news.details;
 
 
 import android.content.Intent;
@@ -30,7 +30,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.simbirsoftapp.R;
-import com.example.simbirsoftapp.data.DataSource;
 import com.example.simbirsoftapp.data.model.Event;
 import com.example.simbirsoftapp.data.model.User;
 import com.example.simbirsoftapp.utility.AppUtils;
@@ -40,6 +39,7 @@ import java.util.List;
 
 public class NewsDetailFragment extends Fragment {
     private static final String KEY_POSITION = "POSITION";
+    private static final String KEY_EVENT = "EVENT";
     private static final int MAX_NEWS_IMAGES = 3;
     private static final int MAX_FRIENDS_IMAGES = 5;
 
@@ -49,9 +49,9 @@ public class NewsDetailFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
-    public static NewsDetailFragment newInstance(int position) {
+    public static NewsDetailFragment newInstance(Event event) {
         Bundle args = new Bundle();
-        args.putInt(KEY_POSITION, position);
+        args.putSerializable(KEY_EVENT, event);
         NewsDetailFragment fragment = new NewsDetailFragment();
         fragment.setArguments(args);
         return fragment;
@@ -64,12 +64,12 @@ public class NewsDetailFragment extends Fragment {
         View view = LayoutInflater.from(inflater.getContext()).inflate(R.layout.fragment_news_detail,
                 container, false);
         getActivity().findViewById(R.id.bottom_panel).setVisibility(View.GONE);
-        int eventNumber = 0;
+        Event event = new Event();
         if (getArguments() != null) {
-            eventNumber = getArguments().getInt(KEY_POSITION);
+            event = (Event) getArguments().getSerializable(KEY_EVENT);
         }
-        List<Event> events = DataSource.getInstance().getEvents(getContext());
-        Event event = events.get(eventNumber);
+//        List<Event> events = DataSource.getInstance().getEvents(getContext()).subscribe(event -> event);
+//        Event event = events.get(eventNumber);
         TextView newsLabel = view.findViewById(R.id.news_label);
         TextView newsDate = view.findViewById(R.id.news_date);
         TextView newsOrganisation = view.findViewById(R.id.news_organisation);
@@ -97,9 +97,9 @@ public class NewsDetailFragment extends Fragment {
         writeUs.setText(getUnderlineGreenSpan(R.string.write_to_us));
         writeUs.setOnClickListener(click -> Toast.makeText(getActivity(), getString(R.string.write_to_us), Toast.LENGTH_SHORT).show());
         goToOrgs.setText(getUnderlineGreenSpan(R.string.go_to_organisation_page));
+        final String url = event.getOrganisationSite();
         goToOrgs.setOnClickListener(click -> {
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            String url = event.getOrganisationSite();
             intent.setData(Uri.parse(url));
             startActivity(intent);
         });

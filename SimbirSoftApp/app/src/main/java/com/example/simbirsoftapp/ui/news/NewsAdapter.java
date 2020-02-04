@@ -2,6 +2,7 @@ package com.example.simbirsoftapp.ui.news;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +11,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simbirsoftapp.R;
 import com.example.simbirsoftapp.data.DataSource;
 import com.example.simbirsoftapp.data.model.Event;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
@@ -23,6 +26,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     private List<Event> events;
     private Context context;
     private NewsClickHolder clickHolder;
+
+    NewsAdapter(Context context,NewsClickHolder clickHolder) {
+        events = new ArrayList<>();
+        this.context = context;
+        this.clickHolder = clickHolder;
+    }
 
     NewsAdapter(List<Event> events, Context context,NewsClickHolder clickHolder) {
         this.events = events;
@@ -32,6 +41,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     interface NewsClickHolder {
         void onNewsClick(int position);
+    }
+
+    public void addEvent(Event event) {
+        this.events.add(event);
+        notifyDataSetChanged();
+    }
+
+    public Event getEvent(int position){
+        return events.get(position);
     }
 
     @NonNull

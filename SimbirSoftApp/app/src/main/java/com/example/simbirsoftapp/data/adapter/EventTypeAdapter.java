@@ -17,7 +17,7 @@ public class EventTypeAdapter extends TypeAdapter<List<Event>> {
     }
 
     @Override
-    public List<Event> read(JsonReader in) throws IOException {
+    public List<Event>  read(JsonReader in) throws IOException {
         List<Event> result = new ArrayList<>();
         in.beginArray();
         while (in.hasNext()) {

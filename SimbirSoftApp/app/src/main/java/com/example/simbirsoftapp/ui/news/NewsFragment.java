@@ -7,8 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,18 +18,19 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.example.simbirsoftapp.R;
-import com.example.simbirsoftapp.data.loader.EventsLoader;
+import com.example.simbirsoftapp.data.DataSource;
 import com.example.simbirsoftapp.data.model.Event;
-import com.example.simbirsoftapp.ui.help.details.NewsDetailFragment;
+import com.example.simbirsoftapp.ui.news.details.NewsDetailFragment;
 import com.example.simbirsoftapp.utility.AppUtils;
 
-import java.util.List;
+import io.reactivex.disposables.Disposable;
 
-public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolder,
-        LoaderManager.LoaderCallbacks<List<Event>> {
+public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolder {
 
     private RecyclerView newsRecyclerView;
     private ProgressBar newsProgressBar;
+    private Disposable disposable;
+    private NewsAdapter adapter;
 
     public static NewsFragment newInstance() {
         return new NewsFragment();
@@ -46,13 +45,18 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolde
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_news,container,false);
+        View view = inflater.inflate(R.layout.fragment_news, container, false);
         newsRecyclerView = view.findViewById(R.id.news_recycler_view);
         newsProgressBar = view.findViewById(R.id.news_progress_bar);
-        LoaderManager.getInstance(this).initLoader(R.id.news_recycler_view,Bundle.EMPTY,this);
-        showLoading();
+        adapter = new NewsAdapter(getContext(), this);
         newsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        newsRecyclerView.setAdapter(adapter);
+        showLoading();
+        disposable = DataSource.getInstance().getEvents(getContext())
+                .subscribe(event -> {
+                    showResults();
+                    adapter.addEvent(event);
+                });
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
             AppUtils.setActionBar(activity, view, R.string.news_label, false);
@@ -64,34 +68,25 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolde
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_news,menu);
+        inflater.inflate(R.menu.menu_news, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public void onNewsClick(int position) {
+        Event currentEvent = adapter.getEvent(position);
         getFragmentManager().beginTransaction().replace(R.id.fragment_main,
-                NewsDetailFragment.newInstance(position))
+                NewsDetailFragment.newInstance(currentEvent))
                 .addToBackStack(null)
                 .commit();
     }
 
-    @NonNull
     @Override
-    public Loader<List<Event>> onCreateLoader(int id, @Nullable Bundle args) {
-        return new EventsLoader(getContext());
-    }
-
-    @Override
-    public void onLoadFinished(@NonNull Loader<List<Event>> loader, List<Event> data) {
-        NewsAdapter newsAdapter = new NewsAdapter(data,getContext(),this);
-        newsRecyclerView.setAdapter(newsAdapter);
-        showResults();
-    }
-
-    @Override
-    public void onLoaderReset(@NonNull Loader<List<Event>> loader) {
-        //will be implemented soon
+    public void onDestroy() {
+        super.onDestroy();
+        if (!disposable.isDisposed()) {
+            disposable.dispose();
+        }
     }
 
     private void showLoading() {

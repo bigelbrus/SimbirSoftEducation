@@ -100,3 +100,9 @@ Dapp/src/main/java/com/example/simbirsoftapp/ui/search/Updatable.java,0/6/068ad
 Zapp/src/main/java/com/example/simbirsoftapp/ui/search/events/SearchEventsListFragment.java,0/e/0e2b83fcf1ef497a8a1489e67c08ebd1bb3ad18f
 —
 gapp/src/main/java/com/example/simbirsoftapp/ui/search/organisations/SearchOrganizationListFragment.java,d/c/dc6e0cdc4265cb19c2a705d4ec7489e5208c4c51
+j
+:app/src/main/java/com/example/simbirsoftapp/ThirdTask.java,c/2/c2c75f4600340480850a99d80135b028caa45768
+k
+;app/src/main/java/com/example/simbirsoftapp/SecondTask.java,4/2/42c8fc37fdf466bc8451dc0f1947cfa8db722200
+u
+Eapp/src/main/java/com/example/simbirsoftapp/ui/auth/AuthFragment.java,1/d/1d227b271584c0cb8ce7352da0eccc55b25dead2

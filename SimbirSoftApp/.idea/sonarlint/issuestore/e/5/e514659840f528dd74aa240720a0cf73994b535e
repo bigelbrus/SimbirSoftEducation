@@ -1,0 +1,5 @@
+
+qsquid:UselessImportCheck"FRemove this unused import 'com.example.simbirsoftapp.data.DataSource'.(²ˆ€8­Äùßÿ-
+osquid:UselessImportCheck!"?Remove this unused import 'io.reactivex.schedulers.Schedulers'.(š‰¢úÿÿÿÿ8­Äùßÿ-
+ysquid:UselessImportCheck "NRemove this unused import 'io.reactivex.android.schedulers.AndroidSchedulers'.(¶çş 8­Äùßÿ-
+]squid:UselessImportCheck"3Remove this unused import 'io.reactivex.Scheduler'.(çší8—§äßÿ-

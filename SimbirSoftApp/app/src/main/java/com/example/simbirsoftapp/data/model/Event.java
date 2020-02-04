@@ -3,10 +3,11 @@ package com.example.simbirsoftapp.data.model;
 import com.example.simbirsoftapp.data.database.RealmEvent;
 import com.example.simbirsoftapp.data.database.RealmUser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Event {
+public class Event implements Serializable {
     private int id;
     private String eventName;
     private String eventDate;

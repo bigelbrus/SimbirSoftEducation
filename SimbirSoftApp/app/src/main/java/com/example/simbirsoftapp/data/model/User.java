@@ -7,10 +7,11 @@ import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.ZoneId;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class User implements Serializable {
     private String name;
     private String surname;
     private LocalDate date;
