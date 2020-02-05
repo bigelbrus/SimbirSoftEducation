@@ -9,6 +9,7 @@ import com.example.simbirsoftapp.data.adapter.EventTypeAdapter;
 import com.example.simbirsoftapp.data.model.Category;
 import com.example.simbirsoftapp.data.model.Event;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -31,17 +32,26 @@ public class App extends Application {
 
     @Override
     public void onCreate() {
+        super.onCreate();
         Realm.init(this);
         AndroidThreeTen.init(this);
-        super.onCreate();
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        mAuth.signInAnonymously().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                Log.d("tag", "auth complete");
-            } else {
+        signIn();
+    }
 
-                Log.d("tag", "auth error " + task.getException().getMessage());
-            }
-        });
+    private void signIn() {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null) {
+            FirebaseAuth.getInstance().signInAnonymously().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Log.d("tag", "signInAnonymously complete");
+                } else {
+                    Log.d("tag", "signInAnonymously error " + task.getException().getMessage());
+                }
+            });
+        }
+        else {
+            Log.d("tag", "is anonymous " + user.isAnonymous());
+        }
     }
 }

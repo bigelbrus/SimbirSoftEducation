@@ -23,4 +23,5 @@
     <dimen name="height_search_field">48dp</dimen>
     <dimen name="elevation_light">4dp</dimen>
     <dimen name="height_card_date">40dp</dimen>
+    <dimen name="spacing_for_pass_hint">-13dp</dimen>
 </resources>

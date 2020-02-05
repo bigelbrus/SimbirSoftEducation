@@ -38,7 +38,6 @@ import java.util.List;
 
 
 public class NewsDetailFragment extends Fragment {
-    private static final String KEY_POSITION = "POSITION";
     private static final String KEY_EVENT = "EVENT";
     private static final int MAX_NEWS_IMAGES = 3;
     private static final int MAX_FRIENDS_IMAGES = 5;
@@ -68,8 +67,6 @@ public class NewsDetailFragment extends Fragment {
         if (getArguments() != null) {
             event = (Event) getArguments().getSerializable(KEY_EVENT);
         }
-//        List<Event> events = DataSource.getInstance().getEvents(getContext()).subscribe(event -> event);
-//        Event event = events.get(eventNumber);
         TextView newsLabel = view.findViewById(R.id.news_label);
         TextView newsDate = view.findViewById(R.id.news_date);
         TextView newsOrganisation = view.findViewById(R.id.news_organisation);
@@ -94,9 +91,9 @@ public class NewsDetailFragment extends Fragment {
         newsTelephones.append(event.getOrganisationTelephone().get(event.getOrganisationTelephone().size() - 1));
         newsDescr.setText(event.getEventDescription());
 
-        writeUs.setText(getUnderlineGreenSpan(R.string.write_to_us));
+        writeUs.setText(AppUtils.getUnderlineGreenSpan(getContext(),R.string.write_to_us));
         writeUs.setOnClickListener(click -> Toast.makeText(getActivity(), getString(R.string.write_to_us), Toast.LENGTH_SHORT).show());
-        goToOrgs.setText(getUnderlineGreenSpan(R.string.go_to_organisation_page));
+        goToOrgs.setText(AppUtils.getUnderlineGreenSpan(getContext(),R.string.go_to_organisation_page));
         final String url = event.getOrganisationSite();
         goToOrgs.setOnClickListener(click -> {
             Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -133,14 +130,6 @@ public class NewsDetailFragment extends Fragment {
             getActivity().findViewById(R.id.bottom_panel).setVisibility(View.VISIBLE);
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private Spannable getUnderlineGreenSpan(int textRes) {
-        Spannable text = new SpannableString(getString(textRes));
-        text.setSpan(new UnderlineSpan(), 0, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.leaf)),
-                0, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        return text;
     }
 
     private void initNewsPhotos(Event event, View view) {

@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,8 +26,10 @@ import android.widget.Toast;
 import com.example.simbirsoftapp.R;
 import com.example.simbirsoftapp.data.DataSource;
 import com.example.simbirsoftapp.data.model.User;
+import com.example.simbirsoftapp.ui.auth.AuthFragment;
 import com.example.simbirsoftapp.ui.profile.photo.DialogProfileFragment;
 import com.example.simbirsoftapp.utility.AppUtils;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class ProfileFragment extends Fragment {
@@ -52,6 +55,14 @@ public class ProfileFragment extends Fragment {
         ImageView logo = view.findViewById(R.id.profile_image_button);
         TextView date = view.findViewById(R.id.birthday_date);
         RecyclerView recyclerView = view.findViewById(R.id.friends_recycler_view);
+        Button exitProfile = view.findViewById(R.id.exit_profile_button);
+
+        exitProfile.setOnClickListener(v->{
+            FirebaseAuth.getInstance().signOut();
+            getFragmentManager().beginTransaction().replace(R.id.fragment_main,AuthFragment.newInstance())
+                    .commit();
+        });
+
         User user = DataSource.getUser();
 
         recyclerView.setAdapter(new FriendsAdapter(user.getFriends()));

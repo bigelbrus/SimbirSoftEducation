@@ -10,10 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.simbirsoftapp.ui.auth.AuthFragment;
 import com.example.simbirsoftapp.ui.help.HelpFragment;
 import com.example.simbirsoftapp.ui.news.NewsFragment;
 import com.example.simbirsoftapp.ui.profile.ProfileFragment;
 import com.example.simbirsoftapp.ui.search.SearchFragment;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private Button profileButton;
     private Button activeButton;
     View bottomPanel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,10 +85,17 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.button_profile:
                 activateButton(profileButton);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main,
-                        ProfileFragment.newInstance())
-                        .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit();
+                if (FirebaseAuth.getInstance().getCurrentUser() == null ||
+                        FirebaseAuth.getInstance().getCurrentUser().isAnonymous()) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main, AuthFragment.newInstance())
+                            .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .commit();
+                } else {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_main,
+                            ProfileFragment.newInstance())
+                            .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .commit();
+                }
                 break;
             default:
                 break;

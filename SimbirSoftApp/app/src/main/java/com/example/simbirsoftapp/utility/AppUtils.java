@@ -2,6 +2,11 @@ package com.example.simbirsoftapp.utility;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.TextView;
 
@@ -84,5 +89,13 @@ public class AppUtils {
     public static Drawable getDrawableByStringRes(Context context, String res) {
         return context.getResources().getDrawable(context.getResources().getIdentifier(res,
                 "drawable", context.getPackageName()));
+    }
+
+    public static Spannable getUnderlineGreenSpan(Context context, int textRes) {
+        Spannable text = new SpannableString(context.getString(textRes));
+        text.setSpan(new UnderlineSpan(), 0, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        text.setSpan(new ForegroundColorSpan(context.getResources().getColor(R.color.leaf)),
+                0, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return text;
     }
 }

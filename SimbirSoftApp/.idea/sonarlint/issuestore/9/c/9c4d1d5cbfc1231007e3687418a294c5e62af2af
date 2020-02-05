@@ -1,11 +1,4 @@
 
-isquid:CommentedOutCodeLine@"<This block of commented-out lines of code should be removed.(Ú°à¬8Î¾Íßÿ-
-bsquid:UnusedPrivateMethod"5Remove this unused private "dataFromFireBase" method.(þ®Ëó8œ¶Êßÿ-
-Lsquid:S11729".Remove this unused method parameter "context".(½ÔÎ¯8 £½ßÿ-
-_squid:UnusedPrivateMethod}"3Remove this unused private "eventsFromJson" method.(‘æ…8œ¶Êßÿ-
-osquid:CommentedOutCodeLine©"<This block of commented-out lines of code should be removed.(ñ¥ùšøÿÿÿÿ8ÕÇÈßÿ-
-Gsquid:S1148ˆ"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8¬Á–‰ý-
-ksquid:UselessImportCheck"@Remove this unused import 'io.reactivex.disposables.Disposable'.(¶µ¾®8úˆÓàÿ-
-Qsquid:S1172Q".Remove this unused method parameter "context".( Ëûšúÿÿÿÿ8œ¶Êßÿ-
-csquid:UnusedPrivateMethodw"7Remove this unused private "categoriesFromJson" method.(ÜöØ™8 £½ßÿ-
-nsquid:CommentedOutCodeLineR"<This block of commented-out lines of code should be removed.(ñ¥ùšøÿÿÿÿ8œ¶Êßÿ-
+Asquid:S1148~"#Use a logger to log this exception.(Ç’Çê8þäûƒ.
+Nsquid:S1068*"0Remove this unused "TIMEOUT_TIME" private field.(é»àž8šöž÷€.
+Zsquid:UnusedPrivateMethodÎ"-Remove this unused private "saveToDb" method.(Êº„‡8®ùå„.

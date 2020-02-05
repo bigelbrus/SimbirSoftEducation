@@ -8,7 +8,7 @@ import com.example.simbirsoftapp.R;
 import com.example.simbirsoftapp.data.database.DatabaseSource;
 import com.example.simbirsoftapp.data.database.RealmCategory;
 import com.example.simbirsoftapp.data.database.RealmEvent;
-import com.example.simbirsoftapp.data.firebase.RxFirebaseStorage;
+import com.example.simbirsoftapp.data.firebase.RxFirebaseClass;
 import com.example.simbirsoftapp.data.model.Category;
 import com.example.simbirsoftapp.data.model.Event;
 import com.example.simbirsoftapp.data.model.User;
@@ -39,7 +39,6 @@ public class DataSource {
     public static final String STANDARD_EVENT_IMAGE = "child";
     private static final long MAX_SIZE_BUFFER = 1024 * 1024L;
     private static final String TAG = "DataSource";
-    private static final long TIMEOUT_TIME = 5L;
 
     private DataSource(Realm realm) {
         this.realm = realm;
@@ -142,7 +141,7 @@ public class DataSource {
             NoSuchDataException {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference reference = storage.getReference(location);
-        return RxFirebaseStorage.getBytes(reference, MAX_SIZE_BUFFER)
+        return RxFirebaseClass.getBytes(reference, MAX_SIZE_BUFFER)
                 .observeOn(Schedulers.io())
                 .toFlowable()
                 .map(ByteArrayInputStream::new)
@@ -203,25 +202,6 @@ public class DataSource {
         realm.close();
     }
 
-    private static void saveToDb(Object object) {
-        if (object == null) {
-            return;
-        }
-        Realm realm = Realm.getInstance(RealmUtils.getDefaultConfig());
-        realm.beginTransaction();
-
-        if (object instanceof Category) {
-            Log.d("tag","one category to db " + ((Category)object).getText());
-
-            realm.copyToRealmOrUpdate(new RealmCategory((Category) object));
-        } else if (object instanceof Event) {
-            Log.d("tag","one event to db " + ((Event)object).getEventCompany());
-
-            realm.copyToRealmOrUpdate(new RealmEvent((Event) object));
-        }
-        realm.commitTransaction();
-        realm.close();
-    }
 }
 
 

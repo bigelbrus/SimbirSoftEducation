@@ -67,7 +67,7 @@
         <item name="android:textColor">@color/black___30</item>
     </style>
 
-    <style name="ProgressBar" parent="Theme.AppCompat.Light">
+    <style name="loading_progress" parent="Theme.AppCompat.Light">
         <item name="colorAccent">@color/turtle_green</item>
     </style>
 
@@ -128,6 +128,27 @@
         <item name="android:textCursorDrawable">@color/black</item>
     </style>
 
+<!--    <style name="AuthEditText" parent="Widget.AppCompat.EditText">-->
+<!--        <item name="android:textColorHint">@color/black__38</item>-->
+<!--        <item name="android:textColor">@color/black</item>-->
+<!--        <item name="android:tint">@color/white_70</item>-->
+<!--        <item name="android:textSize">@dimen/text_size_medium</item>-->
+<!--        <item name="android:textCursorDrawable">@color/black</item>-->
+<!--        <item name="android:background">@android:color/transparent</item>-->
+<!--    </style>-->
+
+    <style name="AuthEditText" parent="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="android:textColorHint">@color/black__38</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:tint">@color/white_70</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:textCursorDrawable">@color/black</item>
+        <item name="android:cursorVisible">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:padding">0dp</item>
+    </style>
+
+
     <style name="CardLargeTextAppearance" parent="TextAppearance.AppCompat.Large">
         <item name="android:textColor">@color/blue_grey</item>
         <item name="android:lineSpacingExtra">2sp</item>
@@ -152,6 +173,10 @@
     <style name="NewsSmallTextAppearance" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+
+    <style name="AuthSmallTextAppearance" parent="NewsSmallTextAppearance">
+        <item name="android:textColor">@color/black__38</item>
     </style>
 
     <style name="NewsMediumTextAppearance" parent="NewsSmallTextAppearance">

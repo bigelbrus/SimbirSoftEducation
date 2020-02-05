@@ -3,8 +3,6 @@ q
 Aapp/src/main/java/com/example/simbirsoftapp/data/model/Event.java,6/2/62d592b277f7e36b9a565bf14ac5ee3817f5dc06
 m
 =app/src/main/java/com/example/simbirsoftapp/MainActivity.java,b/e/be46813ac5744e1751e6ebb43dc12a242a2d653a
-ƒ
-Sapp/src/main/java/com/example/simbirsoftapp/ui/help/details/NewsDetailFragment.java,b/8/b8447089efc00cef8d8538ceb3350b844118e27a
 p
 @app/src/main/java/com/example/simbirsoftapp/ui/SplashScreen.java,0/2/02f691bca7a75aae1c341e89a3bbce431b0860a8
 p
@@ -37,14 +35,10 @@ s
 Capp/src/main/java/com/example/simbirsoftapp/utility/RealmUtils.java,9/c/9cf5401d5291ca91f6c41b52ddd4bfdbffaa0482
 }
 Mapp/src/main/java/com/example/simbirsoftapp/data/database/DatabaseSource.java,1/4/1489fcc5c42b85a53116106befe9c87841de166c
-{
-Kapp/src/main/java/com/example/simbirsoftapp/data/loader/CategoryLoader.java,4/8/480dc95af91bde9647f0f50b4b6bb0ef95904293
 u
 Eapp/src/main/java/com/example/simbirsoftapp/ui/news/NewsFragment.java,e/5/e514659840f528dd74aa240720a0cf73994b535e
 u
 Eapp/src/main/java/com/example/simbirsoftapp/ui/help/HelpFragment.java,f/1/f14fb1a73de6f7367a777ea90eb581f70a8f7da5
-y
-Iapp/src/main/java/com/example/simbirsoftapp/data/loader/EventsLoader.java,9/c/9cf11e145d35853155287654b3c02ffeda733d43
 q
 Aapp/src/main/java/com/example/simbirsoftapp/utility/AppUtils.java,b/0/b0cd3606ba9d57630ead1eaac224fadd72fc3fe4
 }
@@ -106,3 +100,9 @@ k
 ;app/src/main/java/com/example/simbirsoftapp/SecondTask.java,4/2/42c8fc37fdf466bc8451dc0f1947cfa8db722200
 u
 Eapp/src/main/java/com/example/simbirsoftapp/ui/auth/AuthFragment.java,1/d/1d227b271584c0cb8ce7352da0eccc55b25dead2
+€
+Papp/src/main/java/com/example/simbirsoftapp/data/firebase/RxFirebaseStorage.java,9/9/99abf0a1ed51ccfe7dfe5cad5fb34bafe5912f87
+€
+Papp/src/main/java/com/example/simbirsoftapp/data/firebase/RxFirebaseHandler.java,9/3/935f868325dd81edb6c8491fbc07f095d558332a
+ƒ
+Sapp/src/main/java/com/example/simbirsoftapp/ui/news/details/NewsDetailFragment.java,1/3/13060051c24543648b0bd4d0529fdd923436e8e2

@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:theme="@style/ProgressBar" />
+        android:theme="@style/loading_progress" />
 
     <TextView
         android:id="@+id/loading_label"

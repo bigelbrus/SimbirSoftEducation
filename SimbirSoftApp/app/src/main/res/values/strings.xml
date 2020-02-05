@@ -23,6 +23,7 @@
     <string name="delete">Удалить</string>
     <string name="edit">Редактировать</string>
     <string name="search_organisation_hint">Введите название организации</string>
+    <string name="authorise">Авторизация</string>
 
     <string-array name="organisations_list">
         <item>Абсолют-Помощь</item>
@@ -114,4 +115,14 @@
     <string name="any_questions">У вас есть вопросы?</string>
     <string name="error">Something going wrong! Check internet connection and try later.</string>
     <string name="get_in_label">Для участия в мероприятиях войдите в приложение через социальные сети</string>
+    <string name="authorize_by_app">Или авторизуйтесь через приложение</string>
+    <string name="email_label" translatable="false">E-mail</string>
+    <string name="email_hint">Введите e-mail</string>
+    <string name="password">Пароль</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="enter">Войти</string>
+    <string name="forgot_pass">Забыли пароль?</string>
+    <string name="registration">Регистрация</string>
+    <string name="enter_account_label">Войти в профиль</string>
+    <string name="error_login">Неверный логин или пароль</string>
 </resources>

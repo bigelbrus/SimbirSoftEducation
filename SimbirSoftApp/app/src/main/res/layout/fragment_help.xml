@@ -42,7 +42,7 @@
         android:id="@+id/category_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:theme="@style/ProgressBar"
+        android:theme="@style/loading_progress"
         android:layout_marginTop="@dimen/spacing_xlarge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -30,7 +30,6 @@ public class HelpFragment extends Fragment implements CategoryAdapter.CategoryCl
     private ProgressBar categoryProgressBar;
     private TextView categoryError;
     private Disposable disposable;
-    private CategoryAdapter adapter;
 
     public static HelpFragment newInstance() {
         return new HelpFragment();
@@ -43,7 +42,7 @@ public class HelpFragment extends Fragment implements CategoryAdapter.CategoryCl
         categoryRecyclerView = view.findViewById(R.id.rv_help);
         categoryProgressBar = view.findViewById(R.id.category_progress_bar);
         categoryError = view.findViewById(R.id.category_error);
-        adapter = new CategoryAdapter(new ArrayList<>(), getContext(), this);
+        CategoryAdapter adapter = new CategoryAdapter(new ArrayList<>(), getContext(), this);
         categoryRecyclerView.setAdapter(adapter);
         showLoading();
         disposable = DataSource.getInstance().getCategories(getContext())
