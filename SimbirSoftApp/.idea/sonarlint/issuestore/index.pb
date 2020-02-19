@@ -101,8 +101,8 @@ k
 u
 Eapp/src/main/java/com/example/simbirsoftapp/ui/auth/AuthFragment.java,1/d/1d227b271584c0cb8ce7352da0eccc55b25dead2
 €
-Papp/src/main/java/com/example/simbirsoftapp/data/firebase/RxFirebaseStorage.java,9/9/99abf0a1ed51ccfe7dfe5cad5fb34bafe5912f87
-€
 Papp/src/main/java/com/example/simbirsoftapp/data/firebase/RxFirebaseHandler.java,9/3/935f868325dd81edb6c8491fbc07f095d558332a
 ƒ
 Sapp/src/main/java/com/example/simbirsoftapp/ui/news/details/NewsDetailFragment.java,1/3/13060051c24543648b0bd4d0529fdd923436e8e2
+…
+Udata/src/androidTest/java/com/example/simbirsoftapp/data/ExampleInstrumentedTest.java,2/2/2257659cb5d5d6aab64d03a15d10dbd4f90ee711

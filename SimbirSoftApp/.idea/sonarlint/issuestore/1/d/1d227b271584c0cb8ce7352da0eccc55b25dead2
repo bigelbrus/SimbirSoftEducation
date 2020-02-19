@@ -1,0 +1,6 @@
+
+€squid:UselessImportCheck"PRemove this unused import 'com.google.firebase.auth.FirebaseAuthEmailException'.(ßØ¯Àúÿÿÿÿ8ã´“ä….
+bsquid:UselessImportCheck	"2Remove this unused import 'android.text.Editable'.(À”áÈşÿÿÿÿ8ã´“ä….
+{squid:UselessImportCheck"KRemove this unused import 'com.google.firebase.auth.FirebaseAuthException'.(‚¥Ôşÿÿÿÿ8ã´“ä….
+Asquid:S1148e"#Use a logger to log this exception.(Óùóÿ8ã´“ä….
+Ksquid:S1172P"-Remove this unused method parameter "result".(İşñ8ã´“ä….
