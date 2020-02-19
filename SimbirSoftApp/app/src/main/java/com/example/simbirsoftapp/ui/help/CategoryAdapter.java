@@ -13,16 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simbirsoftapp.R;
 import com.example.simbirsoftapp.data.model.Category;
+import com.example.simbirsoftapp.data.model.CategoryModel;
 
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
 
-    private List<Category> categories;
+    private List<CategoryModel> categories;
     private Context context;
     private CategoryClickHolder clickHolder;
 
-    public CategoryAdapter(List<Category> categories, Context context,CategoryClickHolder clickHolder) {
+    public CategoryAdapter(List<CategoryModel> categories, Context context,CategoryClickHolder clickHolder) {
         this.categories = categories;
         this.context = context;
         this.clickHolder = clickHolder;
@@ -47,11 +48,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
-        Category currentCategory = categories.get(position);
+        CategoryModel currentCategory = categories.get(position);
         holder.bind(currentCategory);
     }
 
-    public void addCategory(Category category) {
+    public void addCategory(CategoryModel category) {
         this.categories.add(category);
         Log.d("tag","add category " + category.getText());
 
@@ -74,7 +75,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             clickHolder.onCategoryClick();
         }
 
-        public void bind(Category category) {
+        public void bind(CategoryModel category) {
             text.setText(context.getResources().getIdentifier(category.getText(),
                     "string",
                     context.getPackageName()));

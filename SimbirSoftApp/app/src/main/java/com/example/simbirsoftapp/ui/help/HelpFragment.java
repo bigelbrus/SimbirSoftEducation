@@ -1,5 +1,6 @@
 package com.example.simbirsoftapp.ui.help;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,13 +17,16 @@ import android.widget.TextView;
 import com.example.simbirsoftapp.MainActivity;
 import com.example.simbirsoftapp.R;
 import com.example.simbirsoftapp.data.DataSource;
+import com.example.simbirsoftapp.data.model.Category;
+import com.example.simbirsoftapp.data.model.CategoryModel;
+import com.example.simbirsoftapp.ui.HelpView;
 import com.example.simbirsoftapp.utility.AppUtils;
 
 import java.util.ArrayList;
 
 import io.reactivex.disposables.Disposable;
 
-public class HelpFragment extends Fragment implements CategoryAdapter.CategoryClickHolder{
+public class HelpFragment extends Fragment implements CategoryAdapter.CategoryClickHolder, HelpView {
 
     private static final int RECYCLER_VIEW_COLUMNS_NUMBER = 2;
 
@@ -30,6 +34,7 @@ public class HelpFragment extends Fragment implements CategoryAdapter.CategoryCl
     private ProgressBar categoryProgressBar;
     private TextView categoryError;
     private Disposable disposable;
+    private CategoryAdapter adapter;
 
     public static HelpFragment newInstance() {
         return new HelpFragment();
@@ -42,14 +47,14 @@ public class HelpFragment extends Fragment implements CategoryAdapter.CategoryCl
         categoryRecyclerView = view.findViewById(R.id.rv_help);
         categoryProgressBar = view.findViewById(R.id.category_progress_bar);
         categoryError = view.findViewById(R.id.category_error);
-        CategoryAdapter adapter = new CategoryAdapter(new ArrayList<>(), getContext(), this);
+        adapter = new CategoryAdapter(new ArrayList<>(), getContext(), this);
         categoryRecyclerView.setAdapter(adapter);
         showLoading();
-        disposable = DataSource.getInstance().getCategories(getContext())
-                .subscribe(category -> {
-                    showData();
-                    adapter.addCategory(category);
-                });
+//        disposable = DataSource.getInstance().getCategories(getContext())
+//                .subscribe(category -> {
+//                    showData();
+//                    adapter.addCategory(category);
+//                });
         categoryRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), RECYCLER_VIEW_COLUMNS_NUMBER));
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
@@ -58,6 +63,7 @@ public class HelpFragment extends Fragment implements CategoryAdapter.CategoryCl
         return view;
     }
 
+    @Override
     public void onCategoryClick() {
         ((MainActivity) getActivity()).onBottomButtonClick(getActivity().findViewById(R.id.button_news));
     }
@@ -69,23 +75,35 @@ public class HelpFragment extends Fragment implements CategoryAdapter.CategoryCl
             disposable.dispose();
         }
     }
-
-    private void showLoading() {
+    @Override
+    public void showLoading() {
         categoryProgressBar.setVisibility(View.VISIBLE);
         categoryRecyclerView.setVisibility(View.GONE);
         categoryError.setVisibility(View.GONE);
     }
 
-    private void showData() {
-        categoryProgressBar.setVisibility(View.GONE);
-        categoryRecyclerView.setVisibility(View.VISIBLE);
-        categoryError.setVisibility(View.GONE);
-    }
 
-    private void showError() {
+    @Override
+    public void showError() {
         categoryProgressBar.setVisibility(View.GONE);
         categoryRecyclerView.setVisibility(View.GONE);
         categoryError.setVisibility(View.VISIBLE);
     }
 
+
+    @Override
+    public Context context() {
+        return null;
+    }
+    @Override
+    public void showData() {
+        categoryProgressBar.setVisibility(View.GONE);
+        categoryRecyclerView.setVisibility(View.VISIBLE);
+        categoryError.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showCategory(CategoryModel category) {
+        adapter.addCategory(category);
+    }
 }
