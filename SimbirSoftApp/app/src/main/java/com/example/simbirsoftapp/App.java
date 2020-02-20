@@ -8,6 +8,9 @@ import com.example.simbirsoftapp.data.adapter.CategoryTypeAdapter;
 import com.example.simbirsoftapp.data.adapter.EventTypeAdapter;
 import com.example.simbirsoftapp.data.model.Category;
 import com.example.simbirsoftapp.data.model.Event;
+import com.example.simbirsoftapp.di.component.ApplicationComponent;
+import com.example.simbirsoftapp.di.component.DaggerApplicationComponent;
+import com.example.simbirsoftapp.di.module.ApplicationModule;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
@@ -21,6 +24,9 @@ import java.util.List;
 import io.realm.Realm;
 
 public class App extends Application {
+    ApplicationComponent applicationComponent;
+
+
     public static final Type eventsListType = new TypeToken<List<Event>>() {
     }.getType();
     public static final Type categoryListType = new TypeToken<List<Category>>() {
@@ -36,6 +42,9 @@ public class App extends Application {
         Realm.init(this);
         AndroidThreeTen.init(this);
         signIn();
+        applicationComponent = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this))
+                .build();
     }
 
     private void signIn() {
@@ -53,5 +62,9 @@ public class App extends Application {
         else {
             Log.d("tag", "is anonymous " + user.isAnonymous());
         }
+    }
+
+    public ApplicationComponent getApplicationComponent() {
+        return applicationComponent;
     }
 }

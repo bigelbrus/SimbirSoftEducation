@@ -15,18 +15,21 @@ import com.example.simbirsoftapp.R;
 import com.example.simbirsoftapp.data.model.Category;
 import com.example.simbirsoftapp.data.model.CategoryModel;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import javax.inject.Inject;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
 
     private List<CategoryModel> categories;
     private Context context;
     private CategoryClickHolder clickHolder;
-
-    public CategoryAdapter(List<CategoryModel> categories, Context context,CategoryClickHolder clickHolder) {
-        this.categories = categories;
+    @Inject
+    public CategoryAdapter(Context context) {
+        this.categories = new ArrayList<>();
         this.context = context;
-        this.clickHolder = clickHolder;
     }
 
     public interface CategoryClickHolder {
@@ -50,6 +53,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         CategoryModel currentCategory = categories.get(position);
         holder.bind(currentCategory);
+    }
+
+    public void setItemClickListener(CategoryClickHolder categoryClickHolder) {
+        this.clickHolder = categoryClickHolder;
     }
 
     public void addCategory(CategoryModel category) {

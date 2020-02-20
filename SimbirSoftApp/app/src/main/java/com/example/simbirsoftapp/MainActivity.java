@@ -10,6 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.simbirsoftapp.di.component.ApplicationComponent;
+import com.example.simbirsoftapp.di.component.CategoryComponent;
+import com.example.simbirsoftapp.di.component.DaggerCategoryComponent;
+import com.example.simbirsoftapp.di.module.ActivityModule;
 import com.example.simbirsoftapp.ui.auth.AuthFragment;
 import com.example.simbirsoftapp.ui.help.HelpFragment;
 import com.example.simbirsoftapp.ui.news.NewsFragment;
@@ -27,10 +31,13 @@ public class MainActivity extends AppCompatActivity {
     private Button profileButton;
     private Button activeButton;
     View bottomPanel;
+    CategoryComponent categoryComponent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getApplicationComponent().inject(this);
+        initInjectors();
         setContentView(R.layout.activity_main);
 
         newsButton = findViewById(R.id.button_news);
@@ -125,4 +132,22 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
 
+    protected ApplicationComponent getApplicationComponent() {
+        return ((App) getApplication()).getApplicationComponent();
+    }
+
+    protected ActivityModule getActivityModule() {
+        return new ActivityModule(this);
+    }
+
+    private void initInjectors(){
+        categoryComponent = DaggerCategoryComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .activityModule(getActivityModule())
+                .build();
+    }
+
+    public CategoryComponent getCategoryComponent() {
+        return categoryComponent;
+    }
 }

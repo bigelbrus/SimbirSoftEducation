@@ -3,6 +3,8 @@ package com.example.simbirsoftapp.ui.help;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -17,12 +19,14 @@ import android.widget.TextView;
 import com.example.simbirsoftapp.MainActivity;
 import com.example.simbirsoftapp.R;
 import com.example.simbirsoftapp.data.DataSource;
-import com.example.simbirsoftapp.data.model.Category;
+import com.example.simbirsoftapp.presenter.CategoryPresenter;
 import com.example.simbirsoftapp.data.model.CategoryModel;
 import com.example.simbirsoftapp.ui.HelpView;
 import com.example.simbirsoftapp.utility.AppUtils;
 
 import java.util.ArrayList;
+
+import javax.inject.Inject;
 
 import io.reactivex.disposables.Disposable;
 
@@ -34,11 +38,15 @@ public class HelpFragment extends Fragment implements CategoryAdapter.CategoryCl
     private ProgressBar categoryProgressBar;
     private TextView categoryError;
     private Disposable disposable;
-    private CategoryAdapter adapter;
+    @Inject
+    CategoryAdapter adapter;
+    @Inject
+    CategoryPresenter categoryPresenter;
 
     public static HelpFragment newInstance() {
         return new HelpFragment();
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,20 +55,30 @@ public class HelpFragment extends Fragment implements CategoryAdapter.CategoryCl
         categoryRecyclerView = view.findViewById(R.id.rv_help);
         categoryProgressBar = view.findViewById(R.id.category_progress_bar);
         categoryError = view.findViewById(R.id.category_error);
-        adapter = new CategoryAdapter(new ArrayList<>(), getContext(), this);
-        categoryRecyclerView.setAdapter(adapter);
+//        adapter = new CategoryAdapter(new ArrayList<>(), getContext(), this);
+        ((MainActivity)getActivity()).getCategoryComponent().inject(this);
         showLoading();
+        setupRecyclerView();
 //        disposable = DataSource.getInstance().getCategories(getContext())
 //                .subscribe(category -> {
 //                    showData();
 //                    adapter.addCategory(category);
 //                });
-        categoryRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), RECYCLER_VIEW_COLUMNS_NUMBER));
+
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
             AppUtils.setActionBar(activity, view, R.string.help_label, true);
         }
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        categoryPresenter.setView(this);
+        if (savedInstanceState == null) {
+            loadCategories();
+        }
     }
 
     @Override
@@ -71,9 +89,10 @@ public class HelpFragment extends Fragment implements CategoryAdapter.CategoryCl
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (!disposable.isDisposed()) {
-            disposable.dispose();
-        }
+//        if (!disposable.isDisposed()) {
+//            disposable.dispose();
+//        }
+        categoryPresenter.destroy();
     }
     @Override
     public void showLoading() {
@@ -106,4 +125,17 @@ public class HelpFragment extends Fragment implements CategoryAdapter.CategoryCl
     public void showCategory(CategoryModel category) {
         adapter.addCategory(category);
     }
+
+    private void setupRecyclerView(){
+        categoryRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), RECYCLER_VIEW_COLUMNS_NUMBER));
+        categoryRecyclerView.setAdapter(adapter);
+        adapter.setItemClickListener(clickHolder);
+    }
+
+    private void loadCategories(){
+        categoryPresenter.initialize();
+    }
+
+    private CategoryAdapter.CategoryClickHolder clickHolder = ()->
+            ((MainActivity) getActivity()).onBottomButtonClick(getActivity().findViewById(R.id.button_news));
 }

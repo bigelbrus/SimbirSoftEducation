@@ -120,8 +120,6 @@ Mdata/src/main/java/com/example/simbirsoftapp/data/CategoryDataRepository.java,
 Wdomain/src/main/java/com/example/simbirsoftapp/domain/executor/PostExecutionThread.java,4/5/4574b25883182e6ffda09b841f3c871ef32ec958
 Ç
 Rdomain/src/main/java/com/example/simbirsoftapp/domain/executor/ThreadExecutor.java,1/a/1aee2ee768f9a908e7b4ab39bde5014424c4aba5
-y
-Iapp/src/main/java/com/example/simbirsoftapp/data/presenter/Presenter.java,9/d/9d58142a79c8d8c6f07996f5d1ad7ea40fc9b1f3
 C
 domain/build.gradle,a/3/a3021bb5ba623a461b5fdb89ae51923a4945c354
 }
@@ -134,7 +132,9 @@ y
 Iapp/src/main/java/com/example/simbirsoftapp/data/model/CategoryModel.java,1/b/1b2b1e8650869a5cbf6a07ec0223a5b29bb72377
 Ñ
 Tapp/src/main/java/com/example/simbirsoftapp/data/mapper/CategoryModelDataMapper.java,7/5/75464b1687712b8c7ef81c5667315794b6d6aca5
-Å
-Qapp/src/main/java/com/example/simbirsoftapp/data/presenter/CategoryPresenter.java,3/f/3fca58d3d8264de70d58922f9ba479b4bda1281e
 l
 <app/src/main/java/com/example/simbirsoftapp/ui/HelpView.java,6/4/647c1f77f011369e330039ac309f5d5610fde28e
+t
+Dapp/src/main/java/com/example/simbirsoftapp/presenter/Presenter.java,2/6/261aaf759373aa1c082752ce45fb72eec9dfff6e
+|
+Lapp/src/main/java/com/example/simbirsoftapp/presenter/CategoryPresenter.java,8/e/8e5ba05ef84e6407860c511c0e03012cdc633ca6

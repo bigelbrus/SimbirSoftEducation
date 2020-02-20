@@ -1,16 +1,18 @@
-package com.example.simbirsoftapp.data.presenter;
+package com.example.simbirsoftapp.presenter;
 
 import com.example.simbirsoftapp.data.mapper.CategoryModelDataMapper;
 import com.example.simbirsoftapp.data.model.CategoryModel;
+import com.example.simbirsoftapp.di.PerActivity;
 import com.example.simbirsoftapp.domain.Category;
 import com.example.simbirsoftapp.domain.interactor.GetCategory;
 import com.example.simbirsoftapp.ui.HelpView;
 
-import java.util.Collection;
-import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.subscribers.ResourceSubscriber;
 
+@PerActivity
 public class CategoryPresenter implements Presenter {
 
     HelpView helpView;
@@ -18,7 +20,7 @@ public class CategoryPresenter implements Presenter {
     private GetCategory getCategory;
     private CategoryModelDataMapper categoryModelDataMapper;
 
-
+    @Inject
     CategoryPresenter(GetCategory getCategory, CategoryModelDataMapper categoryModelDataMapper){
         this.getCategory = getCategory;
         this.categoryModelDataMapper = categoryModelDataMapper;
@@ -45,6 +47,7 @@ public class CategoryPresenter implements Presenter {
 
     public void initialize(){
         loadCategories();
+        getCategories();
     }
 
     private void loadCategories(){
@@ -80,7 +83,7 @@ public class CategoryPresenter implements Presenter {
 
         @Override
         public void onNext(Category categories) {
-
+            showUsersCollectionInView(categories);
         }
 
         @Override public void onError(Throwable e) {
