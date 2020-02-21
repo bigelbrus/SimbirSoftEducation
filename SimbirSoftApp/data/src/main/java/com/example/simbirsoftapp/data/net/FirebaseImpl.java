@@ -13,16 +13,22 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-
+@Singleton
 public class FirebaseImpl implements NetApi {
     private static final long MAX_SIZE_BUFFER = 1024 * 1024L;
     private static final Type categoryListType = new TypeToken<List<CategoryEntity>>() {
     }.getType();
     private static final Gson gson = new GsonBuilder().registerTypeAdapter(categoryListType,new CategoryTypeAdapter())
             .create();
+    @Inject
+    public FirebaseImpl(){}
+
     @Override
     public Flowable<CategoryEntity> category() {
         FirebaseStorage storage = FirebaseStorage.getInstance();

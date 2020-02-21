@@ -1,6 +1,11 @@
 package com.example.simbirsoftapp.data.entity;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "category")
 public class CategoryEntity {
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String logo;
     private String text;

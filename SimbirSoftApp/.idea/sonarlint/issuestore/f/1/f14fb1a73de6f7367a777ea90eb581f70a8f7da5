@@ -1,3 +1,5 @@
 
-isquid:CommentedOutCodeLine7"<This block of commented-out lines of code should be removed.(ƒ†§8“öô….
-‚squid:UselessImportCheck"RRemove this unused import 'com.example.simbirsoftapp.presenter.CategoryPresenter'.(ðÙÀøÿÿÿÿ8Ãå‘—†.
+Qsquid:S1068(".Remove this unused "disposable" private field.(ã…Ý·þÿÿÿÿ8Ö¢³—†.
+nsquid:CommentedOutCodeLine:"<This block of commented-out lines of code should be removed.(µÂšÈýÿÿÿÿ8‰Óæš†.
+nsquid:CommentedOutCodeLine\"<This block of commented-out lines of code should be removed.(ËÚ¥™þÿÿÿÿ8Ö¢³—†.
+isquid:CommentedOutCodeLine?"<This block of commented-out lines of code should be removed.(ƒ†§8“öô….

@@ -5,7 +5,11 @@ import android.content.Context;
 import com.example.simbirsoftapp.App;
 import com.example.simbirsoftapp.UIThread;
 import com.example.simbirsoftapp.data.CategoryDataRepository;
+import com.example.simbirsoftapp.data.db.DbCategoryApi;
+import com.example.simbirsoftapp.data.db.RoomImpl;
 import com.example.simbirsoftapp.data.executor.JobExecutor;
+import com.example.simbirsoftapp.data.net.FirebaseImpl;
+import com.example.simbirsoftapp.data.net.NetApi;
 import com.example.simbirsoftapp.domain.executor.PostExecutionThread;
 import com.example.simbirsoftapp.domain.executor.ThreadExecutor;
 import com.example.simbirsoftapp.domain.repository.CategoryRepository;
@@ -45,5 +49,17 @@ public class ApplicationModule {
     @Singleton
     CategoryRepository provideUserRepository(CategoryDataRepository categoryDataRepository) {
         return categoryDataRepository;
+    }
+
+    @Provides
+    @Singleton
+    DbCategoryApi dbCategoryApi(RoomImpl roomImpl) {
+        return roomImpl;
+    }
+
+    @Provides
+    @Singleton
+    NetApi netApi(FirebaseImpl firebase) {
+        return firebase;
     }
 }

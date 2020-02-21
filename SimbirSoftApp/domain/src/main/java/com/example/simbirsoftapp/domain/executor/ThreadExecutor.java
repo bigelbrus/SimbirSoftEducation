@@ -16,5 +16,6 @@
 package com.example.simbirsoftapp.domain.executor;
 
 import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 
-public interface ThreadExecutor extends Executor {}
+public interface ThreadExecutor extends ExecutorService {}

@@ -9,5 +9,5 @@ public interface DbCategoryApi {
 
     void put(CategoryEntity categoryEntity);
 
-    boolean isSaved();
+    boolean isExist();
 }

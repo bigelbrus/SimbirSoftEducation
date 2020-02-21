@@ -3,6 +3,7 @@ package com.example.simbirsoftapp.presenter;
 import com.example.simbirsoftapp.data.mapper.CategoryModelDataMapper;
 import com.example.simbirsoftapp.data.model.CategoryModel;
 import com.example.simbirsoftapp.di.PerActivity;
+import com.example.simbirsoftapp.di.PerFragment;
 import com.example.simbirsoftapp.domain.Category;
 import com.example.simbirsoftapp.domain.interactor.GetCategory;
 import com.example.simbirsoftapp.ui.HelpView;
@@ -12,7 +13,7 @@ import javax.inject.Inject;
 
 import io.reactivex.subscribers.ResourceSubscriber;
 
-@PerActivity
+
 public class CategoryPresenter implements Presenter {
 
     HelpView helpView;
