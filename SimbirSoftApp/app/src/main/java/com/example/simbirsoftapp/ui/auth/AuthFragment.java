@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +20,6 @@ import com.example.simbirsoftapp.ui.profile.ProfileFragment;
 import com.example.simbirsoftapp.utility.AppUtils;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuthEmailException;
-import com.google.firebase.auth.FirebaseAuthException;
 
 import io.reactivex.disposables.Disposable;
 
@@ -35,6 +32,7 @@ public class AuthFragment extends Fragment {
     private View background;
     private ProgressBar loadingProgress;
     private TextView errorLogin;
+
 
     public static AuthFragment newInstance() {
         return new AuthFragment();

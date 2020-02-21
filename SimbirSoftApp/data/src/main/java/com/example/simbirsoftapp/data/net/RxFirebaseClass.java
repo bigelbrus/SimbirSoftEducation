@@ -17,8 +17,4 @@ public class RxFirebaseClass {
         Log.d("tag","maybe success");
         return maybe;
     }
-
-    public static Maybe<AuthResult> signInWithEmailAndPass(String email, String pass) {
-        return Maybe.create(emitter -> RxFirebaseHandler.assignOnTask(emitter, FirebaseAuth.getInstance().signInWithEmailAndPassword(email,pass)));
-    }
 }

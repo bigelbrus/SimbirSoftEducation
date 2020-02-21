@@ -1,6 +1,7 @@
 package com.example.simbirsoftapp.ui.news.details;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,11 +15,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,18 +25,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.simbirsoftapp.MainActivity;
 import com.example.simbirsoftapp.R;
-import com.example.simbirsoftapp.data.model.Event;
-import com.example.simbirsoftapp.data.model.User;
+import com.example.simbirsoftapp.data.model.EventModel;
+import com.example.simbirsoftapp.data.model.UserModel;
 import com.example.simbirsoftapp.utility.AppUtils;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 
 public class NewsDetailFragment extends Fragment {
     private static final String KEY_EVENT = "EVENT";
     private static final int MAX_NEWS_IMAGES = 3;
     private static final int MAX_FRIENDS_IMAGES = 5;
+    @Inject
+    Context context;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class NewsDetailFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
-    public static NewsDetailFragment newInstance(Event event) {
+    public static NewsDetailFragment newInstance(EventModel event) {
         Bundle args = new Bundle();
         args.putSerializable(KEY_EVENT, event);
         NewsDetailFragment fragment = new NewsDetailFragment();
@@ -62,10 +63,11 @@ public class NewsDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = LayoutInflater.from(inflater.getContext()).inflate(R.layout.fragment_news_detail,
                 container, false);
+        ((MainActivity)getActivity()).getCategoryComponent().inject(this);
         getActivity().findViewById(R.id.bottom_panel).setVisibility(View.GONE);
-        Event event = new Event();
+        EventModel event = new EventModel();
         if (getArguments() != null) {
-            event = (Event) getArguments().getSerializable(KEY_EVENT);
+            event = (EventModel) getArguments().getSerializable(KEY_EVENT);
         }
         TextView newsLabel = view.findViewById(R.id.news_label);
         TextView newsDate = view.findViewById(R.id.news_date);
@@ -91,7 +93,7 @@ public class NewsDetailFragment extends Fragment {
         newsTelephones.append(event.getOrganisationTelephone().get(event.getOrganisationTelephone().size() - 1));
         newsDescr.setText(event.getEventDescription());
 
-        writeUs.setText(AppUtils.getUnderlineGreenSpan(getContext(),R.string.write_to_us));
+        writeUs.setText(AppUtils.getUnderlineGreenSpan(context,R.string.write_to_us));
         writeUs.setOnClickListener(click -> Toast.makeText(getActivity(), getString(R.string.write_to_us), Toast.LENGTH_SHORT).show());
         goToOrgs.setText(AppUtils.getUnderlineGreenSpan(getContext(),R.string.go_to_organisation_page));
         final String url = event.getOrganisationSite();
@@ -112,7 +114,7 @@ public class NewsDetailFragment extends Fragment {
         TextView toolbarTitle = view.findViewById(R.id.toolbar_title);
         toolbarTitle.setText(event.getEventName());
 
-        List<User> friends = event.getEventPerson();
+        List<UserModel> friends = event.getEventPerson();
         initFriendsLine(friends, view);
 
         return view;
@@ -132,7 +134,7 @@ public class NewsDetailFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    private void initNewsPhotos(Event event, View view) {
+    private void initNewsPhotos(EventModel event, View view) {
 
         ImageView firstImage = view.findViewById(R.id.news_detail_first_image);
         ImageView secondImage = view.findViewById(R.id.news_detail_second_image);
@@ -153,12 +155,12 @@ public class NewsDetailFragment extends Fragment {
 
         for (int i = 0; i < event.getEventPhoto().size(); i++) {
             if (i == MAX_NEWS_IMAGES) break;
-            newsImages[i].setImageDrawable(AppUtils.getDrawableByStringRes(getContext(),
+            newsImages[i].setImageDrawable(AppUtils.getDrawableByStringRes(context,
                     event.getEventPhoto().get(i)));
         }
     }
 
-    private void initFriendsLine(List<User> friends, View view) {
+    private void initFriendsLine(List<UserModel> friends, View view) {
         int friendsSize = friends.size();
         ImageView firstFriend = view.findViewById(R.id.news_first_friend);
         ImageView secondFriend = view.findViewById(R.id.news_second_friend);
@@ -174,7 +176,7 @@ public class NewsDetailFragment extends Fragment {
                 friendsCounter.setVisibility(View.VISIBLE);
                 break;
             }
-            friendsImages[i].setImageDrawable(AppUtils.getDrawableByStringRes(getContext(),
+            friendsImages[i].setImageDrawable(AppUtils.getDrawableByStringRes(context,
                     friends.get(i).getRoundedLogo()));
         }
     }

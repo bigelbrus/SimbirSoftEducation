@@ -1,5 +1,5 @@
 
-Qsquid:S1068(".Remove this unused "disposable" private field.(ã…Ý·þÿÿÿÿ8Ö¢³—†.
-nsquid:CommentedOutCodeLine:"<This block of commented-out lines of code should be removed.(µÂšÈýÿÿÿÿ8‰Óæš†.
-nsquid:CommentedOutCodeLine\"<This block of commented-out lines of code should be removed.(ËÚ¥™þÿÿÿÿ8Ö¢³—†.
-isquid:CommentedOutCodeLine?"<This block of commented-out lines of code should be removed.(ƒ†§8“öô….
+nsquid:CommentedOutCodeLine\"<This block of commented-out lines of code should be removed.(ËÚ¥™þÿÿÿÿ8Óé¦´†.
+isquid:CommentedOutCodeLine?"<This block of commented-out lines of code should be removed.(ƒ†§8Óé¦´†.
+Qsquid:S1068(".Remove this unused "disposable" private field.(ã…Ý·þÿÿÿÿ8Óé¦´†.
+nsquid:CommentedOutCodeLine:"<This block of commented-out lines of code should be removed.(µÂšÈýÿÿÿÿ8Óé¦´†.

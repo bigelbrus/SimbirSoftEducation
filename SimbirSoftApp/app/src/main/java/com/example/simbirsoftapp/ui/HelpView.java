@@ -13,8 +13,6 @@ public interface HelpView {
 
     void showError();
 
-    void onCategoryClick();
-
     void showCategory(CategoryModel category);
 
     Context context();

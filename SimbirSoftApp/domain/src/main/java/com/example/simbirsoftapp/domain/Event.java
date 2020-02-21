@@ -1,7 +1,4 @@
-package com.example.simbirsoftapp.data.model;
-
-import com.example.simbirsoftapp.data.database.RealmEvent;
-import com.example.simbirsoftapp.data.database.RealmUser;
+package com.example.simbirsoftapp.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,21 +15,6 @@ public class Event implements Serializable {
     private String eventDescription;
     private String organisationSite;
     private List<User> eventPerson = new ArrayList<>();
-
-    public Event(RealmEvent realmEvent) {
-        id = realmEvent.getId();
-        eventName = realmEvent.getEventName();
-        eventDate = realmEvent.getEventDate();
-        eventCompany = realmEvent.getEventCompany();
-        eventAddress = realmEvent.getEventAddress();
-        organisationTelephone.addAll(realmEvent.getOrganisationTelephone());
-        eventPhoto.addAll(realmEvent.getEventPhoto());
-        eventDescription = realmEvent.getEventDescription();
-        organisationSite = realmEvent.getOrganisationSite();
-        for(RealmUser u:realmEvent.getEventPerson()) {
-            eventPerson.add(new User(u));
-        }
-    }
 
     public Event(){}
 

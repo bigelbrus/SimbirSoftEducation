@@ -2,8 +2,6 @@ package com.example.simbirsoftapp.presenter;
 
 import com.example.simbirsoftapp.data.mapper.CategoryModelDataMapper;
 import com.example.simbirsoftapp.data.model.CategoryModel;
-import com.example.simbirsoftapp.di.PerActivity;
-import com.example.simbirsoftapp.di.PerFragment;
 import com.example.simbirsoftapp.domain.Category;
 import com.example.simbirsoftapp.domain.interactor.GetCategory;
 import com.example.simbirsoftapp.ui.HelpView;
@@ -16,7 +14,7 @@ import io.reactivex.subscribers.ResourceSubscriber;
 
 public class CategoryPresenter implements Presenter {
 
-    HelpView helpView;
+    private HelpView helpView;
 
     private GetCategory getCategory;
     private CategoryModelDataMapper categoryModelDataMapper;

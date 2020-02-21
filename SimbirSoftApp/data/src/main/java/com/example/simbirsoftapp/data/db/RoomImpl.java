@@ -1,22 +1,18 @@
 package com.example.simbirsoftapp.data.db;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.example.simbirsoftapp.data.entity.CategoryEntity;
+import com.example.simbirsoftapp.data.entity.EventEntity;
 import com.example.simbirsoftapp.domain.executor.ThreadExecutor;
-
-import java.util.concurrent.Callable;
-import java.util.concurrent.Future;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Flowable;
-import io.reactivex.schedulers.Schedulers;
 
 @Singleton
-public class RoomImpl implements DbCategoryApi {
+public class RoomImpl implements DbCategoryApi,DbEventApi {
     private RoomDb mDb;
     private ThreadExecutor threadExecutor;
 
@@ -40,7 +36,23 @@ public class RoomImpl implements DbCategoryApi {
     }
 
     @Override
-    public boolean isExist() {
-        return mDb.categoryDao().getCategories() != null;
+    public Flowable<EventEntity> getEvent() {
+        return Flowable.just(mDb.categoryDao().getEvents())
+                .flatMapIterable(list -> list);
+    }
+
+    @Override
+    public void put(EventEntity eventEntity) {
+        threadExecutor.execute(()-> mDb.categoryDao().insertEvent(eventEntity));
+    }
+
+    @Override
+    public boolean isCategoryExist() {
+        return !mDb.categoryDao().getCategories().isEmpty();
+    }
+
+    @Override
+    public boolean isEventExist() {
+        return !mDb.categoryDao().getEvents().isEmpty();
     }
 }

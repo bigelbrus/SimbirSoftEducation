@@ -7,10 +7,9 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.simbirsoftapp.data.entity.CategoryEntity;
+import com.example.simbirsoftapp.data.entity.EventEntity;
 
 import java.util.List;
-
-import io.reactivex.Flowable;
 
 @Dao
 public interface CategoryDao {
@@ -22,4 +21,13 @@ public interface CategoryDao {
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateCategory(CategoryEntity categoryEntity);
+
+    @Query("Select * from event")
+    List<EventEntity> getEvents();
+
+    @Insert
+    void insertEvent (EventEntity eventEntity);
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    void updateEvent(EventEntity eventEntity);
 }

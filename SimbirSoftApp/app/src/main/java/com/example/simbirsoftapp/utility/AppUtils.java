@@ -7,6 +7,7 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -87,6 +88,7 @@ public class AppUtils {
     }
 
     public static Drawable getDrawableByStringRes(Context context, String res) {
+        Log.d("tag","res " + res);
         return context.getResources().getDrawable(context.getResources().getIdentifier(res,
                 "drawable", context.getPackageName()));
     }

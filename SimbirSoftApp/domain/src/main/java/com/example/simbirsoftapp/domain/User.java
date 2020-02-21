@@ -1,41 +1,41 @@
-package com.example.simbirsoftapp.data.database;
+package com.example.simbirsoftapp.domain;
 
-import com.example.simbirsoftapp.data.model.User;
+import com.example.simbirsoftapp.domain.utils.DateUtils;
 
-import org.threeten.bp.DateTimeUtils;
-import org.threeten.bp.ZoneId;
+import org.threeten.bp.LocalDate;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-import io.realm.RealmList;
-import io.realm.RealmObject;
-
-public class RealmUser extends RealmObject {
+public class User implements Serializable {
+    private int id;
     private String name;
     private String surname;
-    private Date date;
+    private LocalDate date;
     private String activity;
     private boolean wantPush;
     private int logo;
     private String roundedLogo;
-    private RealmList<RealmUser> friends = new RealmList<>();
+    private List<User> friends = new ArrayList<>();
 
-    public RealmUser() {
+    public User() {
     }
 
-    public RealmUser(User u) {
-        name = u.getName();
-        surname = u.getSurname();
-        date = (u.getDate() != null) ? DateTimeUtils.toDate(u.getDate().atStartOfDay(ZoneId.systemDefault()).toInstant())
-                : null;
-        activity = u.getActivity();
-        wantPush = u.isWantPush();
-        logo = u.getLogo();
-        roundedLogo = u.getRoundedLogo();
-        for (User friend : u.getFriends()) {
-            friends.add(new RealmUser(friend));
-        }
+    public User(String name, String surname, int logo,String roundedLogo) {
+        this.name = name;
+        this.surname = surname;
+        this.logo = logo;
+        this.roundedLogo = roundedLogo;
+    }
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setName(String name) {
@@ -54,11 +54,15 @@ public class RealmUser extends RealmObject {
         return surname;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public Date getDate() {
+    public String getStringDate() {
+        return DateUtils.formatDate(date);
+    }
+
+    public LocalDate getDate() {
         return date;
     }
 
@@ -86,7 +90,7 @@ public class RealmUser extends RealmObject {
         return logo;
     }
 
-    public void addFriend(RealmUser p) {
+    public void addFriend(User p) {
         friends.add(p);
     }
 
@@ -98,8 +102,12 @@ public class RealmUser extends RealmObject {
         this.roundedLogo = roundedLogo;
     }
 
-    public List<RealmUser> getFriends() {
+    public List<User> getFriends() {
         return friends;
+    }
+
+    public void setFriends(List<User> friends) {
+        this.friends = friends;
     }
 
     public String getFullName() {

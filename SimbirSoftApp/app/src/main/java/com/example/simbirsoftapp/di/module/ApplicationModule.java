@@ -5,7 +5,9 @@ import android.content.Context;
 import com.example.simbirsoftapp.App;
 import com.example.simbirsoftapp.UIThread;
 import com.example.simbirsoftapp.data.CategoryDataRepository;
+import com.example.simbirsoftapp.data.EventDataRepository;
 import com.example.simbirsoftapp.data.db.DbCategoryApi;
+import com.example.simbirsoftapp.data.db.DbEventApi;
 import com.example.simbirsoftapp.data.db.RoomImpl;
 import com.example.simbirsoftapp.data.executor.JobExecutor;
 import com.example.simbirsoftapp.data.net.FirebaseImpl;
@@ -13,6 +15,7 @@ import com.example.simbirsoftapp.data.net.NetApi;
 import com.example.simbirsoftapp.domain.executor.PostExecutionThread;
 import com.example.simbirsoftapp.domain.executor.ThreadExecutor;
 import com.example.simbirsoftapp.domain.repository.CategoryRepository;
+import com.example.simbirsoftapp.domain.repository.EventRepository;
 
 import javax.inject.Singleton;
 
@@ -53,6 +56,12 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
+    EventRepository eventRepository(EventDataRepository eventDataRepository) {
+        return eventDataRepository;
+    }
+
+    @Provides
+    @Singleton
     DbCategoryApi dbCategoryApi(RoomImpl roomImpl) {
         return roomImpl;
     }
@@ -61,5 +70,11 @@ public class ApplicationModule {
     @Singleton
     NetApi netApi(FirebaseImpl firebase) {
         return firebase;
+    }
+
+    @Provides
+    @Singleton
+    DbEventApi dbEventApi(RoomImpl roomImpl) {
+        return roomImpl;
     }
 }

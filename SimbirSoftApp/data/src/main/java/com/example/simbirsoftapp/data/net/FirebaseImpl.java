@@ -1,7 +1,9 @@
 package com.example.simbirsoftapp.data.net;
 
 import com.example.simbirsoftapp.data.entity.CategoryEntity;
+import com.example.simbirsoftapp.data.entity.EventEntity;
 import com.example.simbirsoftapp.data.entity.adapter.CategoryTypeAdapter;
+import com.example.simbirsoftapp.data.entity.adapter.EventTypeAdapter;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
@@ -24,7 +26,11 @@ public class FirebaseImpl implements NetApi {
     private static final long MAX_SIZE_BUFFER = 1024 * 1024L;
     private static final Type categoryListType = new TypeToken<List<CategoryEntity>>() {
     }.getType();
-    private static final Gson gson = new GsonBuilder().registerTypeAdapter(categoryListType,new CategoryTypeAdapter())
+    public static final Type eventsListType = new TypeToken<List<EventEntity>>() {
+    }.getType();
+    private static final Gson gson = new GsonBuilder()
+            .registerTypeAdapter(categoryListType,new CategoryTypeAdapter())
+            .registerTypeAdapter(eventsListType,new EventTypeAdapter())
             .create();
     @Inject
     public FirebaseImpl(){}
@@ -42,4 +48,19 @@ public class FirebaseImpl implements NetApi {
                 .flatMapIterable(list -> list)
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
+    @Override
+    public Flowable<EventEntity> event() {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference reference = storage.getReference("events.json");
+        return RxFirebaseClass.getBytes(reference, MAX_SIZE_BUFFER)
+                .observeOn(Schedulers.io())
+                .toFlowable()
+                .map(ByteArrayInputStream::new)
+                .map(InputStreamReader::new)
+                .map(inputStreamReader -> (List<EventEntity>)gson.fromJson(inputStreamReader, eventsListType))
+                .flatMapIterable(list -> list)
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
 }

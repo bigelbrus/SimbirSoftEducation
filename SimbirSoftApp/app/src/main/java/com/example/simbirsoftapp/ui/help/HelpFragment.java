@@ -18,26 +18,22 @@ import android.widget.TextView;
 
 import com.example.simbirsoftapp.MainActivity;
 import com.example.simbirsoftapp.R;
-import com.example.simbirsoftapp.data.DataSource;
 import com.example.simbirsoftapp.presenter.CategoryPresenter;
 import com.example.simbirsoftapp.data.model.CategoryModel;
 import com.example.simbirsoftapp.ui.HelpView;
 import com.example.simbirsoftapp.utility.AppUtils;
 
-import java.util.ArrayList;
-
 import javax.inject.Inject;
 
 import io.reactivex.disposables.Disposable;
 
-public class HelpFragment extends Fragment implements CategoryAdapter.CategoryClickHolder, HelpView {
+public class HelpFragment extends Fragment implements HelpView {
 
     private static final int RECYCLER_VIEW_COLUMNS_NUMBER = 2;
 
     private RecyclerView categoryRecyclerView;
     private ProgressBar categoryProgressBar;
     private TextView categoryError;
-    private Disposable disposable;
     @Inject
     CategoryAdapter adapter;
     @Inject
@@ -55,15 +51,9 @@ public class HelpFragment extends Fragment implements CategoryAdapter.CategoryCl
         categoryRecyclerView = view.findViewById(R.id.rv_help);
         categoryProgressBar = view.findViewById(R.id.category_progress_bar);
         categoryError = view.findViewById(R.id.category_error);
-//        adapter = new CategoryAdapter(new ArrayList<>(), getContext(), this);
         ((MainActivity)getActivity()).getCategoryComponent().inject(this);
         showLoading();
         setupRecyclerView();
-//        disposable = DataSource.getInstance().getCategories(getContext())
-//                .subscribe(category -> {
-//                    showData();
-//                    adapter.addCategory(category);
-//                });
 
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
@@ -82,16 +72,8 @@ public class HelpFragment extends Fragment implements CategoryAdapter.CategoryCl
     }
 
     @Override
-    public void onCategoryClick() {
-        ((MainActivity) getActivity()).onBottomButtonClick(getActivity().findViewById(R.id.button_news));
-    }
-
-    @Override
     public void onDestroy() {
         super.onDestroy();
-//        if (!disposable.isDisposed()) {
-//            disposable.dispose();
-//        }
         categoryPresenter.destroy();
     }
     @Override
@@ -109,10 +91,9 @@ public class HelpFragment extends Fragment implements CategoryAdapter.CategoryCl
         categoryError.setVisibility(View.VISIBLE);
     }
 
-
     @Override
     public Context context() {
-        return null;
+        return this.getActivity().getApplicationContext();
     }
     @Override
     public void showData() {
@@ -138,4 +119,5 @@ public class HelpFragment extends Fragment implements CategoryAdapter.CategoryCl
 
     private CategoryAdapter.CategoryClickHolder clickHolder = ()->
             ((MainActivity) getActivity()).onBottomButtonClick(getActivity().findViewById(R.id.button_news));
+
 }

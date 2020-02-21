@@ -1,7 +1,7 @@
-package com.example.simbirsoftapp.data.adapter;
+package com.example.simbirsoftapp.data.entity.adapter;
 
-import com.example.simbirsoftapp.data.model.Event;
-import com.example.simbirsoftapp.data.model.User;
+import com.example.simbirsoftapp.data.entity.EventEntity;
+import com.example.simbirsoftapp.data.entity.UserEntity;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
@@ -10,18 +10,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventTypeAdapter extends TypeAdapter<List<Event>> {
+public class EventTypeAdapter extends TypeAdapter<List<EventEntity>> {
     @Override
-    public void write(JsonWriter out, List<Event> value) throws IOException {
+    public void write(JsonWriter out, List<EventEntity> value) throws IOException {
         //will be implemented later
     }
 
     @Override
-    public List<Event>  read(JsonReader in) throws IOException {
-        List<Event> result = new ArrayList<>();
+    public List<EventEntity>  read(JsonReader in) throws IOException {
+        List<EventEntity> result = new ArrayList<>();
         in.beginArray();
         while (in.hasNext()) {
-            Event event = new Event();
+            EventEntity event = new EventEntity();
             in.beginObject();
             while (in.hasNext()) {
                 switch (in.nextName()) {
@@ -63,7 +63,7 @@ public class EventTypeAdapter extends TypeAdapter<List<Event>> {
                     case "eventPerson":
                         in.beginArray();
                         while (in.hasNext()) {
-                            User person = new User();
+                            UserEntity person = new UserEntity();
                             in.beginObject();
                             in.nextName();
                             person.setName(in.nextString());

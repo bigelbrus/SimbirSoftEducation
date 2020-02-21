@@ -1,6 +1,5 @@
 package com.example.simbirsoftapp.data.model;
 
-import com.example.simbirsoftapp.data.database.RealmCategory;
 
 public class CategoryModel {
     private int id;

@@ -6,7 +6,6 @@ import com.example.simbirsoftapp.domain.Category;
 import com.example.simbirsoftapp.domain.repository.CategoryRepository;
 
 import javax.inject.Inject;
-import javax.inject.Scope;
 import javax.inject.Singleton;
 
 import io.reactivex.Flowable;

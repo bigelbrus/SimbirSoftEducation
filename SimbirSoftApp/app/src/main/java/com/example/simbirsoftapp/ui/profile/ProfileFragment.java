@@ -24,8 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.simbirsoftapp.R;
-import com.example.simbirsoftapp.data.DataSource;
-import com.example.simbirsoftapp.data.model.User;
+import com.example.simbirsoftapp.data.DataForProfile;
+import com.example.simbirsoftapp.data.model.UserModel;
 import com.example.simbirsoftapp.ui.auth.AuthFragment;
 import com.example.simbirsoftapp.ui.profile.photo.DialogProfileFragment;
 import com.example.simbirsoftapp.utility.AppUtils;
@@ -63,7 +63,7 @@ public class ProfileFragment extends Fragment {
                     .commit();
         });
 
-        User user = DataSource.getUser();
+        UserModel user = DataForProfile.getUser();
 
         recyclerView.setAdapter(new FriendsAdapter(user.getFriends()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

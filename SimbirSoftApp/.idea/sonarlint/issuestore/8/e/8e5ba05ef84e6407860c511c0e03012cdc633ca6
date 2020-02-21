@@ -1,6 +1,8 @@
 
-Isquid:S3398E"+Move this method into "CategoriesFlowable".(€Úï8ÆŒ‡—†.
-Isquid:S33989"+Move this method into "CategoriesFlowable".(ÇõÖ8¬ÃÅó….
-Ÿsquid:S1186&"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ü³Í8çœó….
-Isquid:S3398A"+Move this method into "CategoriesFlowable".(¥¿¸š8í‰Èó….
-¤squid:S1186!"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(µ·öÅûÿÿÿÿ8çœó….
+¤squid:S1186""€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(µ·öÅûÿÿÿÿ8çœó….
+Isquid:S3398F"+Move this method into "CategoriesFlowable".(€Úï8ÆŒ‡—†.
+psquid:UselessImportCheck"ERemove this unused import 'com.example.simbirsoftapp.di.PerFragment'.(çêèˆ8Í³Ö´†.
+Isquid:S3398:"+Move this method into "CategoriesFlowable".(ÇõÖ8¬ÃÅó….
+Isquid:S3398B"+Move this method into "CategoriesFlowable".(¥¿¸š8í‰Èó….
+Ÿsquid:S1186'"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ü³Í8çœó….
+usquid:UselessImportCheck"ERemove this unused import 'com.example.simbirsoftapp.di.PerActivity'.(ˆäÙÆşÿÿÿÿ8Ò¤Û´†.

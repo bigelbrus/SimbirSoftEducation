@@ -7,6 +7,7 @@ import com.example.simbirsoftapp.di.module.ApplicationModule;
 import com.example.simbirsoftapp.domain.executor.PostExecutionThread;
 import com.example.simbirsoftapp.domain.executor.ThreadExecutor;
 import com.example.simbirsoftapp.domain.repository.CategoryRepository;
+import com.example.simbirsoftapp.domain.repository.EventRepository;
 
 import javax.inject.Singleton;
 
@@ -19,6 +20,7 @@ public interface ApplicationComponent {
 
     Context context();
     CategoryRepository categoryRepository();
+    EventRepository eventRepository();
     ThreadExecutor threadExecutor();
     PostExecutionThread postExecutionThread();
 }
