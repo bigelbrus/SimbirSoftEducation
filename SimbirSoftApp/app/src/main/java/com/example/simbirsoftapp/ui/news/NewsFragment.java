@@ -127,7 +127,6 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolde
         adapter.addEvent(eventModel);
     }
 
-    @Override
     public Context context() {
         return getActivity().getApplicationContext();
     }

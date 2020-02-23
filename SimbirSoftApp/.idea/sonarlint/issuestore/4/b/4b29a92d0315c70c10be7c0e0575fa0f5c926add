@@ -1,7 +1,0 @@
-
-Osquid:S1602%",Remove useless curly braces around statement(Ë¾×êûÿÿÿÿ8´½´†.
-hsquid:UselessImportCheck
-"8Remove this unused import 'java.util.concurrent.Future'.(á¬øíıÿÿÿÿ8ÖŒõ²†.
-osquid:UselessImportCheck"?Remove this unused import 'io.reactivex.schedulers.Schedulers'.(š‰¢úÿÿÿÿ8¡¢·³†.
-]squid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8¾ì ³†.
-jsquid:UselessImportCheck	":Remove this unused import 'java.util.concurrent.Callable'.(¾×¶îûÿÿÿÿ8àÈù³†.

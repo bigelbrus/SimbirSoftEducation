@@ -1,10 +1,14 @@
 package com.example.simbirsoftapp.presenter;
 
 
-public interface Presenter {
-  void resume();
+import com.example.simbirsoftapp.ui.BaseView;
 
-  void pause();
+import moxy.MvpPresenter;
 
-  void destroy();
+public abstract class Presenter<V extends BaseView> extends MvpPresenter<V> {
+  abstract void resume();
+
+  abstract void pause();
+
+  abstract void destroy();
 }

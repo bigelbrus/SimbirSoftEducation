@@ -6,10 +6,10 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +24,14 @@ import com.example.simbirsoftapp.ui.HelpView;
 import com.example.simbirsoftapp.utility.AppUtils;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
 
 import io.reactivex.disposables.Disposable;
+import moxy.MvpAppCompatFragment;
+import moxy.presenter.InjectPresenter;
+import moxy.presenter.ProvidePresenter;
 
-public class HelpFragment extends Fragment implements HelpView {
+public class HelpFragment extends MvpAppCompatFragment implements HelpView {
 
     private static final int RECYCLER_VIEW_COLUMNS_NUMBER = 2;
 
@@ -37,7 +41,12 @@ public class HelpFragment extends Fragment implements HelpView {
     @Inject
     CategoryAdapter adapter;
     @Inject
+    @InjectPresenter
     CategoryPresenter categoryPresenter;
+    @ProvidePresenter
+    CategoryPresenter provideCategoryPresenter() {
+        return categoryPresenter;
+    }
 
     public static HelpFragment newInstance() {
         return new HelpFragment();
@@ -54,6 +63,7 @@ public class HelpFragment extends Fragment implements HelpView {
         ((MainActivity)getActivity()).getCategoryComponent().inject(this);
         showLoading();
         setupRecyclerView();
+        Log.d("tag","after setupRecyclerView");
 
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         if (activity != null) {
@@ -66,9 +76,7 @@ public class HelpFragment extends Fragment implements HelpView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         categoryPresenter.setView(this);
-        if (savedInstanceState == null) {
-            loadCategories();
-        }
+        loadCategories();
     }
 
     @Override
@@ -91,7 +99,7 @@ public class HelpFragment extends Fragment implements HelpView {
         categoryError.setVisibility(View.VISIBLE);
     }
 
-    @Override
+
     public Context context() {
         return this.getActivity().getApplicationContext();
     }
@@ -108,6 +116,7 @@ public class HelpFragment extends Fragment implements HelpView {
     }
 
     private void setupRecyclerView(){
+        Log.d("tag","setupRecyclerView");
         categoryRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), RECYCLER_VIEW_COLUMNS_NUMBER));
         categoryRecyclerView.setAdapter(adapter);
         adapter.setItemClickListener(clickHolder);

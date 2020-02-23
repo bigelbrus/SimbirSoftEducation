@@ -12,7 +12,7 @@ import javax.inject.Inject;
 
 import io.reactivex.subscribers.ResourceSubscriber;
 
-public class EventPresenter implements Presenter {
+public class EventPresenter extends Presenter {
 
     private NewsView newsView;
 

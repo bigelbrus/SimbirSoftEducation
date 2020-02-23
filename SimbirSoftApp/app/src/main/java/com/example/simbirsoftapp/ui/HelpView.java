@@ -1,19 +1,11 @@
 package com.example.simbirsoftapp.ui;
 
-import android.content.Context;
-
 import com.example.simbirsoftapp.data.model.CategoryModel;
 
+import moxy.viewstate.strategy.alias.AddToEnd;
 
-public interface HelpView {
 
-    void showLoading();
-
-    void showData();
-
-    void showError();
-
+@AddToEnd
+public interface HelpView extends BaseView {
     void showCategory(CategoryModel category);
-
-    Context context();
 }

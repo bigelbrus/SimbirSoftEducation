@@ -10,9 +10,10 @@ import com.example.simbirsoftapp.ui.HelpView;
 import javax.inject.Inject;
 
 import io.reactivex.subscribers.ResourceSubscriber;
+import moxy.InjectViewState;
 
-
-public class CategoryPresenter implements Presenter {
+@InjectViewState
+public class CategoryPresenter extends Presenter<HelpView> {
 
     private HelpView helpView;
 
