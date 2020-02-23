@@ -29,6 +29,8 @@ import com.example.simbirsoftapp.utility.AppUtils;
 import javax.inject.Inject;
 
 import io.reactivex.disposables.Disposable;
+import moxy.presenter.InjectPresenter;
+import moxy.presenter.ProvidePresenter;
 
 public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolder, NewsView {
 
@@ -38,7 +40,13 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolde
     @Inject
     NewsAdapter adapter;
     @Inject
+    @InjectPresenter
     EventPresenter eventPresenter;
+
+    @ProvidePresenter
+    EventPresenter provideEventPresenter() {
+        return eventPresenter;
+    }
 
     public static NewsFragment newInstance() {
         return new NewsFragment();

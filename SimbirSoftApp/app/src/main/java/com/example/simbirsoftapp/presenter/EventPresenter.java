@@ -1,9 +1,7 @@
 package com.example.simbirsoftapp.presenter;
 
 import com.example.simbirsoftapp.data.mapper.EventModelDataMapper;
-import com.example.simbirsoftapp.data.model.CategoryModel;
 import com.example.simbirsoftapp.data.model.EventModel;
-import com.example.simbirsoftapp.domain.Category;
 import com.example.simbirsoftapp.domain.Event;
 import com.example.simbirsoftapp.domain.interactor.GetEvent;
 import com.example.simbirsoftapp.ui.NewsView;
@@ -11,8 +9,10 @@ import com.example.simbirsoftapp.ui.NewsView;
 import javax.inject.Inject;
 
 import io.reactivex.subscribers.ResourceSubscriber;
+import moxy.InjectViewState;
 
-public class EventPresenter extends Presenter {
+@InjectViewState
+public class EventPresenter extends Presenter<NewsView> {
 
     private NewsView newsView;
 
