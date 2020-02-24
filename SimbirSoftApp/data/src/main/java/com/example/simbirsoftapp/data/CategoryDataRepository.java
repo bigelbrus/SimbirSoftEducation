@@ -1,7 +1,7 @@
 package com.example.simbirsoftapp.data;
 
 import com.example.simbirsoftapp.data.entity.mapper.CategoryEntityDataMapper;
-import com.example.simbirsoftapp.data.repository.CategoryDataFactory;
+import com.example.simbirsoftapp.data.repository.category.CategoryDataFactory;
 import com.example.simbirsoftapp.domain.Category;
 import com.example.simbirsoftapp.domain.repository.CategoryRepository;
 

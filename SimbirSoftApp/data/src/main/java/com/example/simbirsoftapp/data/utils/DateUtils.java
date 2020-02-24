@@ -4,11 +4,13 @@ import org.threeten.bp.LocalDate;
 import org.threeten.bp.format.DateTimeFormatter;
 import org.threeten.bp.format.DateTimeFormatterBuilder;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
-public class DateUtils {
-
-    private DateUtils() {
-    }
+@Singleton
+public class DateUtils implements com.example.simbirsoftapp.domain.utils.DateUtils {
+    @Inject
+    public DateUtils() {}
     private static DateTimeFormatter ddMMMMyyy = new DateTimeFormatterBuilder()
             .appendPattern("dd")
             .appendLiteral(' ')
@@ -24,11 +26,11 @@ public class DateUtils {
             .appendPattern("yyyy")
             .toFormatter();
 
-    public static String formatDate(LocalDate date) {
+    public String formatDate(LocalDate date) {
         return date.format(ddMMMMyyy);
     }
 
-    public static LocalDate parseDate(String date) {
+    public   LocalDate parseDate(String date) {
         return LocalDate.parse(date, ddMMyyyy);
     }
 }

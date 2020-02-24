@@ -19,6 +19,7 @@ public class GetCategory extends UseCase<Category,Void> {
         super(threadExecutor,postExecutionThread);
         this.categoryRepository = categoryRepository;
     }
+
     @Override
     Flowable<Category> buildUseCaseObservable(Void aVoid) {
         return categoryRepository.category();

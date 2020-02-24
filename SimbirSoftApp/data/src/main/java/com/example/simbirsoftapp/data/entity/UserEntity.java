@@ -11,6 +11,8 @@ import org.threeten.bp.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 @Entity(tableName = "user")
 public class UserEntity {
     @PrimaryKey(autoGenerate = true)
@@ -23,6 +25,14 @@ public class UserEntity {
     private int logo;
     private String roundedLogo;
     private List<UserEntity> friends = new ArrayList<>();
+    @Ignore
+    private DateUtils dateUtils;
+
+    @Inject
+    @Ignore
+    public UserEntity(DateUtils dateUtils) {
+        this.dateUtils = dateUtils;
+    }
 
     public UserEntity() {
     }
@@ -44,23 +54,8 @@ public class UserEntity {
         this.wantPush = wantPush;
         this.logo = logo;
         this.friends = friends;
-        this.date = DateUtils.parseDate(date);
+        this.date = dateUtils.parseDate(date);
     }
-
-//    public User(RealmUser u) {
-//        name = u.getName();
-//        surname = u.getSurname();
-//        date = (u.getDate() != null) ? Instant.ofEpochMilli(u.getDate().getTime()).atZone(ZoneId.systemDefault()).toLocalDate() :
-//                null;
-//        activity = u.getActivity();
-//        wantPush = u.isWantPush();
-//        logo = u.getLogo();
-//        roundedLogo = u.getRoundedLogo();
-//        for (RealmUser f : u.getFriends()) {
-//            friends.add(new User(f));
-//        }
-//    }
-
 
     public int getId() {
         return id;
@@ -91,7 +86,7 @@ public class UserEntity {
     }
 
     public String getStringDate() {
-        return DateUtils.formatDate(date);
+        return dateUtils.formatDate(date);
     }
 
     public LocalDate getDate() {

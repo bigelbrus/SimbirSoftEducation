@@ -2,12 +2,9 @@ package com.example.simbirsoftapp.data.net;
 
 import com.example.simbirsoftapp.data.entity.CategoryEntity;
 import com.example.simbirsoftapp.data.entity.EventEntity;
-import com.example.simbirsoftapp.data.entity.adapter.CategoryTypeAdapter;
-import com.example.simbirsoftapp.data.entity.adapter.EventTypeAdapter;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.ByteArrayInputStream;
@@ -26,14 +23,14 @@ public class FirebaseImpl implements NetApi {
     private static final long MAX_SIZE_BUFFER = 1024 * 1024L;
     private static final Type categoryListType = new TypeToken<List<CategoryEntity>>() {
     }.getType();
-    public static final Type eventsListType = new TypeToken<List<EventEntity>>() {
+    private static final Type eventsListType = new TypeToken<List<EventEntity>>() {
     }.getType();
-    private static final Gson gson = new GsonBuilder()
-            .registerTypeAdapter(categoryListType,new CategoryTypeAdapter())
-            .registerTypeAdapter(eventsListType,new EventTypeAdapter())
-            .create();
+    private final Gson gson;
+
     @Inject
-    public FirebaseImpl(){}
+    public FirebaseImpl(Gson gson){
+        this.gson = gson;
+    }
 
     @Override
     public Flowable<CategoryEntity> category() {

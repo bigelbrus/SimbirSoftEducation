@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import io.reactivex.Flowable;
 
 public class GetEvent extends UseCase<Event,Void> {
+
     private EventRepository eventRepository;
 
     @Inject

@@ -1,6 +1,6 @@
-package com.example.simbirsoftapp.domain;
+package com.example.simbirsoftapp.data.model;
 
-import com.example.simbirsoftapp.domain.utils.DateUtils;
+import com.example.simbirsoftapp.utility.DateUtils;
 
 import org.threeten.bp.LocalDate;
 
@@ -10,8 +10,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class User implements Serializable {
-    private int id;
+public class UserModel implements Serializable {
     private String name;
     private String surname;
     private LocalDate date;
@@ -19,24 +18,34 @@ public class User implements Serializable {
     private boolean wantPush;
     private int logo;
     private String roundedLogo;
-    private List<User> friends = new ArrayList<>();
+    private List<UserModel> friends = new ArrayList<>();
 
-    User(){}
+    public UserModel() {
+    }
 
-    public User(String name, String surname, int logo,String roundedLogo) {
+
+    public UserModel(String name, String surname, int logo,String roundedLogo) {
         this.name = name;
         this.surname = surname;
         this.logo = logo;
         this.roundedLogo = roundedLogo;
     }
 
-
-    public void setId(int id) {
-        this.id = id;
+    public UserModel(String name, String surname, int logo) {
+        this.name = name;
+        this.surname = surname;
+        this.logo = logo;
     }
 
-    public int getId() {
-        return id;
+    public UserModel(String name, String surname, String activity, boolean wantPush, int logo,
+                List<UserModel> friends, LocalDate date) {
+        this.name = name;
+        this.surname = surname;
+        this.activity = activity;
+        this.wantPush = wantPush;
+        this.logo = logo;
+        this.friends = friends;
+        this.date = date;
     }
 
     public void setName(String name) {
@@ -59,9 +68,9 @@ public class User implements Serializable {
         this.date = date;
     }
 
-//    public String getStringDate() {
-//        return dateUtils.formatDate(date);
-//    }
+    public String getStringDate() {
+        return DateUtils.formatDate(date);
+    }
 
     public LocalDate getDate() {
         return date;
@@ -91,24 +100,20 @@ public class User implements Serializable {
         return logo;
     }
 
-    public void addFriend(User p) {
+    public void addFriend(UserModel p) {
         friends.add(p);
     }
 
     public String getRoundedLogo() {
-        return roundedLogo;
+        return this.roundedLogo;
     }
 
     public void setRoundedLogo(String roundedLogo) {
         this.roundedLogo = roundedLogo;
     }
 
-    public List<User> getFriends() {
+    public List<UserModel> getFriends() {
         return friends;
-    }
-
-    public void setFriends(List<User> friends) {
-        this.friends = friends;
     }
 
     public String getFullName() {

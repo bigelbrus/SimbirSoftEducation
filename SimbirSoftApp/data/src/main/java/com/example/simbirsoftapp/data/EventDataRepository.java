@@ -1,7 +1,7 @@
 package com.example.simbirsoftapp.data;
 
 import com.example.simbirsoftapp.data.entity.mapper.EventEntityDataMapper;
-import com.example.simbirsoftapp.data.repository.EventDataFactory;
+import com.example.simbirsoftapp.data.repository.event.EventDataFactory;
 import com.example.simbirsoftapp.domain.Event;
 import com.example.simbirsoftapp.domain.repository.EventRepository;
 
