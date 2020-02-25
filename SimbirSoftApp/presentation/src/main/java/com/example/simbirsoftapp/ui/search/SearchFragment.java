@@ -20,6 +20,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.simbirsoftapp.MainActivity;
 import com.example.simbirsoftapp.R;
+import com.example.simbirsoftapp.databinding.FragmentSearchBinding;
 import com.example.simbirsoftapp.ui.search.events.SearchEventsListFragment;
 import com.example.simbirsoftapp.ui.search.organisations.SearchOrganizationListFragment;
 import com.example.simbirsoftapp.utility.AppUtils;
@@ -39,6 +40,7 @@ public class SearchFragment extends Fragment {
     private SearchViewPager searchViewPager;
     private static final int START_POSITION = 0;
     private int currentPosition = START_POSITION;
+    private FragmentSearchBinding searchBinding;
 
     @Inject
     AppCompatActivity activity;
@@ -54,23 +56,22 @@ public class SearchFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_search, container, false);
+        searchBinding = FragmentSearchBinding.inflate(inflater,container,false);
+        View view = searchBinding.getRoot();
         ((MainActivity)getActivity()).getCategoryComponent().inject(this);
 
-        searchViewPager = view.findViewById(R.id.search_view_pager);
+        searchViewPager = searchBinding.searchViewPager;
         adapter = new SearchPagerAdapter(getChildFragmentManager(), getContext());
         searchViewPager.reMeasureCurrentPage(((Measured) adapter.getItem(0)).getListSize());
         searchViewPager.setAdapter(adapter);
-        searchText = view.findViewById(R.id.search_edit_text);
-        ImageButton makeSearchButton = view.findViewById(R.id.make_search_button);
-        makeSearchButton.setOnClickListener(v->
+        searchText = searchBinding.searchField.searchEditText;
+        searchBinding.searchField.makeSearchButton.setOnClickListener(v->
             makeSearch(searchText.getText().toString())
         );
-        searchCountType = view.findViewById(R.id.search_result_type);
+        searchCountType = searchBinding.searchResultType;
         setLabelAndHint(START_POSITION);
 
-        TabLayout searchTabLayout = view.findViewById(R.id.search_tab_layout);
-        searchTabLayout.setupWithViewPager(searchViewPager);
+        searchBinding.searchTabLayout.setupWithViewPager(searchViewPager);
         searchViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

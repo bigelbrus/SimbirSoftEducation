@@ -17,7 +17,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <include layout="@layout/search_field" />
+        <include
+            android:id="@+id/search_field"
+            layout="@layout/search_field" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/search_tab_layout"

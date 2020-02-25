@@ -14,21 +14,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.simbirsoftapp.R;
 import com.example.simbirsoftapp.data.model.UserModel;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendsViewHolder> {
 
     private List<UserModel> friends;
     private Context context;
 
-    FriendsAdapter(List<UserModel> friends) {
-        this.friends = friends;
+    @Inject
+    FriendsAdapter(Context context) {
+        this.context = context;
+        this.friends = new ArrayList<>();
     }
 
     @NonNull
     @Override
     public FriendsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context = parent.getContext();
+//        context = parent.getContext();
         View view = LayoutInflater.from(context).inflate(R.layout.friend_item, parent, false);
 
         return new FriendsViewHolder(view);
@@ -40,6 +45,10 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.FriendsV
 
         holder.name.setText(currentPerson.getFullName());
         holder.logo.setImageDrawable(context.getResources().getDrawable(currentPerson.getLogo()));
+    }
+
+    public void setFriends(List<UserModel> friends) {
+        this.friends = friends;
     }
 
     @Override

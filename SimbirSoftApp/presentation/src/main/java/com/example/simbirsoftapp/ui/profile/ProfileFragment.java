@@ -27,6 +27,7 @@ import com.example.simbirsoftapp.MainActivity;
 import com.example.simbirsoftapp.R;
 import com.example.simbirsoftapp.data.DataForProfile;
 import com.example.simbirsoftapp.data.model.UserModel;
+import com.example.simbirsoftapp.databinding.FragmentProfileBinding;
 import com.example.simbirsoftapp.ui.auth.AuthFragment;
 import com.example.simbirsoftapp.ui.profile.photo.DialogProfileFragment;
 import com.example.simbirsoftapp.utility.AppUtils;
@@ -37,6 +38,10 @@ import javax.inject.Inject;
 
 public class ProfileFragment extends Fragment {
 
+    private FragmentProfileBinding profileBinding;
+
+    @Inject
+    FriendsAdapter adapter;
     @Inject
     FirebaseAuth firebaseAuth;
     @Inject
@@ -59,51 +64,15 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((MainActivity)getActivity()).getCategoryComponent().inject(this);
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        TextView name = view.findViewById(R.id.profile_name);
-        TextView sphere = view.findViewById(R.id.sphere_activity);
-        SwitchCompat push = view.findViewById(R.id.push_switch);
-        ImageView logo = view.findViewById(R.id.profile_image_button);
-        TextView date = view.findViewById(R.id.birthday_date);
-        RecyclerView recyclerView = view.findViewById(R.id.friends_recycler_view);
-        Button exitProfile = view.findViewById(R.id.exit_profile_button);
+        profileBinding = FragmentProfileBinding.inflate(inflater,container,false);
+        View view = profileBinding.getRoot();
 
-        exitProfile.setOnClickListener(v->{
+        profileBinding.exitProfileButton.setOnClickListener(v->{
             firebaseAuth.signOut();
             getFragmentManager().beginTransaction().replace(R.id.fragment_main,AuthFragment.newInstance())
                     .commit();
         });
-
-        UserModel user = DataForProfile.getUser();
-
-        recyclerView.setAdapter(new FriendsAdapter(user.getFriends()));
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        appUtils.setActionBar(activity, view, R.string.profile_label, false);
-
-        name.setText(user.getFullName());
-        sphere.setText(user.getActivity());
-        push.setChecked(user.isWantPush());
-        date.setText(user.getStringDate());
-        if (getContext() != null) {
-            logo.setImageDrawable(getContext().getResources().getDrawable(user.getLogo()));
-        }
-        logo.setOnClickListener(l ->
-            Toast.makeText(getContext(), "Image", Toast.LENGTH_SHORT).show());
-
-        logo.setOnClickListener(click -> {
-
-            FragmentManager fm = getFragmentManager();
-            if (fm != null) {
-                DialogProfileFragment dialog = new DialogProfileFragment();
-                dialog.show(getFragmentManager(), "Dialog");
-            }
-        });
-
-
-        push.setOnCheckedChangeListener((buttonView, isChecked)-> {
-                user.setWantPush(isChecked);
-            });
+        setupView(view);
         return view;
     }
 
@@ -111,5 +80,35 @@ public class ProfileFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_profile, menu);
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    private void setupView(View view) {
+        UserModel user = DataForProfile.getUser();
+        appUtils.setActionBar(activity, view, R.string.profile_label, false);
+        adapter.setFriends(user.getFriends());
+        profileBinding.friendsRecyclerView.setAdapter(adapter);
+        profileBinding.friendsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        profileBinding.profileName.setText(user.getFullName());
+        profileBinding.sphereActivity.setText(user.getActivity());
+        profileBinding.pushSwitch.setChecked(user.isWantPush());
+        profileBinding.birthdayDate.setText(user.getStringDate());
+        if (getContext() != null) {
+            profileBinding.profileImageButton.setImageDrawable(getContext().getResources().getDrawable(user.getLogo()));
+        }
+        profileBinding.profileImageButton.setOnClickListener(l ->
+                Toast.makeText(getContext(), "Image", Toast.LENGTH_SHORT).show());
+
+        profileBinding.profileImageButton.setOnClickListener(click -> {
+
+            FragmentManager fm = getFragmentManager();
+            if (fm != null) {
+                DialogProfileFragment dialog = new DialogProfileFragment();
+                dialog.show(getFragmentManager(), "Dialog");
+            }
+        });
+        
+        profileBinding.pushSwitch.setOnCheckedChangeListener((buttonView, isChecked)-> {
+            user.setWantPush(isChecked);
+        });
     }
 }

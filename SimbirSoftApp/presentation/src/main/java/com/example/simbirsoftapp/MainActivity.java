@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.simbirsoftapp.databinding.ActivityMainBinding;
 import com.example.simbirsoftapp.di.component.ApplicationComponent;
 import com.example.simbirsoftapp.di.component.CategoryComponent;
 import com.example.simbirsoftapp.di.component.DaggerCategoryComponent;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private Button historyButton;
     private Button profileButton;
     private Button activeButton;
+    private ActivityMainBinding mainBinding;
     View bottomPanel;
     CategoryComponent categoryComponent;
     @Inject
@@ -42,14 +44,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getApplicationComponent().inject(this);
         initInjectors();
-        setContentView(R.layout.activity_main);
-
-        newsButton = findViewById(R.id.button_news);
-        searchButton = findViewById(R.id.button_search);
-        helpButton = findViewById(R.id.button_help);
-        historyButton = findViewById(R.id.button_history);
-        profileButton = findViewById(R.id.button_profile);
-        bottomPanel = findViewById(R.id.bottom_panel);
+        mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(mainBinding.getRoot());
+        newsButton = mainBinding.bottomPanel.buttonNews;
+        searchButton = mainBinding.bottomPanel.buttonSearch;
+        helpButton = mainBinding.bottomPanel.buttonHelp;
+        historyButton = mainBinding.bottomPanel.buttonHistory;
+        profileButton = mainBinding.bottomPanel.buttonProfile;
+        bottomPanel = mainBinding.bottomPanel.getRoot();
 
         if (savedInstanceState != null) {
             activeButton = findViewById(savedInstanceState.getInt(KEY_ACTIVE_BUTTON));
@@ -102,6 +104,10 @@ public class MainActivity extends AppCompatActivity {
 
     public CategoryComponent getCategoryComponent() {
         return categoryComponent;
+    }
+
+    public View getBottomPanel() {
+        return bottomPanel;
     }
 
     @Override

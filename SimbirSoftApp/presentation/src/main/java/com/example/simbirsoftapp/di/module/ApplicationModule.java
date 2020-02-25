@@ -38,11 +38,11 @@ import dagger.Provides;
 
 @Module
 public class ApplicationModule {
-    public static final Type categoryListType = new TypeToken<List<CategoryEntity>>() {
+    private static final Type categoryListType = new TypeToken<List<CategoryEntity>>() {
     }.getType();
-    public static final Type eventsListType = new TypeToken<List<EventEntity>>() {
+    private static final Type eventsListType = new TypeToken<List<EventEntity>>() {
     }.getType();
-    App app;
+    private App app;
 
     public ApplicationModule(App app) {
         this.app = app;
@@ -107,7 +107,7 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    com.example.simbirsoftapp.domain.utils.DateUtils dateUtils() {
+    DateUtils dateUtils() {
         return new DateUtils();
     }
 

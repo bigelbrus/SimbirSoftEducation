@@ -21,6 +21,7 @@ import android.widget.ProgressBar;
 import com.example.simbirsoftapp.MainActivity;
 import com.example.simbirsoftapp.R;
 import com.example.simbirsoftapp.data.model.EventModel;
+import com.example.simbirsoftapp.databinding.FragmentNewsBinding;
 import com.example.simbirsoftapp.presenter.EventPresenter;
 import com.example.simbirsoftapp.ui.NewsView;
 import com.example.simbirsoftapp.ui.news.details.NewsDetailFragment;
@@ -36,7 +37,7 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolde
 
     private RecyclerView newsRecyclerView;
     private ProgressBar newsProgressBar;
-    private Disposable disposable;
+    private FragmentNewsBinding newsBinding;
     @Inject
     NewsAdapter adapter;
     @Inject
@@ -65,15 +66,14 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolde
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_news, container, false);
-        newsRecyclerView = view.findViewById(R.id.news_recycler_view);
-        newsProgressBar = view.findViewById(R.id.news_progress_bar);
+        newsBinding = FragmentNewsBinding.inflate(inflater,container,false);
+        View view = newsBinding.getRoot();
+        initViews();
         ((MainActivity)getActivity()).getCategoryComponent().inject(this);
         setupRecyclerView();
         showLoading();
         appUtils.setActionBar(activity, view, R.string.news_label, false);
-
-        getActivity().findViewById(R.id.bottom_panel).setVisibility(View.VISIBLE);
+        ((MainActivity)getActivity()).getBottomPanel().setVisibility(View.VISIBLE);
         return view;
     }
 
@@ -159,5 +159,10 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolde
 
     private void loadEvents() {
         eventPresenter.initialize();
+    }
+
+    private void initViews() {
+        newsRecyclerView = newsBinding.newsRecyclerView;
+        newsProgressBar = newsBinding.newsProgressBar;
     }
 }

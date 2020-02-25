@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.example.simbirsoftapp.MainActivity;
 import com.example.simbirsoftapp.R;
 import com.example.simbirsoftapp.data.firebase.RxFirebaseClass;
+import com.example.simbirsoftapp.databinding.FragmentAuthBinding;
 import com.example.simbirsoftapp.ui.profile.ProfileFragment;
 import com.example.simbirsoftapp.utility.AppUtils;
 import com.google.android.material.textfield.TextInputEditText;
@@ -38,6 +39,7 @@ public class AuthFragment extends Fragment {
     private View background;
     private ProgressBar loadingProgress;
     private TextView errorLogin;
+    private FragmentAuthBinding authBinding;
 
     @Inject
     Context context;
@@ -54,34 +56,12 @@ public class AuthFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_auth, container, false);
+        authBinding = FragmentAuthBinding.inflate(inflater,container,false);
+        View view = authBinding.getRoot();
         ((MainActivity)getActivity()).getCategoryComponent().inject(this);
         appUtils.setActionBar(activity, view, R.string.authorise, false);
-        TextView forgotPass = view.findViewById(R.id.forgot_pass);
-        TextView registration = view.findViewById(R.id.registration);
-        forgotPass.setText(appUtils.getUnderlineGreenSpan(context,R.string.forgot_pass));
-        registration.setText(appUtils.getUnderlineGreenSpan(context,R.string.registration));
-        TextInputEditText email = view.findViewById(R.id.enter_email);
-        TextInputEditText password = view.findViewById(R.id.enter_password);
-        authButton = view.findViewById(R.id.sign_in_button);
-        background = view.findViewById(R.id.progressbar_holder);
-        loadingProgress = view.findViewById(R.id.loading_progress);
-        errorLogin = view.findViewById(R.id.error_login);
-        authButton.setOnClickListener(v -> {
-            errorLogin.setVisibility(View.GONE);
-            inAnim = new AlphaAnimation(0f, 1f);
-            inAnim.setDuration(400);
-            background.setAnimation(inAnim);
-            background.setVisibility(View.VISIBLE);
-            loadingProgress.setVisibility(View.VISIBLE);
-            authButton.setEnabled(false);
-            if (email.getText()!=null && password.getText()!=null) {
-                disposable = RxFirebaseClass.signInWithEmailAndPass(email.getText().toString(), password.getText().toString())
-                        .subscribe(this::resultHandler, this::showError);
-            }
-            else showError(new Exception("Поля E-mail и Пароль должны быть заполнены"));
-        });
-
+        initViews();
+        authButton.setOnClickListener(authButtonClickListener);
         return view;
     }
 
@@ -107,6 +87,29 @@ public class AuthFragment extends Fragment {
         errorLogin.setText(throwable.getMessage());
         authButton.setEnabled(true);
         throwable.printStackTrace();
-
     }
+
+    private void initViews() {
+        authBinding.forgotPass.setText(appUtils.getUnderlineGreenSpan(context,R.string.forgot_pass));
+        authBinding.registration.setText(appUtils.getUnderlineGreenSpan(context,R.string.registration));
+        authButton = authBinding.signInButton;
+        background = authBinding.progressbarHolder;
+        loadingProgress = authBinding.loadingProgress;
+        errorLogin = authBinding.errorLogin;
+    }
+
+    private View.OnClickListener authButtonClickListener = view -> {
+        errorLogin.setVisibility(View.GONE);
+        inAnim = new AlphaAnimation(0f, 1f);
+        inAnim.setDuration(400);
+        background.setAnimation(inAnim);
+        background.setVisibility(View.VISIBLE);
+        loadingProgress.setVisibility(View.VISIBLE);
+        authButton.setEnabled(false);
+        if (authBinding.enterEmail.getText()!=null && authBinding.enterPassword.getText()!=null) {
+            disposable = RxFirebaseClass.signInWithEmailAndPass(authBinding.enterEmail.getText().toString(), authBinding.enterPassword.getText().toString())
+                    .subscribe(this::resultHandler, this::showError);
+        }
+        else showError(new Exception("Поля E-mail и Пароль должны быть заполнены"));
+    };
 }

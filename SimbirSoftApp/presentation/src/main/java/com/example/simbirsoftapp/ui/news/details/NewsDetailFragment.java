@@ -29,6 +29,7 @@ import com.example.simbirsoftapp.MainActivity;
 import com.example.simbirsoftapp.R;
 import com.example.simbirsoftapp.data.model.EventModel;
 import com.example.simbirsoftapp.data.model.UserModel;
+import com.example.simbirsoftapp.databinding.FragmentNewsDetailBinding;
 import com.example.simbirsoftapp.utility.AppUtils;
 
 import java.util.List;
@@ -40,6 +41,7 @@ public class NewsDetailFragment extends Fragment {
     private static final String KEY_EVENT = "EVENT";
     private static final int MAX_NEWS_IMAGES = 3;
     private static final int MAX_FRIENDS_IMAGES = 5;
+    private FragmentNewsDetailBinding newsDetailBinding;
     @Inject
     Context context;
     @Inject
@@ -65,61 +67,11 @@ public class NewsDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = LayoutInflater.from(inflater.getContext()).inflate(R.layout.fragment_news_detail,
-                container, false);
+        newsDetailBinding = FragmentNewsDetailBinding.inflate(inflater,container,false);
+        View view = newsDetailBinding.getRoot();
         ((MainActivity)getActivity()).getCategoryComponent().inject(this);
-        getActivity().findViewById(R.id.bottom_panel).setVisibility(View.GONE);
-        EventModel event = new EventModel();
-        if (getArguments() != null) {
-            event = (EventModel) getArguments().getSerializable(KEY_EVENT);
-        }
-        TextView newsLabel = view.findViewById(R.id.news_label);
-        TextView newsDate = view.findViewById(R.id.news_date);
-        TextView newsOrganisation = view.findViewById(R.id.news_organisation);
-        TextView newsAddress = view.findViewById(R.id.news_address);
-        TextView newsTelephones = view.findViewById(R.id.news_telephones);
-        TextView newsDescr = view.findViewById(R.id.news_description);
-
-
-        TextView writeUs = view.findViewById(R.id.news_link_write_to_us);
-        TextView goToOrgs = view.findViewById(R.id.news_link_to_organisation);
-
-        initNewsPhotos(event, view);
-
-        newsLabel.setText(event.getEventName());
-        newsDate.setText(event.getEventDate());
-        newsOrganisation.setText(event.getEventCompany());
-        newsAddress.setText(event.getEventAddress());
-        for (int i = 0; i < event.getOrganisationTelephone().size() - 1; i++) {
-            newsTelephones.append(event.getOrganisationTelephone().get(i));
-            newsTelephones.append("\n");
-        }
-        newsTelephones.append(event.getOrganisationTelephone().get(event.getOrganisationTelephone().size() - 1));
-        newsDescr.setText(event.getEventDescription());
-
-        writeUs.setText(appUtils.getUnderlineGreenSpan(context,R.string.write_to_us));
-        writeUs.setOnClickListener(click -> Toast.makeText(getActivity(), getString(R.string.write_to_us), Toast.LENGTH_SHORT).show());
-        goToOrgs.setText(appUtils.getUnderlineGreenSpan(context,R.string.go_to_organisation_page));
-        final String url = event.getOrganisationSite();
-        goToOrgs.setOnClickListener(click -> {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(url));
-            startActivity(intent);
-        });
-
-        Toolbar toolbar = view.findViewById(R.id.news_toolbar);
-        activity.setSupportActionBar(toolbar);
-        ActionBar actionBar = activity.getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle(null);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-        TextView toolbarTitle = view.findViewById(R.id.toolbar_title);
-        toolbarTitle.setText(event.getEventName());
-
-        List<UserModel> friends = event.getEventPerson();
-        initFriendsLine(friends, view);
-
+        ((MainActivity)getActivity()).getBottomPanel().setVisibility(View.GONE);
+        setupView(view);
         return view;
     }
 
@@ -182,6 +134,48 @@ public class NewsDetailFragment extends Fragment {
             friendsImages[i].setImageDrawable(appUtils.getDrawableByStringRes(context,
                     friends.get(i).getRoundedLogo()));
         }
+    }
+
+    private void setupView(View view) {
+        EventModel event = new EventModel();
+        if (getArguments() != null) {
+            event = (EventModel) getArguments().getSerializable(KEY_EVENT);
+        }
+
+        initNewsPhotos(event, view);
+
+        newsDetailBinding.newsLabel.setText(event.getEventName());
+        newsDetailBinding.newsDate.setText(event.getEventDate());
+        newsDetailBinding.newsOrganisation.setText(event.getEventCompany());
+        newsDetailBinding.newsAddress.setText(event.getEventAddress());
+        for (int i = 0; i < event.getOrganisationTelephone().size() - 1; i++) {
+            newsDetailBinding.newsTelephones.append(event.getOrganisationTelephone().get(i));
+            newsDetailBinding.newsTelephones.append("\n");
+        }
+        newsDetailBinding.newsTelephones.append(event.getOrganisationTelephone().get(event.getOrganisationTelephone().size() - 1));
+        newsDetailBinding.newsDescription.setText(event.getEventDescription());
+
+        newsDetailBinding.newsLinkWriteToUs.setText(appUtils.getUnderlineGreenSpan(context,R.string.write_to_us));
+        newsDetailBinding.newsLinkToOrganisation.setOnClickListener(click -> Toast.makeText(getActivity(), getString(R.string.write_to_us), Toast.LENGTH_SHORT).show());
+        newsDetailBinding.newsLinkToOrganisation.setText(appUtils.getUnderlineGreenSpan(context,R.string.go_to_organisation_page));
+        final String url = event.getOrganisationSite();
+        newsDetailBinding.newsLinkToOrganisation.setOnClickListener(click -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            startActivity(intent);
+        });
+
+        activity.setSupportActionBar((Toolbar) newsDetailBinding.newsToolbar.getRoot());
+        ActionBar actionBar = activity.getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(null);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        TextView toolbarTitle = view.findViewById(R.id.toolbar_title);
+        toolbarTitle.setText(event.getEventName());
+
+        List<UserModel> friends = event.getEventPerson();
+        initFriendsLine(friends, view);
     }
 
 }

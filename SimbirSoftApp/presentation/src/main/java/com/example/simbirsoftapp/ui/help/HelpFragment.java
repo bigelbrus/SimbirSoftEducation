@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.simbirsoftapp.MainActivity;
 import com.example.simbirsoftapp.R;
+import com.example.simbirsoftapp.databinding.FragmentHelpBinding;
 import com.example.simbirsoftapp.presenter.CategoryPresenter;
 import com.example.simbirsoftapp.data.model.CategoryModel;
 import com.example.simbirsoftapp.ui.HelpView;
@@ -38,6 +39,7 @@ public class HelpFragment extends MvpAppCompatFragment implements HelpView {
     private RecyclerView categoryRecyclerView;
     private ProgressBar categoryProgressBar;
     private TextView categoryError;
+    private FragmentHelpBinding binding;
     @Inject
     CategoryAdapter adapter;
     @Inject
@@ -56,18 +58,15 @@ public class HelpFragment extends MvpAppCompatFragment implements HelpView {
         return new HelpFragment();
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_help, container, false);
-        categoryRecyclerView = view.findViewById(R.id.rv_help);
-        categoryProgressBar = view.findViewById(R.id.category_progress_bar);
-        categoryError = view.findViewById(R.id.category_error);
+        binding = FragmentHelpBinding.inflate(inflater,container,false);
+        View view = binding.getRoot();
+        initViews();
         ((MainActivity)getActivity()).getCategoryComponent().inject(this);
         showLoading();
         setupRecyclerView();
-        Log.d("tag","after setupRecyclerView");
         appUtils.setActionBar(activity, view, R.string.help_label, true);
         return view;
     }
@@ -128,5 +127,11 @@ public class HelpFragment extends MvpAppCompatFragment implements HelpView {
 
     private CategoryAdapter.CategoryClickHolder clickHolder = ()->
             ((MainActivity) getActivity()).onBottomButtonClick(getActivity().findViewById(R.id.button_news));
+
+    private void initViews() {
+        categoryRecyclerView = binding.rvHelp;
+        categoryProgressBar = binding.categoryProgressBar;
+        categoryError = binding.categoryError;
+    }
 
 }
