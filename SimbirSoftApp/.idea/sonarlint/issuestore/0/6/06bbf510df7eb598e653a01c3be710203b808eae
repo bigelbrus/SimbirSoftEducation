@@ -1,0 +1,7 @@
+
+hsquid:UselessImportCheck"8Remove this unused import 'com.google.gson.GsonBuilder'.(”«à¬ÿÿÿÿÿ8ÚàÓéˆ.
+nsquid:UselessImportCheck">Remove this unused import 'com.google.gson.reflect.TypeToken'.(İªıñøÿÿÿÿ8û¤Ôéˆ.
+ysquid:UselessImportCheck"NRemove this unused import 'com.example.simbirsoftapp.data.entity.EventEntity'.(ú…¯ƒ8û¤Ôéˆ.
+squid:UselessImportCheck"QRemove this unused import 'com.example.simbirsoftapp.data.entity.CategoryEntity'.(ı¡çÂıÿÿÿÿ8û¤Ôéˆ.
+csquid:UselessImportCheck"3Remove this unused import 'java.lang.reflect.Type'.(‰ûÕñıÿÿÿÿ8û¤Ôéˆ.
+[squid:UselessImportCheck"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8û¤Ôéˆ.

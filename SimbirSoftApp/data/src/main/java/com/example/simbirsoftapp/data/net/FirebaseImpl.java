@@ -1,5 +1,7 @@
 package com.example.simbirsoftapp.data.net;
 
+import android.util.Log;
+
 import com.example.simbirsoftapp.data.entity.CategoryEntity;
 import com.example.simbirsoftapp.data.entity.EventEntity;
 import com.google.firebase.storage.FirebaseStorage;
@@ -16,6 +18,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 @Singleton
@@ -36,7 +39,9 @@ public class FirebaseImpl implements NetApi {
     public Flowable<CategoryEntity> category() {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference reference = storage.getReference("categories.json");
-        return RxFirebaseClass.getBytes(reference, MAX_SIZE_BUFFER)
+        Log.d("tag","firebase get category");
+
+        return RxFirebaseUtils.getBytes(reference, MAX_SIZE_BUFFER)
                 .observeOn(Schedulers.io())
                 .toFlowable()
                 .map(ByteArrayInputStream::new)
@@ -50,7 +55,7 @@ public class FirebaseImpl implements NetApi {
     public Flowable<EventEntity> event() {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference reference = storage.getReference("events.json");
-        return RxFirebaseClass.getBytes(reference, MAX_SIZE_BUFFER)
+        return RxFirebaseUtils.getBytes(reference, MAX_SIZE_BUFFER)
                 .observeOn(Schedulers.io())
                 .toFlowable()
                 .map(ByteArrayInputStream::new)

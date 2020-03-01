@@ -8,13 +8,12 @@ import com.google.firebase.storage.StorageReference;
 
 import io.reactivex.Maybe;
 
-public class RxFirebaseClass {
+public class RxFirebaseUtils {
 
-    private RxFirebaseClass(){}
+    private RxFirebaseUtils(){}
 
     public static Maybe<byte[]> getBytes(StorageReference ref,long maxBytes) {
         Maybe<byte[]> maybe = Maybe.create(emitter -> RxFirebaseHandler.assignOnTask(emitter,ref.getBytes(maxBytes)));
-        Log.d("tag","maybe success");
         return maybe;
     }
 }

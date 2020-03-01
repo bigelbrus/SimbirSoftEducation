@@ -42,10 +42,6 @@ public class AuthFragment extends Fragment {
     private FragmentAuthBinding authBinding;
 
     @Inject
-    Context context;
-    @Inject
-    AppCompatActivity activity;
-    @Inject
     AppUtils appUtils;
 
     public static AuthFragment newInstance() {
@@ -58,7 +54,8 @@ public class AuthFragment extends Fragment {
                              Bundle savedInstanceState) {
         authBinding = FragmentAuthBinding.inflate(inflater,container,false);
         View view = authBinding.getRoot();
-        ((MainActivity)getActivity()).getCategoryComponent().inject(this);
+        MainActivity activity = (MainActivity) getActivity();
+        activity.getCategoryComponent().inject(this);
         appUtils.setActionBar(activity, view, R.string.authorise, false);
         initViews();
         authButton.setOnClickListener(authButtonClickListener);
@@ -90,8 +87,8 @@ public class AuthFragment extends Fragment {
     }
 
     private void initViews() {
-        authBinding.forgotPass.setText(appUtils.getUnderlineGreenSpan(context,R.string.forgot_pass));
-        authBinding.registration.setText(appUtils.getUnderlineGreenSpan(context,R.string.registration));
+        authBinding.forgotPass.setText(appUtils.getUnderlineGreenSpan(getActivity(),R.string.forgot_pass));
+        authBinding.registration.setText(appUtils.getUnderlineGreenSpan(getActivity(),R.string.registration));
         authButton = authBinding.signInButton;
         background = authBinding.progressbarHolder;
         loadingProgress = authBinding.loadingProgress;

@@ -43,8 +43,6 @@ public class HelpFragment extends MvpAppCompatFragment implements HelpView {
     @Inject
     CategoryAdapter adapter;
     @Inject
-    AppCompatActivity activity;
-    @Inject
     AppUtils appUtils;
     @Inject
     @InjectPresenter
@@ -64,7 +62,8 @@ public class HelpFragment extends MvpAppCompatFragment implements HelpView {
         binding = FragmentHelpBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
         initViews();
-        ((MainActivity)getActivity()).getCategoryComponent().inject(this);
+        MainActivity activity = ((MainActivity)getActivity());
+        activity.getCategoryComponent().inject(this);
         showLoading();
         setupRecyclerView();
         appUtils.setActionBar(activity, view, R.string.help_label, true);

@@ -1,2 +1,6 @@
 
-rsquid:UselessImportCheck"BRemove this unused import 'com.google.firebase.auth.FirebaseAuth'.(İÄğöûÿÿÿÿ8ÈÔÜÁ‡.
+rsquid:UselessImportCheck"BRemove this unused import 'com.google.firebase.auth.FirebaseAuth'.(İÄğöûÿÿÿÿ8ÈÔÜÁ‡.
+wsquid:UselessImportCheck"GRemove this unused import 'com.google.android.material.tabs.TabLayout'.(é‘™Òıÿÿÿÿ8±Í²í‡.
+psquid:UselessImportCheck"ERemove this unused import 'androidx.appcompat.app.AppCompatActivity'.(€¶£î8—Şûéˆ.
+ysquid:S1450+"\Remove the "searchBinding" field and declare it as a local variable in the relevant methods.(Óü‹g8ì¹í‡.
+_squid:UselessImportCheck"4Remove this unused import 'android.content.Context'.(©Ê‰è8Àûéˆ.

@@ -4,6 +4,7 @@ import com.example.simbirsoftapp.domain.executor.PostExecutionThread;
 import com.example.simbirsoftapp.domain.executor.ThreadExecutor;
 
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;

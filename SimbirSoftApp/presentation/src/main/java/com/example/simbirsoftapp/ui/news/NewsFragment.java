@@ -41,8 +41,6 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolde
     @Inject
     NewsAdapter adapter;
     @Inject
-    AppCompatActivity activity;
-    @Inject
     AppUtils appUtils;
     @Inject
     @InjectPresenter
@@ -69,7 +67,8 @@ public class NewsFragment extends Fragment implements NewsAdapter.NewsClickHolde
         newsBinding = FragmentNewsBinding.inflate(inflater,container,false);
         View view = newsBinding.getRoot();
         initViews();
-        ((MainActivity)getActivity()).getCategoryComponent().inject(this);
+        MainActivity activity = ((MainActivity)getActivity());
+        activity.getCategoryComponent().inject(this);
         setupRecyclerView();
         showLoading();
         appUtils.setActionBar(activity, view, R.string.news_label, false);

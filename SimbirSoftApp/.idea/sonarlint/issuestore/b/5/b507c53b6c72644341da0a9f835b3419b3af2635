@@ -1,3 +1,9 @@
 
-Jsquid:S1602h",Remove useless curly braces around statement(íèôÔ8Ÿ‡ª¾‡.
+esquid:UselessImportCheck"5Remove this unused import 'android.widget.ImageView'.(ú¯ëàüÿÿÿÿ8ïæ„í‡.
+psquid:UselessImportCheck"ERemove this unused import 'androidx.appcompat.app.AppCompatActivity'.(€¶£î8µÉ÷éˆ.
 esquid:UselessImportCheck":Remove this unused import 'android.widget.CompoundButton'.(®½¤Ş8Ÿ‡ª¾‡.
+dsquid:UselessImportCheck"4Remove this unused import 'android.widget.TextView'.(„Ë‚ˆÿÿÿÿÿ8ïæ„í‡.
+Jsquid:S1602n",Remove useless curly braces around statement(ùéÍ˜8¾¤•í‡.
+nsquid:UselessImportCheck	"CRemove this unused import 'androidx.appcompat.widget.SwitchCompat'.(õÕÂÕ8ïæ„í‡.
+bsquid:UselessImportCheck"2Remove this unused import 'android.widget.Button'.(²òıÿÿÿÿ8–´†í‡.
+vsquid:UselessImportCheck"FRemove this unused import 'androidx.recyclerview.widget.RecyclerView'.(Îèòçøÿÿÿÿ8•á…í‡.

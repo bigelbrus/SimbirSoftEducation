@@ -11,10 +11,16 @@ import com.example.simbirsoftapp.data.entity.EventEntity;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
+import io.reactivex.Maybe;
+
 @Dao
 public interface CategoryDao {
     @Query("Select * from category")
-    List<CategoryEntity> getCategories();
+    Maybe<List<CategoryEntity>> getCategoryMaybe();
+
+    @Query("Select * from category")
+    List<CategoryEntity> getCategoryList();
 
     @Insert
     void insertCategory(CategoryEntity categoryEntity);
@@ -23,7 +29,10 @@ public interface CategoryDao {
     void updateCategory(CategoryEntity categoryEntity);
 
     @Query("Select * from event")
-    List<EventEntity> getEvents();
+    Maybe<List<EventEntity>> getEventMaybe();
+
+    @Query("Select * from event")
+    List<EventEntity> getEventList();
 
     @Insert
     void insertEvent (EventEntity eventEntity);

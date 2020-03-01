@@ -6,8 +6,10 @@ import com.example.simbirsoftapp.domain.executor.ThreadExecutor;
 import com.example.simbirsoftapp.domain.repository.EventRepository;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 
 public class GetEvent extends UseCase<Event,Void> {
 

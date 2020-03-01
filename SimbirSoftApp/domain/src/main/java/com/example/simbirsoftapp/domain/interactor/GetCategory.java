@@ -8,6 +8,7 @@ import com.example.simbirsoftapp.domain.repository.CategoryRepository;
 import javax.inject.Inject;
 
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 
 public class GetCategory extends UseCase<Category,Void> {
 

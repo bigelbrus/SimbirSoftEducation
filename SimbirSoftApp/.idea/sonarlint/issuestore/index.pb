@@ -7,8 +7,6 @@
 Mdata/src/main/java/com/example/simbirsoftapp/data/CategoryDataRepository.java,b/7/b74e00f0eeee1d1fae7c4fc703fbf972e5b92fc0
 q
 Adata/src/main/java/com/example/simbirsoftapp/data/net/NetApi.java,e/b/eb75a78005487c73680fe5e2e8af9bff59713756
-z
-Jdata/src/main/java/com/example/simbirsoftapp/data/net/RxFirebaseClass.java,e/f/efe4728fe161168b2ccbccf07f7db0f664e78206
 w
 Gdata/src/main/java/com/example/simbirsoftapp/data/net/FirebaseImpl.java,c/7/c7799a0870884578dd4ae193738da8caf76a6585
 Ç
@@ -135,3 +133,13 @@ Xpresentation/src/main/java/com/example/simbirsoftapp/di/component/CategoryCompo
 cpresentation/src/main/java/com/example/simbirsoftapp/ui/search/events/SearchEventsListFragment.java,5/3/53186c2215ae201bdcab834a19d2f00aa8dd434f
 †
 ppresentation/src/main/java/com/example/simbirsoftapp/ui/search/organisations/SearchOrganizationListFragment.java,f/b/fbda7bc5dfce7127bf2d30fad1397472115c19fb
+}
+Mpresentation/src/main/java/com/example/simbirsoftapp/ui/news/NewsAdapter.java,6/e/6e4b0f160b724d731a6dd1e6ddd18a8d33f05095
+Å
+Qpresentation/src/main/java/com/example/simbirsoftapp/ui/help/CategoryAdapter.java,9/4/94f5b668eae87b7d7218eda8b6a30c27ae93f081
+É
+Spresentation/src/main/java/com/example/simbirsoftapp/ui/profile/FriendsAdapter.java,4/2/42f610a8ad05303e00452d8b16541ea6944d5028
+z
+Jdata/src/main/java/com/example/simbirsoftapp/data/net/RxFirebaseUtils.java,3/b/3b7e03ef0e5ef05fc0436ebc12ebada6b6b9b27b
+z
+Jdata/src/main/java/com/example/simbirsoftapp/data/EventDataRepository.java,9/7/9720b313c79c9199931f25503b2d6f6a7d5e6a4c

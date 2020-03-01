@@ -42,10 +42,7 @@ public class NewsDetailFragment extends Fragment {
     private static final int MAX_NEWS_IMAGES = 3;
     private static final int MAX_FRIENDS_IMAGES = 5;
     private FragmentNewsDetailBinding newsDetailBinding;
-    @Inject
-    Context context;
-    @Inject
-    AppCompatActivity activity;
+    MainActivity activity;
     @Inject
     AppUtils appUtils;
 
@@ -69,8 +66,9 @@ public class NewsDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         newsDetailBinding = FragmentNewsDetailBinding.inflate(inflater,container,false);
         View view = newsDetailBinding.getRoot();
-        ((MainActivity)getActivity()).getCategoryComponent().inject(this);
-        ((MainActivity)getActivity()).getBottomPanel().setVisibility(View.GONE);
+        activity = (MainActivity)getActivity();
+        activity.getCategoryComponent().inject(this);
+        activity.getBottomPanel().setVisibility(View.GONE);
         setupView(view);
         return view;
     }
@@ -110,7 +108,7 @@ public class NewsDetailFragment extends Fragment {
 
         for (int i = 0; i < event.getEventPhoto().size(); i++) {
             if (i == MAX_NEWS_IMAGES) break;
-            newsImages[i].setImageDrawable(appUtils.getDrawableByStringRes(context,
+            newsImages[i].setImageDrawable(appUtils.getDrawableByStringRes(activity,
                     event.getEventPhoto().get(i)));
         }
     }
@@ -131,7 +129,7 @@ public class NewsDetailFragment extends Fragment {
                 friendsCounter.setVisibility(View.VISIBLE);
                 break;
             }
-            friendsImages[i].setImageDrawable(appUtils.getDrawableByStringRes(context,
+            friendsImages[i].setImageDrawable(appUtils.getDrawableByStringRes(activity,
                     friends.get(i).getRoundedLogo()));
         }
     }
@@ -155,9 +153,9 @@ public class NewsDetailFragment extends Fragment {
         newsDetailBinding.newsTelephones.append(event.getOrganisationTelephone().get(event.getOrganisationTelephone().size() - 1));
         newsDetailBinding.newsDescription.setText(event.getEventDescription());
 
-        newsDetailBinding.newsLinkWriteToUs.setText(appUtils.getUnderlineGreenSpan(context,R.string.write_to_us));
+        newsDetailBinding.newsLinkWriteToUs.setText(appUtils.getUnderlineGreenSpan(activity,R.string.write_to_us));
         newsDetailBinding.newsLinkToOrganisation.setOnClickListener(click -> Toast.makeText(getActivity(), getString(R.string.write_to_us), Toast.LENGTH_SHORT).show());
-        newsDetailBinding.newsLinkToOrganisation.setText(appUtils.getUnderlineGreenSpan(context,R.string.go_to_organisation_page));
+        newsDetailBinding.newsLinkToOrganisation.setText(appUtils.getUnderlineGreenSpan(activity,R.string.go_to_organisation_page));
         final String url = event.getOrganisationSite();
         newsDetailBinding.newsLinkToOrganisation.setOnClickListener(click -> {
             Intent intent = new Intent(Intent.ACTION_VIEW);

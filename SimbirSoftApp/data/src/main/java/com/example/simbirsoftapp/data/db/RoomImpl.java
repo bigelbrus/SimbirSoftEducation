@@ -24,8 +24,9 @@ public class RoomImpl implements DbCategoryApi,DbEventApi {
 
     @Override
     public Flowable<CategoryEntity> getCategory() {
-        return Flowable.just(mDb.categoryDao().getCategories())
-                .flatMapIterable(list -> list);
+        return mDb.categoryDao().getCategoryMaybe()
+                .toFlowable()
+                .flatMapIterable(list->list);
     }
 
     @Override
@@ -37,8 +38,9 @@ public class RoomImpl implements DbCategoryApi,DbEventApi {
 
     @Override
     public Flowable<EventEntity> getEvent() {
-        return Flowable.just(mDb.categoryDao().getEvents())
-                .flatMapIterable(list -> list);
+        return mDb.categoryDao().getEventMaybe()
+                .toFlowable()
+                .flatMapIterable(list->list);
     }
 
     @Override
@@ -48,11 +50,11 @@ public class RoomImpl implements DbCategoryApi,DbEventApi {
 
     @Override
     public boolean isCategoryExist() {
-        return !mDb.categoryDao().getCategories().isEmpty();
+        return !mDb.categoryDao().getCategoryList().isEmpty();
     }
 
     @Override
     public boolean isEventExist() {
-        return !mDb.categoryDao().getEvents().isEmpty();
+        return !mDb.categoryDao().getEventList().isEmpty();
     }
 }

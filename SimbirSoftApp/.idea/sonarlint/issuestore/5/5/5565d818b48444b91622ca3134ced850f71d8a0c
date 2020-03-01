@@ -1,5 +1,8 @@
 
-Dsquid:S1172X"-Remove this unused method parameter "result".(İşñ
-nsquid:UselessImportCheck">Remove this unused import 'android.content.res.Configuration'.(ßºÊƒûÿÿÿÿ8’ä¿‡.
-:squid:S1148m"#Use a logger to log this exception.(Óùóÿ
+_squid:UselessImportCheck"4Remove this unused import 'android.content.Context'.(©Ê‰è8³Üéˆ.
 \squid:UselessImportCheck"1Remove this unused import 'android.app.Activity'.(‡ÊÍÆ8¤¿½Á‡.
+Asquid:S1148V"#Use a logger to log this exception.(Óùóÿ8üõ§ì‡.
+squid:UselessImportCheck"TRemove this unused import 'com.google.android.material.textfield.TextInputEditText'.(°Ò8üõ§ì‡.
+Ksquid:S1172A"-Remove this unused method parameter "result".(İşñ8üõ§ì‡.
+nsquid:UselessImportCheck">Remove this unused import 'android.content.res.Configuration'.(ßºÊƒûÿÿÿÿ8’ä¿‡.
+psquid:UselessImportCheck	"ERemove this unused import 'androidx.appcompat.app.AppCompatActivity'.(€¶£î8ï²æéˆ.

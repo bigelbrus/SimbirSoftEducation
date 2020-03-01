@@ -42,12 +42,9 @@ public class SearchFragment extends Fragment {
     private int currentPosition = START_POSITION;
     private FragmentSearchBinding searchBinding;
 
-    @Inject
-    AppCompatActivity activity;
+    private MainActivity activity;
     @Inject
     AppUtils appUtils;
-    @Inject
-    Context context;
 
     public static SearchFragment newInstance() {
         return new SearchFragment();
@@ -58,7 +55,8 @@ public class SearchFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         searchBinding = FragmentSearchBinding.inflate(inflater,container,false);
         View view = searchBinding.getRoot();
-        ((MainActivity)getActivity()).getCategoryComponent().inject(this);
+        activity = (MainActivity)getActivity();
+        activity.getCategoryComponent().inject(this);
 
         searchViewPager = searchBinding.searchViewPager;
         adapter = new SearchPagerAdapter(getChildFragmentManager(), getContext());
@@ -93,15 +91,15 @@ public class SearchFragment extends Fragment {
                 currentPosition = position;
                 switch (position) {
                     case POSITION_ORGANISATION:
-                        ((ListFragment) getChildFragmentManager().getFragments().get(POSITION_EVENT)).setListAdapter(new ArrayAdapter<>(context,
+                        ((ListFragment) getChildFragmentManager().getFragments().get(POSITION_EVENT)).setListAdapter(new ArrayAdapter<>(activity,
                                 R.layout.search_item, R.id.search_text_item,
-                                appUtils.getRandomStringArray(context, SearchEventsListFragment.LIST_SIZE, R.array.events_list)));
+                                appUtils.getRandomStringArray(activity, SearchEventsListFragment.LIST_SIZE, R.array.events_list)));
                         break;
                     case POSITION_EVENT:
                     default:
-                        ((ListFragment) getChildFragmentManager().getFragments().get(POSITION_ORGANISATION)).setListAdapter(new ArrayAdapter<>(context,
+                        ((ListFragment) getChildFragmentManager().getFragments().get(POSITION_ORGANISATION)).setListAdapter(new ArrayAdapter<>(activity,
                                 R.layout.search_item, R.id.search_text_item,
-                                appUtils.getRandomStringArray(context, SearchOrganizationListFragment.LIST_SIZE, R.array.organisations_list)));
+                                appUtils.getRandomStringArray(activity, SearchOrganizationListFragment.LIST_SIZE, R.array.organisations_list)));
                         break;
                 }
             }
@@ -115,7 +113,7 @@ public class SearchFragment extends Fragment {
         ImageButton voiceButton = view.findViewById(R.id.voice_search_button);
 
         voiceButton.setOnClickListener(click ->
-                Toast.makeText(context, "Speak!", Toast.LENGTH_SHORT).show());
+                Toast.makeText(activity, "Speak!", Toast.LENGTH_SHORT).show());
 
         return view;
     }

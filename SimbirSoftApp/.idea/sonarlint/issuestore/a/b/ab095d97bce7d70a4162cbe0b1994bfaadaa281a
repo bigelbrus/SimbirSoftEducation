@@ -1,6 +1,7 @@
 
-Jsquid:S1068'".Remove this unused "disposable" private field.(ã…İ·şÿÿÿÿ
-Vsquid:UnusedPrivateMethod"0Remove this unused private "showResults" method.(¨îçä
-™squid:S1186€"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(·Ê··
-Hsquid:S1611˜"1Remove the parentheses around the "pos" parameter(øÓÙ:
-˜squid:S1186{"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(êØ†
+Hsquid:S1611—"1Remove the parentheses around the "pos" parameter(øÓÙ:
+psquid:UselessImportCheck	"ERemove this unused import 'androidx.appcompat.app.AppCompatActivity'.(€¶£î8Ç±ïéˆ.
+˜squid:S1186z"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(êØ†
+ksquid:UselessImportCheck "@Remove this unused import 'io.reactivex.disposables.Disposable'.(¶µ¾®8ú¯¾ì‡.
+˜squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(·Ê··
+Vsquid:UnusedPrivateMethodŒ"0Remove this unused private "showResults" method.(¨îçä

@@ -12,8 +12,6 @@ import com.example.simbirsoftapp.data.db.DbEventApi;
 import com.example.simbirsoftapp.data.db.RoomImpl;
 import com.example.simbirsoftapp.data.entity.CategoryEntity;
 import com.example.simbirsoftapp.data.entity.EventEntity;
-import com.example.simbirsoftapp.data.entity.adapter.CategoryTypeAdapter;
-import com.example.simbirsoftapp.data.entity.adapter.EventTypeAdapter;
 import com.example.simbirsoftapp.data.executor.JobExecutor;
 import com.example.simbirsoftapp.data.net.FirebaseImpl;
 import com.example.simbirsoftapp.data.net.NetApi;
@@ -38,10 +36,6 @@ import dagger.Provides;
 
 @Module
 public class ApplicationModule {
-    private static final Type categoryListType = new TypeToken<List<CategoryEntity>>() {
-    }.getType();
-    private static final Type eventsListType = new TypeToken<List<EventEntity>>() {
-    }.getType();
     private App app;
 
     public ApplicationModule(App app) {
@@ -99,10 +93,7 @@ public class ApplicationModule {
     @Provides
     @Singleton
     Gson gson() {
-        return new GsonBuilder()
-                .registerTypeAdapter(categoryListType, new CategoryTypeAdapter())
-                .registerTypeAdapter(eventsListType, new EventTypeAdapter())
-                .create();
+        return new Gson();
     }
 
     @Provides

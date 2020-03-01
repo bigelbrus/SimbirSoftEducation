@@ -39,13 +39,12 @@ import javax.inject.Inject;
 public class ProfileFragment extends Fragment {
 
     private FragmentProfileBinding profileBinding;
+    private MainActivity activity;
 
     @Inject
     FriendsAdapter adapter;
     @Inject
     FirebaseAuth firebaseAuth;
-    @Inject
-    AppCompatActivity activity;
     @Inject
     AppUtils appUtils;
 
@@ -63,7 +62,8 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainActivity)getActivity()).getCategoryComponent().inject(this);
+        activity = (MainActivity)getActivity();
+        activity.getCategoryComponent().inject(this);
         profileBinding = FragmentProfileBinding.inflate(inflater,container,false);
         View view = profileBinding.getRoot();
 

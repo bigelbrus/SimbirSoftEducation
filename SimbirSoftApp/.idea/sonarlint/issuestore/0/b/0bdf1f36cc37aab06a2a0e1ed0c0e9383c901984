@@ -1,3 +1,4 @@
 
-bsquid:UselessImportCheck"2Remove this unused import 'javax.inject.Provider'.(·¯‡“úÿÿÿÿ8Œéì¼‡.
-ksquid:UselessImportCheck"@Remove this unused import 'io.reactivex.disposables.Disposable'.(¶µ¾®8Œéì¼‡.
+ksquid:UselessImportCheck"@Remove this unused import 'io.reactivex.disposables.Disposable'.(¶µ¾®8Œéì¼‡.
+bsquid:UselessImportCheck"2Remove this unused import 'javax.inject.Provider'.(·¯‡“úÿÿÿÿ8Œéì¼‡.
+psquid:UselessImportCheck"ERemove this unused import 'androidx.appcompat.app.AppCompatActivity'.(€¶£î8˜ýëéˆ.

@@ -1,5 +1,7 @@
 package com.example.simbirsoftapp.presenter;
 
+import android.util.Log;
+
 import com.example.simbirsoftapp.data.mapper.CategoryModelDataMapper;
 import com.example.simbirsoftapp.data.model.CategoryModel;
 import com.example.simbirsoftapp.domain.Category;
@@ -9,6 +11,8 @@ import com.example.simbirsoftapp.ui.HelpView;
 
 import javax.inject.Inject;
 
+import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.observers.ResourceSingleObserver;
 import io.reactivex.subscribers.ResourceSubscriber;
 import moxy.InjectViewState;
 
@@ -84,7 +88,15 @@ public class CategoryPresenter extends Presenter<HelpView> {
         @Override
         public void onNext(Category categories) {
             showUsersCollectionInView(categories);
+
         }
+
+//        @Override
+//        public void onSuccess(Category category) {
+//            Log.d("tag","success disposable");
+//
+//            showViewData();
+//        }
 
         @Override public void onError(Throwable e) {
             showViewError();

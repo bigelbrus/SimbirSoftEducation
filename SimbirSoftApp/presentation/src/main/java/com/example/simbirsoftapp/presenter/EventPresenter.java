@@ -8,6 +8,8 @@ import com.example.simbirsoftapp.ui.NewsView;
 
 import javax.inject.Inject;
 
+import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.observers.ResourceSingleObserver;
 import io.reactivex.subscribers.ResourceSubscriber;
 import moxy.InjectViewState;
 
@@ -85,6 +87,12 @@ public class EventPresenter extends Presenter<NewsView> {
         public void onNext(Event event) {
             showUsersCollectionInView(event);
         }
+//
+//        @Override
+//        public void onSuccess(Event event) {
+//            showViewData();
+//            showUsersCollectionInView(event);
+//        }
 
         @Override public void onError(Throwable e) {
             showViewError();
